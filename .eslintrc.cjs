@@ -11,16 +11,24 @@ module.exports = {
   ],
   ignorePatterns: ["dist", ".eslintrc.cjs"],
   parser: "@typescript-eslint/parser",
-  plugins: [
-    "@typescript-eslint",
-    "react-refresh",
-    "prettier",
-    "simple-import-sort",
-  ],
+  parserOptions: {
+    project: ["./tsconfig.json"],
+  },
+  plugins: ["@typescript-eslint", "react-refresh", "prettier", "simple-import-sort"],
   rules: {
-    "react-refresh/only-export-components": [
-      "warn",
-      { allowConstantExport: true },
+    "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-uses-react": "off",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        js: "never",
+        jsx: "never",
+        ts: "never",
+        tsx: "never",
+        "": "never",
+      },
     ],
   },
-};
+}
