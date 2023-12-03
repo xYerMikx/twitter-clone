@@ -30,5 +30,6 @@ module.exports = {
         "": "never",
       },
     ],
+    "import/prefer-default-export": "off",
   },
 }
