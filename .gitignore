@@ -23,3 +23,10 @@ dist-ssr
 *.sln
 *.sw?
 .yarn
+
+# Environment
+.env
+.env.dev
+.env.root
+.env.root.dev
+.dev.env
