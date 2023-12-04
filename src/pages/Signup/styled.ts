@@ -41,3 +41,7 @@ export const SelectsWrapper = styled.div`
   display: flex;
   justify-content: space-between;
 `
+export const Error = styled.p`
+  font-size: ${({ theme }) => theme.fontSize.f14};
+  color: ${({ theme }) => theme.red};
+`

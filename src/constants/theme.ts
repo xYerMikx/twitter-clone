@@ -36,6 +36,7 @@ const commonTheme = {
   lightGray: "#CCCCCC",
   gray: "#5C6C79",
   blue: "#1DA1F2",
+  red: "#EF1C5C",
   lightColor: "#FFFFFF",
   disabledColor: "#B3B8BB",
   lightBlue: "#00000014",

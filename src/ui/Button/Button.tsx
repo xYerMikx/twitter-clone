@@ -8,7 +8,8 @@ interface IButtonProps {
   disabled?: boolean
   outlined?: boolean
   primary?: boolean
-  onClick: () => void
+  onClick?: () => void
+  type?: "submit" | "button" | "reset"
 }
 
 export function Button({
@@ -19,6 +20,7 @@ export function Button({
   outlined,
   primary,
   onClick,
+  type,
 }: IButtonProps) {
   return (
     <StyledButton
@@ -27,6 +29,7 @@ export function Button({
       $primary={primary}
       disabled={disabled}
       onClick={onClick}
+      type={type}
     >
       {icon && <Icon src={icon} alt="icon" />}
       {children}
