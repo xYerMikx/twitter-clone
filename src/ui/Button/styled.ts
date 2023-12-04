@@ -10,6 +10,16 @@ const outlinedStyles = css`
   }
 `
 
+const primaryStyles = css`
+  background: ${({ theme }) => theme.blue};
+  color: ${({ theme }) => theme.lightColor};
+  border: none;
+
+  &:hover {
+    filter: brightness(110%);
+  }
+`
+
 export const StyledButton = styled.button<{
   $width?: string
   $outlined?: boolean
@@ -24,11 +34,11 @@ export const StyledButton = styled.button<{
   align-items: center;
   justify-content: center;
 
-  font-size: ${({ theme }) => theme.fontSize.f20};
+  font-size: ${({ theme }) => theme.fontSize.f18};
   font-weight: ${({ theme }) => theme.fontWeight.medium};
-  border-radius: ${({ theme }) => theme.borderRadius};
+  border-radius: ${({ theme }) => theme.buttonRadius};
   padding: ${({ theme }) => theme.spacings.md} 0;
-  ${({ $primary }) => $primary && outlinedStyles}
+  ${({ $primary }) => $primary && primaryStyles}
   ${({ $outlined }) => $outlined && outlinedStyles}
 `
 
