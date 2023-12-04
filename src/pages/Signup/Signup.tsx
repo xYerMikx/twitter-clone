@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Fragment } from "react"
@@ -40,6 +40,7 @@ export function Signup() {
     formState: { errors },
     reset,
   } = useForm<ISignUpFormFields>({ resolver: zodResolver(signupSchema) })
+  const navigate = useNavigate()
   const onSubmit = async (data: ISignUpFormFields) => {
     const parsedData = {
       ...data,
@@ -59,6 +60,7 @@ export function Signup() {
         _id: userCredentials.user.uid,
       }
       await addDoc(collection(db, "users"), userData)
+      navigate(Routes.HOME)
     } catch (e) {
       console.error(e)
     } finally {

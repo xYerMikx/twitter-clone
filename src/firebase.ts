@@ -1,12 +1,16 @@
 import { initializeApp } from "firebase/app"
 import {
+  GoogleAuthProvider,
   createUserWithEmailAndPassword,
   getAuth,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
 } from "firebase/auth"
-import { getFirestore } from "firebase/firestore"
+import { addDoc, collection, getFirestore } from "firebase/firestore"
 import { getStorage } from "firebase/storage"
+import { NavigateFunction } from "react-router-dom"
+import { Routes } from "./constants/routes"
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -28,3 +32,20 @@ export const logout = () => signOut(auth)
 
 export const db = getFirestore(app)
 export const storage = getStorage(app)
+
+const provider = new GoogleAuthProvider()
+
+export const signUpWithGoogle = (navigate: NavigateFunction) => {
+  signInWithPopup(auth, provider)
+    .then(({ user }) => {
+      const name = user.displayName
+      const { uid } = user
+      const { email } = user
+      const { phoneNumber } = user
+      const userData = { name, _id: uid, email, phoneNumber }
+      addDoc(collection(db, "users"), userData)
+        .then(() => navigate(Routes.HOME))
+        .catch((e) => console.error(e))
+    })
+    .catch((e) => console.error(e))
+}

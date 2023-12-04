@@ -1,4 +1,5 @@
 import { Auth } from "@/pages/Auth/Auth"
+import { Home } from "@/pages/Home/Home"
 import { Login } from "@/pages/Login/Login"
 import { Signup } from "@/pages/Signup/Signup"
 
@@ -15,4 +16,5 @@ export const routes = [
   { path: Routes.AUTH, element: Auth },
   { path: Routes.LOGIN, element: Login },
   { path: Routes.SIGNUP, element: Signup },
+  { path: Routes.HOME, element: Home },
 ]

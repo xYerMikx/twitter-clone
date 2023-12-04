@@ -20,11 +20,19 @@ import googleIcon from "@/assets/google-logo.svg"
 import { Routes } from "@/constants/routes"
 import { Button } from "@/ui/Button/Button"
 import { TwitterLogo } from "@/components/TwitterLogo/TwitterLogo"
+import { signUpWithGoogle } from "@/firebase"
 
 export function Auth() {
   const navigate = useNavigate()
   const handleSignUpClick = () => {
     navigate(Routes.SIGNUP)
+  }
+  const handleGoogleSignUp = async () => {
+    try {
+      await signUpWithGoogle(navigate)
+    } catch (e) {
+      console.error(e)
+    }
   }
   return (
     <Wrapper>
@@ -35,7 +43,7 @@ export function Auth() {
           <Title>Happening now</Title>
           <Subtitle>Join Twitter today</Subtitle>
           <Buttons>
-            <Button onClick={() => {}} icon={googleIcon} outlined width="400px">
+            <Button onClick={handleGoogleSignUp} icon={googleIcon} outlined width="400px">
               Sign up with Google
             </Button>
             <Button onClick={handleSignUpClick} outlined width="400px">
