@@ -30,6 +30,7 @@ const commonTheme = {
     lg: "20px",
     xl: "25px",
   },
+  borderColor: "#E4EAED",
   darkColor: "#000000",
   lightGray: "#00000099",
   gray: "#5C6C79",

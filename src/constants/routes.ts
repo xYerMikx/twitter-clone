@@ -1,6 +1,6 @@
-import Auth from "@/pages/Auth/Auth"
-import Login from "@/pages/Login/Login"
-import Signup from "@/pages/Signup/Signup"
+import { Auth } from "@/pages/Auth/Auth"
+import { Login } from "@/pages/Login/Login"
+import { Signup } from "@/pages/Signup/Signup"
 
 export enum Routes {
   HOME = "/",

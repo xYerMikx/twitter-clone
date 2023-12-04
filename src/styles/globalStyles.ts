@@ -29,5 +29,6 @@ export const GlobalStyles = createGlobalStyle`
   	min-height: 100vh;
   	scroll-behavior: smooth;
     font-size: 16px;
+    font-family: ${({ theme }) => theme.fontFamily.roboto}, sans-serif;
   }
 `
