@@ -37,7 +37,7 @@ export const StyledButton = styled.button<{
   font-size: ${({ theme }) => theme.fontSize.f18};
   font-weight: ${({ theme }) => theme.fontWeight.medium};
   border-radius: ${({ theme }) => theme.buttonRadius};
-  padding: ${({ theme }) => theme.spacings.md} 0;
+  padding: ${({ theme }) => theme.spacings.s15} 0;
   ${({ $primary }) => $primary && primaryStyles}
   ${({ $outlined }) => $outlined && outlinedStyles}
 `

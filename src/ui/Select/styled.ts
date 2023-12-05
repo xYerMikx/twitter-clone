@@ -5,7 +5,7 @@ export const StyledSelect = styled.select<{ $width?: string }>`
   cursor: pointer;
   width: ${({ $width }) => $width || "100%"};
   border: ${({ theme }) => theme.lightGray} solid ${({ theme }) => theme.borderSize};
-  padding: 20px;
+  padding: ${({ theme }) => theme.spacings.s20};
 
   font-size: ${({ theme }) => theme.fontSize.f14};
 
@@ -14,9 +14,9 @@ export const StyledSelect = styled.select<{ $width?: string }>`
   appearance: none;
 
   background: url(${arrowDown});
-  background-repeat: no-repeat;
-  background-position: right;
-  background-position-x: calc(100% - 8px);
+  background-repeat: ${({ theme }) => theme.background.repeat};
+  background-position: ${({ theme }) => theme.background.position};
+  background-position-x: ${({ theme }) => theme.background.xPositionOffset};
   color: ${({ theme }) => theme.darkColor};
   transition: all 0.2s linear;
 
