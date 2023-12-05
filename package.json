@@ -13,11 +13,14 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.2",
+    "@reduxjs/toolkit": "^2.0.1",
     "firebase": "^10.7.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.48.2",
+    "react-redux": "^9.0.2",
     "react-router-dom": "^6.20.1",
+    "redux-persist": "^6.0.0",
     "styled-components": "^6.1.1",
     "zod": "^3.22.4"
   },
@@ -30,6 +33,7 @@
     "@types/babel__preset-env": "^7",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
+    "@types/redux-persist": "^4.3.1",
     "@types/styled-components": "^5.1.32",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
     "@typescript-eslint/parser": "^6.10.0",
