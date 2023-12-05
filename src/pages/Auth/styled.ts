@@ -4,14 +4,14 @@ import styled from "styled-components"
 export const Wrapper = styled.div``
 export const MainContent = styled.div`
   display: flex;
-  gap: 40px;
+  gap: ${({ theme }) => theme.spacings.s40};
 `
 export const TwitterImage = styled.img`
   width: 55%;
 `
 export const FooterLinks = styled.div`
   display: flex;
-  gap: 15px;
+  gap: ${({ theme }) => theme.spacings.s15};
   flex-wrap: wrap;
   justify-content: center;
   font-size: ${({ theme }) => theme.fontSize.f12};

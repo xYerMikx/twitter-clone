@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import styled from "styled-components"
 
 export const Wrapper = styled.div`
-  padding: ${({ theme }) => theme.spacings.xxxl} 0;
+  padding: ${({ theme }) => theme.spacings.s50} 0;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -11,10 +11,10 @@ export const Wrapper = styled.div`
   width: 75%;
 `
 export const LoginForm = styled.form`
-  margin-top: ${({ theme }) => theme.spacings.xl};
+  margin-top: ${({ theme }) => theme.spacings.s50};
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: ${({ theme }) => theme.spacings.s25};
   width: 500px;
 `
 

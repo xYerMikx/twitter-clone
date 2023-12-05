@@ -11,7 +11,7 @@ import { Input } from "@/ui/Input/Input"
 import { Button } from "@/ui/Button/Button"
 import { loginInputs } from "@/constants/loginFormParts"
 import { isValidEmail, isValidPhone } from "@/utils/validateIdentifier"
-import { db , signin } from "@/firebase"
+import { db, signin } from "@/firebase"
 
 interface ILoginFormProps {
   identifier: string
@@ -32,11 +32,11 @@ export function Login() {
       const phone = isValidPhone(identifier)
       const email = isValidEmail(identifier)
       if (phone || email) {
-        const q = query(
+        const userQuery = query(
           collection(db, "users"),
           phone ? where("phone", "==", identifier) : where("email", "==", identifier),
         )
-        const querySnapshot = await getDocs(q)
+        const querySnapshot = await getDocs(userQuery)
 
         if (!querySnapshot.empty) {
           const userEmail = phone ? querySnapshot.docs[0].data().email : identifier
