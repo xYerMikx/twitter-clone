@@ -14,7 +14,7 @@ export const SignupForm = styled.form`
   margin-top: ${({ theme }) => theme.spacings.s30};
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: ${({ theme }) => theme.spacings.s25};
   width: 700px;
 `
 
