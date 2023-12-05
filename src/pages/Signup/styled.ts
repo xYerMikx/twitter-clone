@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 export const Wrapper = styled.div`
-  padding: ${({ theme }) => theme.spacings.xxxl} 0;
+  padding: ${({ theme }) => theme.spacings.s50} 0;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
 `
 
 export const SignupForm = styled.form`
-  margin-top: ${({ theme }) => theme.spacings.xl};
+  margin-top: ${({ theme }) => theme.spacings.s30};
   display: flex;
   flex-direction: column;
   gap: 25px;
@@ -34,7 +34,7 @@ export const BirthTitle = styled.h4`
 `
 export const BirthText = styled.p`
   font-size: ${({ theme }) => theme.fontSize.f16};
-  opacity: 0.6;
+  opacity: ${({ theme }) => theme.opacity};
   font-weight: ${({ theme }) => theme.fontWeight.regular};
 `
 export const SelectsWrapper = styled.div`
