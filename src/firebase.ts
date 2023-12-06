@@ -35,7 +35,10 @@ export const storage = getStorage(app)
 
 const provider = new GoogleAuthProvider()
 
-export const signUpWithGoogle = (navigate: NavigateFunction) => {
+export const signUpWithGoogle = (
+  navigate: NavigateFunction,
+  dispatchSuccessfull: () => void,
+) => {
   signInWithPopup(auth, provider)
     .then(({ user }) => {
       const name = user.displayName
@@ -44,7 +47,10 @@ export const signUpWithGoogle = (navigate: NavigateFunction) => {
       const { phoneNumber } = user
       const userData = { name, _id: uid, email, phoneNumber }
       addDoc(collection(db, "users"), userData)
-        .then(() => navigate(Routes.HOME))
+        .then(() => {
+          navigate(Routes.HOME)
+          dispatchSuccessfull()
+        })
         .catch((e) => console.error(e))
     })
     .catch((e) => console.error(e))

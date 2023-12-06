@@ -12,6 +12,9 @@ import { Button } from "@/ui/Button/Button"
 import { loginInputs } from "@/constants/loginFormParts"
 import { isValidEmail, isValidPhone } from "@/utils/validateIdentifier"
 import { db, signin } from "@/firebase"
+import { useAppDispatch } from "@/hooks/redux"
+import { notificationActions } from "@/store/slices/notificationSlice"
+import { NotificationStatuses } from "@/constants/notificationStatus"
 
 interface ILoginFormProps {
   identifier: string
@@ -26,6 +29,7 @@ export function Login() {
     reset,
   } = useForm<ILoginFormProps>({ resolver: zodResolver(loginSchema) })
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
   const onSubmit = async (data: ILoginFormProps) => {
     try {
       const { identifier, password } = data
@@ -41,13 +45,25 @@ export function Login() {
         if (!querySnapshot.empty) {
           const userEmail = phone ? querySnapshot.docs[0].data().email : identifier
           await signin(userEmail, password)
+          dispatch(
+            notificationActions.addNotification({
+              type: NotificationStatuses.SUCCESS,
+              message: "You have successfully logged in!",
+            }),
+          )
           navigate(Routes.HOME)
         } else {
           console.log("User not found")
         }
       }
-    } catch (error) {
-      console.error(error)
+    } catch (e) {
+      const error = e as Error
+      dispatch(
+        notificationActions.addNotification({
+          type: NotificationStatuses.ERROR,
+          message: error.message,
+        }),
+      )
     } finally {
       reset()
     }

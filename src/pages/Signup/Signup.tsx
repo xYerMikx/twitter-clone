@@ -22,6 +22,10 @@ import { signupInputs, signupSelects } from "@/constants/signupFormParts"
 import { signupSchema } from "@/validators/signup"
 import { db, register as registerUser } from "@/firebase"
 import { formateBirthday } from "@/utils/formateBirthday"
+import { useAppDispatch } from "@/hooks/redux"
+import { userActions } from "@/store/slices/userSlice"
+import { notificationActions } from "@/store/slices/notificationSlice"
+import { NotificationStatuses } from "@/constants/notificationStatus"
 
 interface ISignUpFormFields {
   name: string
@@ -41,6 +45,7 @@ export function Signup() {
     reset,
   } = useForm<ISignUpFormFields>({ resolver: zodResolver(signupSchema) })
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
   const onSubmit = async (data: ISignUpFormFields) => {
     const parsedData = {
       ...data,
@@ -60,9 +65,22 @@ export function Signup() {
         _id: userCredentials.user.uid,
       }
       await addDoc(collection(db, "users"), userData)
+      dispatch(userActions.setUser({ ...userData }))
+      dispatch(
+        notificationActions.addNotification({
+          type: NotificationStatuses.SUCCESS,
+          message: "You have successfully registered!",
+        }),
+      )
       navigate(Routes.HOME)
     } catch (e) {
-      console.error(e)
+      const error = e as Error
+      dispatch(
+        notificationActions.addNotification({
+          type: NotificationStatuses.ERROR,
+          message: error.message,
+        }),
+      )
     } finally {
       reset()
     }
