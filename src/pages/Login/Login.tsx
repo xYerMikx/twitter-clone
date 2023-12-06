@@ -7,13 +7,13 @@ import { Wrapper } from "./styled"
 import { Routes } from "@/constants/routes"
 import { loginSchema } from "@/validators/login"
 import { TwitterLogo } from "@/components/TwitterLogo/TwitterLogo"
-
 import { isValidEmail, isValidPhone } from "@/utils/validateIdentifier"
 import { db, signin } from "@/firebase"
 import { useAppDispatch } from "@/hooks/redux"
-import { notificationActions } from "@/store/slices/notificationSlice"
 import { NotificationStatuses } from "@/constants/notificationStatus"
 import { LoginForm } from "@/components/LoginForm/LoginForm"
+import { dispatchNotification } from "@/utils/dispatchNotification"
+import { SUCCESS_LOGIN, USER_NOT_FOUND } from "@/constants/messages"
 
 export interface ILoginFormProps {
   identifier: string
@@ -42,25 +42,15 @@ export function Login() {
         if (!querySnapshot.empty) {
           const userEmail = phone ? querySnapshot.docs[0].data().email : identifier
           await signin(userEmail, password)
-          dispatch(
-            notificationActions.addNotification({
-              type: NotificationStatuses.SUCCESS,
-              message: "You have successfully logged in!",
-            }),
-          )
+          dispatchNotification(dispatch, NotificationStatuses.SUCCESS, SUCCESS_LOGIN)
           navigate(Routes.HOME)
         } else {
-          console.log("User not found")
+          dispatchNotification(dispatch, NotificationStatuses.ERROR, USER_NOT_FOUND)
         }
       }
     } catch (e) {
       const error = e as Error
-      dispatch(
-        notificationActions.addNotification({
-          type: NotificationStatuses.ERROR,
-          message: error.message,
-        }),
-      )
+      dispatchNotification(dispatch, NotificationStatuses.ERROR, error.message)
     } finally {
       reset()
       setDisabled(false)
