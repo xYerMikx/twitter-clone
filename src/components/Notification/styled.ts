@@ -21,6 +21,7 @@ export const NotificationWrapper = styled.div<{
 }>`
   position: relative;
   border: ${({ theme }) => theme.borderSize} solid ${({ theme }) => theme.borderColor};
+  border-radius: ${({ theme }) => theme.borderRadius};
   width: 200px;
   padding: ${({ theme }) => theme.spacings.s10};
   display: flex;

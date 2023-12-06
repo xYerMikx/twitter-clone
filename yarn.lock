@@ -2690,15 +2690,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/redux-persist@npm:^4.3.1":
-  version: 4.3.1
-  resolution: "@types/redux-persist@npm:4.3.1"
-  dependencies:
-    redux-persist: "npm:*"
-  checksum: fb02ca069b309fdda4f72afb558e66859bf9c0a70ad9a5eec45a791da0cdaa200e8cd015c82f0efd9d3c94cbd5d32c88e51e025fdd53feb19045d6d258395a54
-  languageName: node
-  linkType: hard
-
 "@types/scheduler@npm:*":
   version: 0.16.8
   resolution: "@types/scheduler@npm:0.16.8"
@@ -5996,7 +5987,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"redux-persist@npm:*, redux-persist@npm:^6.0.0":
+"redux-persist@npm:^6.0.0":
   version: 6.0.0
   resolution: "redux-persist@npm:6.0.0"
   peerDependencies:
@@ -6733,7 +6724,6 @@ __metadata:
     "@types/react": "npm:^18.2.37"
     "@types/react-dom": "npm:^18.2.15"
     "@types/react-redux": "npm:^7.1.32"
-    "@types/redux-persist": "npm:^4.3.1"
     "@types/styled-components": "npm:^5.1.32"
     "@typescript-eslint/eslint-plugin": "npm:^6.10.0"
     "@typescript-eslint/parser": "npm:^6.10.0"

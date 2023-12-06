@@ -1,4 +1,4 @@
-import { Fragment } from "react"
+import { Fragment, useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { collection, getDocs, query, where } from "firebase/firestore"
@@ -30,8 +30,10 @@ export function Login() {
   } = useForm<ILoginFormProps>({ resolver: zodResolver(loginSchema) })
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
+  const [disabled, setDisabled] = useState(false)
   const onSubmit = async (data: ILoginFormProps) => {
     try {
+      setDisabled(true)
       const { identifier, password } = data
       const phone = isValidPhone(identifier)
       const email = isValidEmail(identifier)
@@ -66,6 +68,7 @@ export function Login() {
       )
     } finally {
       reset()
+      setDisabled(false)
     }
   }
   return (
@@ -80,7 +83,7 @@ export function Login() {
           </Fragment>
         ))}
 
-        <Button type="submit" primary>
+        <Button type="submit" disabled={disabled} primary>
           Log In
         </Button>
         <SignUpLink to={Routes.AUTH}>Sign up to Twitter</SignUpLink>

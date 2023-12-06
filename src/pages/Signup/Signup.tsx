@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Fragment } from "react"
+import { Fragment, useState } from "react"
 import { addDoc, collection } from "firebase/firestore"
 import { Input } from "@/ui/Input/Input"
 import {
@@ -46,6 +46,7 @@ export function Signup() {
   } = useForm<ISignUpFormFields>({ resolver: zodResolver(signupSchema) })
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
+  const [disabled, setDisabled] = useState(false)
   const onSubmit = async (data: ISignUpFormFields) => {
     const parsedData = {
       ...data,
@@ -56,6 +57,7 @@ export function Signup() {
     const birthday = formateBirthday(year, month, day)
 
     try {
+      setDisabled(true)
       const userCredentials = await registerUser(email, password)
       const userData = {
         email,
@@ -83,6 +85,7 @@ export function Signup() {
       )
     } finally {
       reset()
+      setDisabled(false)
     }
   }
 
@@ -121,7 +124,7 @@ export function Signup() {
             </Fragment>
           ))}
         </SelectsWrapper>
-        <Button type="submit" primary>
+        <Button disabled={disabled} type="submit" primary>
           Next
         </Button>
       </SignupForm>
