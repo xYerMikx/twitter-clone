@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 
-interface INotification {
+export interface INotification {
   id: number
   message: string
   type: string

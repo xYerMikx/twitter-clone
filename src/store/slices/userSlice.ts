@@ -1,11 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { PersistPartial } from "redux-persist/es/persistReducer"
+import { INotification } from "./notificationSlice"
 
-interface IUser {
+export interface IUser {
   _id: string
   email: string
   birthday: string
   phone: string
   name: string
+  token: string | null
 }
 
 const initialState: IUser = {
@@ -14,6 +17,7 @@ const initialState: IUser = {
   birthday: "",
   phone: "",
   name: "",
+  token: null,
 }
 
 const userSlice = createSlice({
@@ -29,6 +33,11 @@ const userSlice = createSlice({
   },
 })
 
-export const { setUser, removeUser } = userSlice.actions
+type State = {
+  user: IUser
+  notificationsList: INotification[]
+} & PersistPartial
 
+export const { setUser, removeUser } = userSlice.actions
+export const selectToken = (state: State) => state.user.token
 export const { reducer: userReducer, actions: userActions } = userSlice

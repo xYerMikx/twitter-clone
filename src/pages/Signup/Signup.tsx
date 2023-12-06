@@ -43,12 +43,14 @@ export function Signup() {
     try {
       setDisabled(true)
       const userCredentials = await registerUser(email, password)
+      const token = await userCredentials.user.getIdToken()
       const userData = {
         email,
         name,
         phone,
         birthday,
         _id: userCredentials.user.uid,
+        token,
       }
       await addDoc(collection(db, "users"), userData)
       dispatch(userActions.setUser({ ...userData }))

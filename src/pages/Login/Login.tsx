@@ -14,6 +14,7 @@ import { NotificationStatuses } from "@/constants/notificationStatus"
 import { LoginForm } from "@/components/LoginForm/LoginForm"
 import { dispatchNotification } from "@/utils/dispatchNotification"
 import { SUCCESS_LOGIN, USER_NOT_FOUND } from "@/constants/messages"
+import { IUser, userActions } from "@/store/slices/userSlice"
 
 export interface ILoginFormProps {
   identifier: string
@@ -40,8 +41,11 @@ export function Login() {
         const querySnapshot = await getDocs(userQuery)
 
         if (!querySnapshot.empty) {
-          const userEmail = phone ? querySnapshot.docs[0].data().email : identifier
-          await signin(userEmail, password)
+          const userData = querySnapshot.docs[0].data()
+          const userEmail = phone ? userData.email : identifier
+          const userCredentials = await signin(userEmail, password)
+          const token = await userCredentials.user.getIdToken()
+          dispatch(userActions.setUser({ ...(userData as IUser), token }))
           dispatchNotification(dispatch, NotificationStatuses.SUCCESS, SUCCESS_LOGIN)
           navigate(Routes.HOME)
         } else {
