@@ -20,6 +20,12 @@ export const SidebarLink = styled(Link)`
     }
   }
 `
+export const SidebarLinks = styled.div`
+  margin-top: ${({ theme }) => theme.spacings.s30};
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacings.s25};
+`
 export const Text = styled.p``
 export const ProfileWrapper = styled.div`
   display: flex;

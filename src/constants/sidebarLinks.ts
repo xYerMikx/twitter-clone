@@ -9,35 +9,43 @@ import { Profile } from "@/components/Icons/Profile"
 
 export const sidebarLinks = [
   {
-    path: "Home",
+    name: "Home",
+    path: "/home",
     element: Home,
   },
   {
-    path: "Explore",
+    name: "Explore",
+    path: "/explore",
     element: Explore,
   },
   {
-    path: "Notification",
+    name: "Notification",
+    path: "/notification",
     element: Notification,
   },
   {
-    path: "Messages",
+    name: "Messages",
+    path: "/messages",
     element: Messages,
   },
   {
-    path: "Bookmarks",
+    name: "Bookmarks",
+    path: "/bookmarks",
     element: Bookmarks,
   },
   {
-    path: "Lists",
+    name: "Lists",
+    path: "/lists",
     element: Lists,
   },
   {
-    path: "Profile",
+    name: "Profile",
+    path: "/profile",
     element: Profile,
   },
   {
-    path: "More",
+    name: "More",
+    path: "/more",
     element: More,
   },
 ]

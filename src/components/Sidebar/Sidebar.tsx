@@ -7,6 +7,7 @@ import {
   ProfileUserName,
   ProfileWrapper,
   SidebarLink,
+  SidebarLinks,
   SidebarWrapper,
   Text,
 } from "./styled"
@@ -16,6 +17,7 @@ import { Routes } from "@/constants/routes"
 import { useAppSelector } from "@/hooks/redux"
 import { selectUserInfo } from "@/store/slices/userSlice"
 import profilePhoto from "@/assets/profile-logo.svg"
+import { TwitterLogo } from "../TwitterLogo/TwitterLogo"
 
 export function Sidebar() {
   const navigate = useNavigate()
@@ -23,22 +25,25 @@ export function Sidebar() {
     await logout()
     navigate(Routes.AUTH)
   }
-  const { email, name } = useAppSelector(selectUserInfo)
+  const { email, name: userName } = useAppSelector(selectUserInfo)
   return (
     <SidebarWrapper>
-      {sidebarLinks.map(({ path, element: Element }) => (
-        <SidebarLink key={path} to={path}>
-          <Element />
-          <Text>{path}</Text>
-        </SidebarLink>
-      ))}
+      <TwitterLogo />
+      <SidebarLinks>
+        {sidebarLinks.map(({ name, path, element: Element }) => (
+          <SidebarLink key={path} to={path}>
+            <Element />
+            <Text>{name}</Text>
+          </SidebarLink>
+        ))}
+      </SidebarLinks>
       <Button width="230px" primary>
         Tweet
       </Button>
       <ProfileWrapper>
         <Image src={profilePhoto} alt="profile-logo" />
         <ProfileInfo>
-          <ProfileName>{name}</ProfileName>
+          <ProfileName>{userName}</ProfileName>
           <ProfileUserName>@{email.split("@")[0]}</ProfileUserName>
         </ProfileInfo>
       </ProfileWrapper>
