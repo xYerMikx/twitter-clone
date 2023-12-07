@@ -60,6 +60,8 @@ const commonTheme = {
   borderRadius: "8px",
   buttonRadius: "50px",
   opacity: 0.6,
+  opacityMax: 1,
+  opacityMin: 0,
 }
 export const lightTheme = {
   ...commonTheme,

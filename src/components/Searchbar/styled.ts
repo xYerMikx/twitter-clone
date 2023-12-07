@@ -43,9 +43,9 @@ export const IconButton = styled.button`
   background: none;
 
   &:hover {
-    color: white;
+    color: ${({ theme }) => theme.lightColor};
     &::after {
-      opacity: 1;
+      opacity: ${({ theme }) => theme.opacityMax};
       transform: scale(1);
     }
   }
@@ -60,6 +60,6 @@ export const IconButton = styled.button`
     z-index: ${({ theme }) => theme.zIndex.z1};
     background: ${({ theme }) => theme.black};
     transform: scale(0.6);
-    opacity: 0;
+    opacity: ${({ theme }) => theme.opacityMin};
   }
 `
