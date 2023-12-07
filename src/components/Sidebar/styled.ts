@@ -5,7 +5,11 @@ export const SidebarWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacings.s20};
-  width: 220px;
+  width: 250px;
+  border-right: ${({ theme }) => theme.borderSize} solid ${({ theme }) => theme.lightGray};
+  padding: ${({ theme }) => theme.spacings.s25} 0;
+  padding-right: ${({ theme }) => theme.spacings.s20};
+  height: 100vh;
 `
 
 export const SidebarLink = styled(Link)`
