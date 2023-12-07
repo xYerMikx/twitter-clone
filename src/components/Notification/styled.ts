@@ -2,13 +2,13 @@ import styled, { keyframes } from "styled-components"
 import { NotificationStatuses } from "@/constants/notificationStatus"
 
 const fadeIn = keyframes`
-  0% { opacity: 0; transform: translateY(50px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% { opacity: ${({ theme }) => theme.opacityMin}; transform: translateY(50px); }
+  100% { opacity: ${({ theme }) => theme.opacityMax}; transform: translateY(0); }
 `
 
 const fadeOut = keyframes`
-  0% { opacity: 1; transform: translateY(0); }
-  100% { opacity: 0; transform: translateX(200px); }
+  0% { opacity: ${({ theme }) => theme.opacityMax}; transform: translateY(0); }
+  100% { opacity: ${({ theme }) => theme.opacityMin}; transform: translateX(200px); }
 `
 
 const slideOut = keyframes`
