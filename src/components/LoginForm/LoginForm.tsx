@@ -7,7 +7,7 @@ import { Button } from "@/ui/Button/Button"
 import { Routes } from "@/constants/routes"
 import { ILoginFormProps } from "@/pages/Login/Login"
 import { loginSchema } from "@/validators/login"
-import { loginInputs } from "@/constants/loginFormParts"
+import { defaultValues, loginInputs } from "@/constants/loginFormParts"
 
 interface IFormProps {
   onSubmit: (data: ILoginFormProps) => void
@@ -18,8 +18,12 @@ export function LoginForm({ disabled, onSubmit }: IFormProps) {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm<ILoginFormProps>({ resolver: zodResolver(loginSchema) })
+    formState: { errors, isValid, isDirty },
+  } = useForm<ILoginFormProps>({
+    resolver: zodResolver(loginSchema),
+    defaultValues,
+    mode: "onChange",
+  })
   return (
     <LoginFormWrapper onSubmit={handleSubmit(onSubmit)}>
       <Title>Log in to Twitter</Title>
@@ -30,7 +34,7 @@ export function LoginForm({ disabled, onSubmit }: IFormProps) {
         </Fragment>
       ))}
 
-      <Button type="submit" disabled={disabled} primary>
+      <Button type="submit" disabled={disabled || !isValid || !isDirty} primary>
         Log In
       </Button>
       <SignUpLink to={Routes.AUTH}>Sign up to Twitter</SignUpLink>

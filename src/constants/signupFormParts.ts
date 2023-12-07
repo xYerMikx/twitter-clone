@@ -28,3 +28,27 @@ export const signupSelects: TypeSignupSelect[] = [
   { options: days, placeholder: "Day", width: "20%", name: "day" },
   { options: years, placeholder: "Year", width: "20%", name: "year" },
 ]
+
+export const defaultData: { [K in keyof TypeSignup]?: string } = {
+  day: "1",
+  email: "",
+  month: "January",
+  name: "",
+  password: "",
+  phone: "",
+  year: "1991",
+}
+
+// type ObjectType = {
+//   name: keyof TypeSignup
+//   [key: string]: any
+// }
+
+// const generateNameType = (...arrays: ObjectType[][]) => {
+//   const names = arrays.map((array) => {
+//     return array.filter((el) => el.name)
+//   })
+//   return names
+// }
+
+// const names = generateNameType(signupSelects, signupInputs)

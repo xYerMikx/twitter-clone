@@ -14,3 +14,8 @@ export const loginInputs: TypeLoginInput[] = [
     name: "password",
   },
 ]
+
+export const defaultValues = {
+  identifier: "",
+  password: "",
+}

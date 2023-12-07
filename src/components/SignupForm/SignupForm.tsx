@@ -12,7 +12,7 @@ import {
   Title,
 } from "./styled"
 import { Button } from "@/ui/Button/Button"
-import { signupInputs, signupSelects } from "@/constants/signupFormParts"
+import { defaultData, signupInputs, signupSelects } from "@/constants/signupFormParts"
 import { Select } from "@/ui/Select/Select"
 import { Routes } from "@/constants/routes"
 import { Input } from "@/ui/Input/Input"
@@ -28,8 +28,12 @@ export function SignupForm({ onSubmit, disabled }: ISignupFormProps) {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm<ISignUpFormFields>({ resolver: zodResolver(signupSchema) })
+    formState: { errors, isValid, isDirty },
+  } = useForm<ISignUpFormFields>({
+    resolver: zodResolver(signupSchema),
+    mode: "onChange",
+    defaultValues: defaultData,
+  })
 
   return (
     <SignupFormWrapper onSubmit={handleSubmit(onSubmit)}>
@@ -37,7 +41,7 @@ export function SignupForm({ onSubmit, disabled }: ISignupFormProps) {
       {signupInputs.map(({ placeholder, type, name }) => (
         <Fragment key={placeholder}>
           <Input {...register(name)} placeholder={placeholder} type={type} />
-          {errors[name] && <Error>{errors[name]?.message}</Error>}
+          {errors && errors[name] && <Error>{errors[name]?.message}</Error>}
         </Fragment>
       ))}
       <Span>
@@ -60,11 +64,11 @@ export function SignupForm({ onSubmit, disabled }: ISignupFormProps) {
               width={width}
               name={name}
             />
-            {errors[name] && <Error>{errors[name]?.message}</Error>}
+            {errors && errors[name] && <Error>{errors[name]?.message}</Error>}
           </Fragment>
         ))}
       </SelectsWrapper>
-      <Button disabled={disabled} type="submit" primary>
+      <Button disabled={disabled || !isDirty || !isValid} type="submit" primary>
         Next
       </Button>
     </SignupFormWrapper>

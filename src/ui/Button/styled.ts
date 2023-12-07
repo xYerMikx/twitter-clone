@@ -47,4 +47,7 @@ export const StyledButton = styled.button<{
   }
 `
 
-export const Icon = styled.img``
+export const Icon = styled.img`
+  width: 24px;
+  height: 24px;
+`
