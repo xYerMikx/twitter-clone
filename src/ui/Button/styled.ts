@@ -40,6 +40,14 @@ export const StyledButton = styled.button<{
   padding: ${({ theme }) => theme.spacings.s15} 0;
   ${({ $primary }) => $primary && primaryStyles}
   ${({ $outlined }) => $outlined && outlinedStyles}
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: ${({ theme }) => theme.opacity};
+  }
 `
 
-export const Icon = styled.img``
+export const Icon = styled.img`
+  width: 24px;
+  height: 24px;
+`

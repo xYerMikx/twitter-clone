@@ -15,6 +15,9 @@ const commonTheme = {
     roboto: "Roboto",
     robotoSerif: "Roboto Serif",
   },
+  zIndex: {
+    z4: 4,
+  },
   fontWeight: {
     black: 900,
     bold: 700,
@@ -45,6 +48,7 @@ const commonTheme = {
   gray: "#5C6C79",
   blue: "#1DA1F2",
   red: "#EF1C5C",
+  green: "#43BE25",
   lightColor: "#FFFFFF",
   disabledColor: "#B3B8BB",
   lightBlue: "#00000014",

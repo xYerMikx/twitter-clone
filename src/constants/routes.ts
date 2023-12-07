@@ -12,9 +12,10 @@ export enum Routes {
   FEED = "/feed",
 }
 
-export const routes = [
+export const publicRoutes = [
   { path: Routes.AUTH, element: Auth },
   { path: Routes.LOGIN, element: Login },
   { path: Routes.SIGNUP, element: Signup },
-  { path: Routes.HOME, element: Home },
 ]
+
+export const privateRoutes = [{ path: Routes.HOME, element: Home }]

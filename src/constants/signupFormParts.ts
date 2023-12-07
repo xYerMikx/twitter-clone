@@ -28,3 +28,13 @@ export const signupSelects: TypeSignupSelect[] = [
   { options: days, placeholder: "Day", width: "20%", name: "day" },
   { options: years, placeholder: "Year", width: "20%", name: "year" },
 ]
+
+export const defaultData: { [K in keyof TypeSignup]?: string } = {
+  day: "1",
+  email: "",
+  month: "January",
+  name: "",
+  password: "",
+  phone: "",
+  year: "1991",
+}

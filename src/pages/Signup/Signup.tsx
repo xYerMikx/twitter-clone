@@ -1,29 +1,21 @@
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Fragment } from "react"
-import { addDoc, collection } from "firebase/firestore"
-import { Input } from "@/ui/Input/Input"
-import {
-  BirthText,
-  BirthTitle,
-  Error,
-  SelectsWrapper,
-  SignupForm,
-  Span,
-  Title,
-  Wrapper,
-} from "./styled"
+import { useState } from "react"
+import { Wrapper } from "./styled"
 import { TwitterLogo } from "@/components/TwitterLogo/TwitterLogo"
-import { Button } from "@/ui/Button/Button"
 import { Routes } from "@/constants/routes"
-import { Select } from "@/ui/Select/Select"
-import { signupInputs, signupSelects } from "@/constants/signupFormParts"
 import { signupSchema } from "@/validators/signup"
-import { db, register as registerUser } from "@/firebase"
 import { formateBirthday } from "@/utils/formateBirthday"
+import { useAppDispatch } from "@/hooks/redux"
+import { userActions } from "@/store/slices/userSlice"
+import { NotificationStatuses } from "@/constants/notificationStatus"
+import { dispatchNotification } from "@/utils/dispatchNotification"
+import { SUCCESS_REGISTER } from "@/constants/messages"
+import { SignupForm } from "@/components/SignupForm/SignupForm"
+import { setUserData } from "@/utils/setUserData"
 
-interface ISignUpFormFields {
+export interface ISignUpFormFields {
   name: string
   phone: string
   email: string
@@ -34,13 +26,10 @@ interface ISignUpFormFields {
 }
 
 export function Signup() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm<ISignUpFormFields>({ resolver: zodResolver(signupSchema) })
+  const { reset } = useForm<ISignUpFormFields>({ resolver: zodResolver(signupSchema) })
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
+  const [disabled, setDisabled] = useState(false)
   const onSubmit = async (data: ISignUpFormFields) => {
     const parsedData = {
       ...data,
@@ -51,62 +40,24 @@ export function Signup() {
     const birthday = formateBirthday(year, month, day)
 
     try {
-      const userCredentials = await registerUser(email, password)
-      const userData = {
-        email,
-        name,
-        phone,
-        birthday,
-        _id: userCredentials.user.uid,
-      }
-      await addDoc(collection(db, "users"), userData)
+      setDisabled(true)
+      const { userData } = await setUserData(email, password, phone, birthday, name)
+      dispatch(userActions.setUser({ ...userData }))
+      dispatchNotification(dispatch, NotificationStatuses.SUCCESS, SUCCESS_REGISTER)
       navigate(Routes.HOME)
     } catch (e) {
-      console.error(e)
+      const error = e as Error
+      dispatchNotification(dispatch, NotificationStatuses.ERROR, error.message)
     } finally {
       reset()
+      setDisabled(false)
     }
   }
 
   return (
     <Wrapper>
       <TwitterLogo />
-      <SignupForm onSubmit={handleSubmit(onSubmit)}>
-        <Title>Create an account</Title>
-        {signupInputs.map(({ placeholder, type, name }) => (
-          <Fragment key={placeholder}>
-            <Input {...register(name)} placeholder={placeholder} type={type} />
-            {errors[name] && <Error>{errors[name]?.message}</Error>}
-          </Fragment>
-        ))}
-        <Span>
-          <Link to={Routes.AUTH}>Use email</Link>
-        </Span>
-        <BirthTitle>Date of birth</BirthTitle>
-        <BirthText>
-          Facilisi sem pulvinar velit nunc, gravida scelerisque amet nibh sit. Quis
-          bibendum ante phasellus metus, magna lacinia sed augue. Odio enim nascetur leo
-          mauris vel eget. Pretium id ullamcorper blandit viverra dignissim eget tellus.
-          Nibh mi massa in molestie a sit. Elit congue.
-        </BirthText>
-        <SelectsWrapper>
-          {signupSelects.map(({ placeholder, options, width, name }) => (
-            <Fragment key={placeholder}>
-              <Select
-                {...register(name)}
-                placeholder={placeholder}
-                options={options}
-                width={width}
-                name={name}
-              />
-              {errors[name] && <Error>{errors[name]?.message}</Error>}
-            </Fragment>
-          ))}
-        </SelectsWrapper>
-        <Button type="submit" primary>
-          Next
-        </Button>
-      </SignupForm>
+      <SignupForm disabled={disabled} onSubmit={onSubmit} />
     </Wrapper>
   )
 }

@@ -6,4 +6,11 @@ export const StyledInput = styled.input<{ $width?: string }>`
   padding: ${({ theme }) => theme.spacings.s15};
   border-radius: ${({ theme }) => theme.borderRadius};
   border: ${({ theme }) => theme.borderSize} solid ${({ theme }) => theme.lightGray};
+
+  &:hover {
+    border: ${({ theme }) => theme.borderSize} solid ${({ theme }) => theme.darkColor};
+  }
+  &:focus {
+    outline: ${({ theme }) => theme.borderSize} solid ${({ theme }) => theme.darkColor};
+  }
 `

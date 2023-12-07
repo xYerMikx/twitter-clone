@@ -21,17 +21,27 @@ import { Routes } from "@/constants/routes"
 import { Button } from "@/ui/Button/Button"
 import { TwitterLogo } from "@/components/TwitterLogo/TwitterLogo"
 import { signUpWithGoogle } from "@/firebase"
+import { useAppDispatch } from "@/hooks/redux"
+import { NotificationStatuses } from "@/constants/notificationStatus"
+import { dispatchNotification } from "@/utils/dispatchNotification"
+import { SUCCESS_LOGIN_GOOGLE } from "@/constants/messages"
 
 export function Auth() {
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
   const handleSignUpClick = () => {
     navigate(Routes.SIGNUP)
   }
+
+  const dispatchSuccessfull = () => {
+    dispatchNotification(dispatch, NotificationStatuses.SUCCESS, SUCCESS_LOGIN_GOOGLE)
+  }
   const handleGoogleSignUp = async () => {
     try {
-      await signUpWithGoogle(navigate)
+      await signUpWithGoogle(navigate, dispatchSuccessfull)
     } catch (e) {
-      console.error(e)
+      const error = e as Error
+      dispatchNotification(dispatch, NotificationStatuses.ERROR, error.message)
     }
   }
   return (

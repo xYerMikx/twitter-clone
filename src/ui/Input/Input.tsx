@@ -9,12 +9,12 @@ interface IInputProps {
 
 export const Input = forwardRef<HTMLInputElement, IInputProps>(
   ({ placeholder, width, type, ...props }, ref) => (
-      <StyledInput
-        $width={width}
-        placeholder={placeholder}
-        type={type}
-        ref={ref}
-        {...props}
-      />
-    ),
+    <StyledInput
+      $width={width}
+      placeholder={placeholder}
+      type={type}
+      ref={ref}
+      {...props}
+    />
+  ),
 )
