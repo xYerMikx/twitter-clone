@@ -40,4 +40,5 @@ type State = {
 
 export const { setUser, removeUser } = userSlice.actions
 export const selectToken = (state: State) => state.user.token
+export const selectUserInfo = (state: State) => state.user
 export const { reducer: userReducer, actions: userActions } = userSlice

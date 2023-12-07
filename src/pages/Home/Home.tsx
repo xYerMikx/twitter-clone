@@ -1,3 +1,9 @@
+import { Sidebar } from "@/components/Sidebar/Sidebar"
+
 export function Home() {
-  return <div>Home</div>
+  return (
+    <div>
+      <Sidebar />
+    </div>
+  )
 }
