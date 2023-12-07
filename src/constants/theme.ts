@@ -16,6 +16,9 @@ const commonTheme = {
     robotoSerif: "Roboto Serif",
   },
   zIndex: {
+    z1: 1,
+    z2: 2,
+    z3: 3,
     z4: 4,
   },
   fontWeight: {
@@ -41,7 +44,8 @@ const commonTheme = {
     s45: "45px",
     s50: "50px",
   },
-  bgColor: "#F1F1F1",
+  bgColor: "#EFF3F4",
+  inputColor: "#5C6C79",
   borderColor: "#00000033",
   darkColor: "#000000",
   lightGray: "#CCCCCC",
@@ -56,6 +60,8 @@ const commonTheme = {
   borderRadius: "8px",
   buttonRadius: "50px",
   opacity: 0.6,
+  opacityMax: 1,
+  opacityMin: 0,
 }
 export const lightTheme = {
   ...commonTheme,
