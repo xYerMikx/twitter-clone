@@ -1,8 +1,8 @@
 import { Navigate } from "react-router-dom"
 import { ReactElement } from "react"
-import { selectToken } from "@/store/slices/userSlice"
 import { Routes } from "@/constants/routes"
 import { useAppSelector } from "@/hooks/redux"
+import { selectToken } from "@/store/selectors"
 
 interface PrivateRouteProps {
   element: ReactElement

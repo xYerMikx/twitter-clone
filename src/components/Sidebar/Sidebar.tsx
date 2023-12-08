@@ -15,9 +15,9 @@ import { Button } from "@/ui/Button/Button"
 import { logout } from "@/firebase"
 import { Routes } from "@/constants/routes"
 import { useAppSelector } from "@/hooks/redux"
-import { selectUserInfo } from "@/store/slices/userSlice"
 import profilePhoto from "@/assets/profile-logo.svg"
 import { TwitterLogo } from "../TwitterLogo/TwitterLogo"
+import { selectUserInfo } from "@/store/selectors"
 
 export function Sidebar() {
   const navigate = useNavigate()
