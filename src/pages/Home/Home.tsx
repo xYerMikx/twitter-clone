@@ -1,6 +1,7 @@
 import { useAppDispatch } from "@/hooks/redux"
 import { HomeWrapper, Input, Label, NavBar, PageTitle, Switch } from "./styled"
 import { themeActions } from "@/store/slices/themeSlice"
+import { Feed } from "@/components/Feed/Feed"
 
 export function Home() {
   const dispatch = useAppDispatch()
@@ -17,6 +18,7 @@ export function Home() {
           <Switch />
         </Label>
       </NavBar>
+      <Feed />
     </HomeWrapper>
   )
 }
