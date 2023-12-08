@@ -7,7 +7,8 @@ export const uploadImage = async (
   file: Blob | Uint8Array | ArrayBuffer | null,
   id: string,
 ) => {
-  const fileName = `images/${id}.jpg`
+  const imgId = (id + new Date().getMilliseconds()).slice(0, 20)
+  const fileName = `images/${imgId}.jpg`
   const fileRef = ref(storage, fileName)
 
   if (!file) {
