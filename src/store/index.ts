@@ -12,6 +12,7 @@ import {
 import storage from "redux-persist/lib/storage"
 import { userReducer } from "./slices/userSlice"
 import { notificationReducer } from "./slices/notificationSlice"
+import { themeReducer } from "./slices/themeSlice"
 
 const persistConfig = {
   key: "root",
@@ -21,6 +22,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   user: userReducer,
   notificationsList: notificationReducer,
+  theme: themeReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

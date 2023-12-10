@@ -1,30 +1,91 @@
-import { useAppSelector } from "@/hooks/redux"
-import { TweetCount, UserName, Wrapper } from "./styled"
-import { selectUserInfo } from "@/store/slices/userSlice"
 import { useEffect, useState } from "react"
-import { getTweetCount } from "@/utils/getTweetsCount"
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore"
+import { useAppSelector } from "@/hooks/redux"
+import {
+  BgImage,
+  ProfileContent,
+  ProfileInfo,
+  ProfileLogo,
+  ProfileName,
+  ProfileNickName,
+  ProfileSpan,
+  ProfileStatistics,
+  ProfileStatsText,
+  TweetCount,
+  TweetsTitle,
+  UserName,
+  Wrapper,
+} from "./styled"
+import { TweetTextarea } from "@/components/TweetTextarea/TweetTextarea"
+import { selectUserInfo } from "@/store/selectors"
+import { db } from "@/firebase"
+import { ITweetProps, Tweet } from "@/components/Tweet/Tweet"
+import profileLogo from "@/assets/profile-logo.svg"
+import profileImage from "@/assets/profile-image.png"
+import { Button } from "@/ui/Button/Button"
 
-export const Profile = () => {
+export function Profile() {
   const { name, email } = useAppSelector(selectUserInfo)
-  const [tweetsCount, setTweetsCount] = useState<number | undefined>(undefined)
-  useEffect(() => {
-    const fetchTweetCount = async () => {
-      try {
-        const count = await getTweetCount(email)
-        setTweetsCount(count)
-      } catch (error) {
-        console.error("Error fetching tweet count:", error)
-      }
-    }
+  const [tweets, setTweets] = useState<Omit<ITweetProps, "myEmail">[]>([])
+  const [isLoading, setIsLoading] = useState(false)
+  const filteredTweets = tweets.filter(({ tweet }) => tweet.email === email)
 
-    fetchTweetCount()
-  }, [email])
+  useEffect(() => {
+    setIsLoading(true)
+    const tweetsCollection = collection(db, "tweets")
+    const tweetQueue = query(tweetsCollection, orderBy("createdAt", "desc"))
+
+    const unsubscribe = onSnapshot(tweetQueue, (snapshot) => {
+      const tweetsList = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        tweet: doc.data(),
+      })) as unknown as Omit<ITweetProps, "myEmail">[]
+      setTweets(tweetsList)
+      setIsLoading(false)
+    })
+
+    return () => unsubscribe()
+  }, [])
+
   return (
-    <Wrapper>
-      <UserName>{name}</UserName>
-      <TweetCount>
-        {tweetsCount ? `${tweetsCount} Tweets` : "Loading tweets count..."}
-      </TweetCount>
-    </Wrapper>
+    <>
+      <Wrapper>
+        <UserName>{name}</UserName>
+        <TweetCount>
+          {!isLoading ? `${filteredTweets.length} Tweets` : "Loading tweets count..."}
+        </TweetCount>
+      </Wrapper>
+      <BgImage src={profileImage} alt="profile-bg-image" />
+      <ProfileInfo>
+        <ProfileLogo src={profileLogo} alt="profile-logo" />
+        <Button outlined width="120px">
+          Edit profile
+        </Button>
+        <ProfileName>{name}</ProfileName>
+        <ProfileNickName>@{email.split("@")[0]}</ProfileNickName>
+        <ProfileContent>UX&UI designer at @abutechuz</ProfileContent>
+        <ProfileStatistics>
+          <ProfileStatsText>
+            <ProfileSpan>67</ProfileSpan> followers
+          </ProfileStatsText>
+          <ProfileStatsText>
+            <ProfileSpan>47</ProfileSpan> following
+          </ProfileStatsText>
+        </ProfileStatistics>
+      </ProfileInfo>
+      <Wrapper>
+        <TweetTextarea />
+        <TweetsTitle>Tweets</TweetsTitle>
+        {isLoading && <>Loading tweets...</>}
+        {!isLoading && tweets.length > 0 && (
+          <>
+            {filteredTweets.map(({ id, tweet }) => (
+              <Tweet myEmail={email} key={id} id={id} tweet={tweet} />
+            ))}
+          </>
+        )}
+        {!isLoading && tweets.length === 0 && <>No tweets!</>}
+      </Wrapper>
+    </>
   )
 }
