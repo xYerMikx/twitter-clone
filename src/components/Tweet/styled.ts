@@ -36,11 +36,15 @@ export const Row = styled.div`
   align-items: center;
   gap: ${({ theme }) => theme.spacings.s10};
   max-width: 360px;
+  color: ${({ theme }) => theme.primaryColor};
 `
 
 export const UserName = styled.p`
   font-size: ${({ theme }) => theme.fontSize.f14};
   color: ${({ theme }) => theme.gray};
+`
+export const CreatedAt = styled.p`
+  font-size: ${({ theme }) => theme.fontSize.f12};
 `
 export const LikesWrapper = styled.p`
   display: flex;

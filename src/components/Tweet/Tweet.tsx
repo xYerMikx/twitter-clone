@@ -2,6 +2,7 @@ import { Timestamp, deleteDoc, doc, updateDoc } from "firebase/firestore"
 import { useEffect, useState } from "react"
 import { getDownloadURL, ref } from "firebase/storage"
 import {
+  CreatedAt,
   DeleteButton,
   Dropdown,
   Image,
@@ -84,6 +85,8 @@ export function Tweet({
     setIsLiking(false)
   }
 
+  const toggleDropdown = () => setShowDropdown(!showDropdown)
+
   const handleDelete = async () => {
     const tweetRef = doc(db, "tweets", id)
     try {
@@ -109,7 +112,7 @@ export function Tweet({
         <Row>
           <Name>{name}</Name>
           <UserName>@{email.split("@")[0]}</UserName>
-          <p>{formatDate(createdAt)}</p>
+          <CreatedAt>{formatDate(createdAt)}</CreatedAt>
         </Row>
         <Row>{content}</Row>
         <Row>{image && <Image src={imageURL} alt="tweet-image" />}</Row>
@@ -126,7 +129,7 @@ export function Tweet({
       </TweetBody>
       {myEmail === email && (
         <>
-          <More src={more} alt="more" onClick={() => setShowDropdown(!showDropdown)} />
+          <More src={more} alt="more" onClick={toggleDropdown} />
           {showDropdown && (
             <Dropdown>
               <DeleteButton onClick={handleDelete}>Delete</DeleteButton>

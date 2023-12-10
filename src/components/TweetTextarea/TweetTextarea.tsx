@@ -18,7 +18,11 @@ import { NotificationStatuses } from "@/constants/notificationStatus"
 import { uploadTweet } from "@/utils/uploadTweet"
 import { TWEET_PUBLISHED } from "@/constants/messages"
 
-export function TweetTextarea() {
+interface ITweetTextareaProps {
+  closeModal?: () => void
+}
+
+export function TweetTextarea({ closeModal }: ITweetTextareaProps) {
   const { name, email, _id: id } = useAppSelector(selectUserInfo)
   const [textValue, setTextValue] = useState("")
   const [image, setImage] = useState<Blob | Uint8Array | ArrayBuffer | null>(null)
@@ -41,10 +45,16 @@ export function TweetTextarea() {
       await uploadTweet(textValue, name, email, image, id, setIsLoading)
       dispatchNotification(dispatch, NotificationStatuses.SUCCESS, TWEET_PUBLISHED)
       setTextValue("")
+      if (closeModal) {
+        closeModal()
+      }
     } catch (e) {
       const error = e as Error
       dispatchNotification(dispatch, NotificationStatuses.ERROR, error.message)
       setTextValue("")
+      if (closeModal) {
+        closeModal()
+      }
     }
   }
 
