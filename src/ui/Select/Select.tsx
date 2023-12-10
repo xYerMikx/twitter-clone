@@ -10,12 +10,15 @@ interface ISelectProps {
 
 export const Select = forwardRef<HTMLSelectElement, ISelectProps>(
   ({ placeholder, options, width, ...props }, ref) => (
-      <StyledSelect placeholder={placeholder} $width={width} ref={ref} {...props}>
-        {options.map((option) => (
-          <StyledOption key={option} value={option}>
-            {option}
-          </StyledOption>
-        ))}
-      </StyledSelect>
-    ),
+    <StyledSelect $width={width} ref={ref} {...props}>
+      <StyledOption value="" disabled selected>
+        {placeholder}
+      </StyledOption>
+      {options.map((option) => (
+        <StyledOption key={option} value={option}>
+          {option}
+        </StyledOption>
+      ))}
+    </StyledSelect>
+  ),
 )
