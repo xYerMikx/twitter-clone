@@ -24,6 +24,7 @@ import more from "@/assets/more.svg"
 import { formatDate } from "@/utils/formateDate"
 import { db, storage } from "@/firebase"
 import { isLikedByMe } from "@/utils/isLikedByMe"
+import { Collections } from "@/constants/collections"
 
 export interface ITweet {
   email: string
@@ -54,7 +55,7 @@ export function Tweet({
 
   const handleLikeChange = async () => {
     setIsLiking(true)
-    const tweetRef = doc(db, "tweets", id)
+    const tweetRef = doc(db, Collections.Tweets, id)
     if (isLiked) {
       try {
         await updateDoc(tweetRef, {
@@ -88,7 +89,7 @@ export function Tweet({
   const toggleDropdown = () => setShowDropdown(!showDropdown)
 
   const handleDelete = async () => {
-    const tweetRef = doc(db, "tweets", id)
+    const tweetRef = doc(db, Collections.Tweets, id)
     try {
       await deleteDoc(tweetRef)
     } catch (e) {

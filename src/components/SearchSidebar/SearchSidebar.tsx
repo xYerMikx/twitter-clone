@@ -1,5 +1,6 @@
 import { ChangeEvent, useEffect, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
+import { collection, getDocs, query, where } from "firebase/firestore"
 import {
   LinkItem,
   LinksList,
@@ -11,11 +12,14 @@ import {
   UsersWrapper,
 } from "./styled"
 import { IUserProfile, mockUsers } from "@/constants/mockUsers"
+import profile from "@/assets/profile-logo.svg"
 import { footerLinks } from "@/constants/footerLinks"
 import { Routes } from "@/constants/routes"
 import useDebounce from "@/hooks/useDebounce"
 import { Searchbar } from "../Searchbar/Searchbar"
 import { User } from "../User/User"
+import { collectionsWithPaths } from "@/constants/collections"
+import { db } from "@/firebase"
 
 export function SearchSidebar() {
   const [showMore, setShowMore] = useState(true)
@@ -23,27 +27,45 @@ export function SearchSidebar() {
   const [usersToShow, setUsersToShow] = useState(2)
   const [inputValue, setInputValue] = useState("")
   const debouncedInputValue = useDebounce(inputValue, 500)
+  const location = useLocation()
 
   useEffect(() => {
-    if (debouncedInputValue) {
-      const newUsers = mockUsers.filter((user) =>
-        user.name.toLowerCase().includes(debouncedInputValue.toLowerCase()),
-      )
-      setUsers(newUsers)
-      setUsersToShow(newUsers.length)
+    const fetchData = async () => {
+      if (debouncedInputValue) {
+        const collectionName = collectionsWithPaths[location.pathname]
+        const q = query(
+          collection(db, collectionName),
+          where("name", ">=", debouncedInputValue),
+          where("name", "<=", `${debouncedInputValue  }\uf8ff`),
+        )
+
+        try {
+          const querySnapshot = await getDocs(q)
+          const newUsers = querySnapshot.docs.map((doc) => {
+            const data = doc.data() as IUserProfile
+            return { ...data, photoURL: profile }
+          })
+
+          setUsers(newUsers)
+          setUsersToShow(newUsers.length)
+        } catch (error) {
+          console.error("Error fetching data: ", error)
+        }
+      } else {
+        setUsers(mockUsers)
+        setUsersToShow(mockUsers.length)
+      }
     }
-    if (debouncedInputValue === "") {
-      setUsers(mockUsers)
-      setUsersToShow(2)
-    }
-  }, [debouncedInputValue])
+
+    fetchData()
+  }, [debouncedInputValue, location.pathname])
 
   const handleShowMore = () => {
-    if (mockUsers.length - usersToShow >= 5) {
+    if (users.length - usersToShow >= 5) {
       setUsersToShow(usersToShow + 5)
       setShowMore(true)
     } else {
-      setUsersToShow(mockUsers.length)
+      setUsersToShow(users.length)
       setShowMore(false)
     }
   }
@@ -64,7 +86,7 @@ export function SearchSidebar() {
         <Text>{debouncedInputValue ? "Search results" : "You might like"}</Text>
         <UsersWrapper>
           {users.slice(0, usersToShow).map((user) => (
-            <User key={user.userName} user={user} />
+            <User key={user.email} user={user} />
           ))}
           {showMore && (
             <ShowMoreButton onClick={handleShowMore}>Show more</ShowMoreButton>
