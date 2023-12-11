@@ -23,11 +23,13 @@ import { ITweetProps, Tweet } from "@/components/Tweet/Tweet"
 import profileLogo from "@/assets/profile-logo.svg"
 import profileImage from "@/assets/profile-image.png"
 import { Button } from "@/ui/Button/Button"
+import { ProfileModal } from "@/components/ProfileModal/ProfileModal"
 
 export function Profile() {
   const { name, email } = useAppSelector(selectUserInfo)
   const [tweets, setTweets] = useState<Omit<ITweetProps, "myEmail">[]>([])
   const [isLoading, setIsLoading] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
   const filteredTweets = tweets.filter(({ tweet }) => tweet.email === email)
 
   useEffect(() => {
@@ -47,6 +49,9 @@ export function Profile() {
     return () => unsubscribe()
   }, [])
 
+  const closeModal = () => setIsOpen(false)
+  const showModal = () => setIsOpen(true)
+
   return (
     <>
       <Wrapper>
@@ -58,7 +63,7 @@ export function Profile() {
       <BgImage src={profileImage} alt="profile-bg-image" />
       <ProfileInfo>
         <ProfileLogo src={profileLogo} alt="profile-logo" />
-        <Button outlined width="120px">
+        <Button outlined width="120px" onClick={showModal}>
           Edit profile
         </Button>
         <ProfileName>{name}</ProfileName>
@@ -86,6 +91,7 @@ export function Profile() {
         )}
         {!isLoading && tweets.length === 0 && <>No tweets!</>}
       </Wrapper>
+      {isOpen && <ProfileModal closeModal={closeModal} />}
     </>
   )
 }

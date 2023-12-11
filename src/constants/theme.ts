@@ -20,6 +20,7 @@ const commonTheme = {
     z2: 2,
     z3: 3,
     z4: 4,
+    z10: 10,
   },
   fontWeight: {
     black: 900,
