@@ -68,7 +68,7 @@ export function Tweet({
         setIsLiked(false)
       } catch (e) {
         const error = e as Error
-        console.log(error)
+        console.error(error)
       }
     } else {
       try {
@@ -80,7 +80,7 @@ export function Tweet({
         setIsLiked(true)
       } catch (e) {
         const error = e as Error
-        console.log(error)
+        console.error(error)
       }
     }
     setIsLiking(false)
@@ -94,7 +94,7 @@ export function Tweet({
       await deleteDoc(tweetRef)
     } catch (e) {
       const error = e as Error
-      console.log(error)
+      console.error(error)
     }
   }
   useEffect(() => {

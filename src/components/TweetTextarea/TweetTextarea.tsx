@@ -31,7 +31,6 @@ export function TweetTextarea({ closeModal }: ITweetTextareaProps) {
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setTextValue(e.target.value)
-    console.log(name, email)
   }
 
   const handlePhotoUpload = (e: ChangeEvent<HTMLInputElement>) => {
@@ -74,12 +73,7 @@ export function TweetTextarea({ closeModal }: ITweetTextareaProps) {
           <InputForFile type="file" id="upload-photo" onChange={handlePhotoUpload} />
         </Label>
       </AreaColumn>
-      <Button
-        width="170px"
-        primary
-        disabled={!textValue || isLoading}
-        onClick={sendTweet}
-      >
+      <Button variant="SM" primary disabled={!textValue || isLoading} onClick={sendTweet}>
         Tweet
       </Button>
     </TextareaWrapper>

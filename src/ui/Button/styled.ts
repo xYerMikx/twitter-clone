@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components"
+import { ButtonWidth } from "@/constants/buttonWidth"
 
 const outlinedStyles = css`
   background: transparent;
@@ -21,7 +22,7 @@ const primaryStyles = css`
 `
 
 export const StyledButton = styled.button<{
-  $width?: string
+  $variant?: keyof typeof ButtonWidth
   $outlined?: boolean
   $primary?: boolean
 }>`
@@ -29,7 +30,7 @@ export const StyledButton = styled.button<{
   transition: all 0.2s linear;
   outline: none;
   background: none;
-  width: ${({ $width }) => $width};
+  width: ${({ $variant }) => ($variant ? ButtonWidth[$variant] : "100%")};
   display: flex;
   align-items: center;
   justify-content: center;

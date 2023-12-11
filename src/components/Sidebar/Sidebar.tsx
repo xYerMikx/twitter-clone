@@ -42,7 +42,7 @@ export function Sidebar() {
           </SidebarLink>
         ))}
       </SidebarLinks>
-      <Button width="230px" primary onClick={showModal}>
+      <Button variant="MD" primary onClick={showModal}>
         Tweet
       </Button>
       <ProfileWrapper>
@@ -52,7 +52,7 @@ export function Sidebar() {
           <ProfileUserName>@{email.split("@")[0]}</ProfileUserName>
         </ProfileInfo>
       </ProfileWrapper>
-      <Button width="230px" primary onClick={handleLogout}>
+      <Button variant="MD" primary onClick={handleLogout}>
         Log Out
       </Button>
       {isOpen && <TweetModal closeModal={closeModal} />}

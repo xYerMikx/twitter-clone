@@ -66,7 +66,7 @@ export const Dropdown = styled.div`
   border-radius: ${({ theme }) => theme.borderRadius};
   width: 90px;
   padding: ${({ theme }) => theme.spacings.s10} ${({ theme }) => theme.spacings.s15};
-  z-index: 1;
+  z-index: ${({ theme }) => theme.zIndex.z1};
   text-align: center;
   right: ${({ theme }) => theme.spacings.s5};
   top: ${({ theme }) => theme.spacings.s40};

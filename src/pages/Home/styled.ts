@@ -10,7 +10,7 @@ export const PageTitle = styled.h2`
 export const Label = styled.label`
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: ${({ theme }) => theme.spacings.s10};
   cursor: pointer;
 `
 export const Switch = styled.div`
