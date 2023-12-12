@@ -148,7 +148,7 @@ export const ProfileModal = ({ closeModal }: IProfileModalProps) => {
               <Fragment key={placeholder}>
                 <Input
                   type={type}
-                  width="200px"
+                  variant="SM"
                   placeholder={placeholder}
                   {...register(name)}
                 />
@@ -157,7 +157,7 @@ export const ProfileModal = ({ closeModal }: IProfileModalProps) => {
             ))}
           </InputsWrapper>
           <ButtonsWrapper>
-            <CustomButton type="submit" width="150px" primary>
+            <CustomButton type="submit" variant="SM" primary>
               Update data
             </CustomButton>
           </ButtonsWrapper>
