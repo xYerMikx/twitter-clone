@@ -2,6 +2,7 @@ import { addDoc, collection } from "firebase/firestore"
 import { ref, uploadBytes } from "firebase/storage"
 import { Dispatch, SetStateAction } from "react"
 import { db, storage } from "@/firebase"
+import { Collections } from "@/constants/collections"
 
 export const uploadImage = async (
   file: Blob | Uint8Array | ArrayBuffer | null,
@@ -14,13 +15,12 @@ export const uploadImage = async (
   if (!file) {
     return null
   }
-  console.log(file)
 
   try {
     await uploadBytes(fileRef, file)
   } catch (e) {
     const error = e as Error
-    console.log(error.message)
+    console.error(error.message)
   }
   return fileName
 }
@@ -45,7 +45,7 @@ export const uploadTweet = async (
     likingUsers: [],
   }
   try {
-    await addDoc(collection(db, "tweets"), tweet)
+    await addDoc(collection(db, Collections.Tweets), tweet)
   } catch (e) {
     const error = e as Error
     console.error(error.message)

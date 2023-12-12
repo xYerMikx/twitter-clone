@@ -28,7 +28,7 @@ export const SearchInput = styled.input`
   outline: none;
   font-size: ${({ theme }) => theme.fontSize.s18};
   border-radius: ${({ theme }) => theme.buttonRadius};
-  background-color: ${({ theme }) => theme.bgColor};
+  background-color: ${({ theme }) => theme.bgSidebarColor};
 `
 
 export const StyledImage = styled.img``

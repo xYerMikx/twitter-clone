@@ -58,7 +58,7 @@ export function Profile() {
       <BgImage src={profileImage} alt="profile-bg-image" />
       <ProfileInfo>
         <ProfileLogo src={profileLogo} alt="profile-logo" />
-        <Button outlined width="120px">
+        <Button outlined variant="SM">
           Edit profile
         </Button>
         <ProfileName>{name}</ProfileName>

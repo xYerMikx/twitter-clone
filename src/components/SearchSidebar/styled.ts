@@ -1,25 +1,28 @@
 import styled from "styled-components"
 
 export const SidebarContainer = styled.aside`
-  border-left: ${({ theme }) => theme.borderSize} solid ${({ theme }) => theme.lightGray};
+  border-left: ${({ theme }) => theme.borderSize} solid
+    ${({ theme }) => theme.borderColor};
   padding: ${({ theme }) => theme.spacings.s25} 0;
   padding-left: ${({ theme }) => theme.spacings.s20};
   max-width: 400px;
-  height: 100vh;
+  height: inherit;
 `
 
 export const MightLike = styled.div`
   margin: ${({ theme }) => theme.spacings.s30} 0;
   display: flex;
   flex-direction: column;
-  background-color: ${({ theme }) => theme.bgColor};
+  background-color: ${({ theme }) => theme.bgSidebarColor};
   padding: ${({ theme }) => theme.spacings.s30};
   border-radius: ${({ theme }) => theme.borderRadius};
+  color: ${({ theme }) => theme.primaryColor};
 `
 export const Text = styled.p`
   font-family: ${({ theme }) => theme.fontFamily.robotoSerif};
   font-weight: ${({ theme }) => theme.fontWeight.black};
   margin-bottom: ${({ theme }) => theme.spacings.s30};
+  color: ${({ theme }) => theme.primaryColor};
 `
 
 export const UsersWrapper = styled.div`
@@ -45,6 +48,7 @@ export const LinksList = styled.ul`
 `
 export const LinkItem = styled.li`
   font-size: ${({ theme }) => theme.fontSize.f10};
+  color: ${({ theme }) => theme.primaryColor};
   &:hover {
     color: ${({ theme }) => theme.blue};
   }

@@ -36,11 +36,15 @@ export const Row = styled.div`
   align-items: center;
   gap: ${({ theme }) => theme.spacings.s10};
   max-width: 360px;
+  color: ${({ theme }) => theme.primaryColor};
 `
 
 export const UserName = styled.p`
   font-size: ${({ theme }) => theme.fontSize.f14};
   color: ${({ theme }) => theme.gray};
+`
+export const CreatedAt = styled.p`
+  font-size: ${({ theme }) => theme.fontSize.f12};
 `
 export const LikesWrapper = styled.p`
   display: flex;
@@ -62,7 +66,7 @@ export const Dropdown = styled.div`
   border-radius: ${({ theme }) => theme.borderRadius};
   width: 90px;
   padding: ${({ theme }) => theme.spacings.s10} ${({ theme }) => theme.spacings.s15};
-  z-index: 1;
+  z-index: ${({ theme }) => theme.zIndex.z1};
   text-align: center;
   right: ${({ theme }) => theme.spacings.s5};
   top: ${({ theme }) => theme.spacings.s40};

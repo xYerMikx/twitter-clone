@@ -2,6 +2,7 @@ import { Timestamp, deleteDoc, doc, updateDoc } from "firebase/firestore"
 import { useEffect, useState } from "react"
 import { getDownloadURL, ref } from "firebase/storage"
 import {
+  CreatedAt,
   DeleteButton,
   Dropdown,
   Image,
@@ -23,6 +24,7 @@ import more from "@/assets/more.svg"
 import { formatDate } from "@/utils/formateDate"
 import { db, storage } from "@/firebase"
 import { isLikedByMe } from "@/utils/isLikedByMe"
+import { Collections } from "@/constants/collections"
 
 export interface ITweet {
   email: string
@@ -53,7 +55,7 @@ export function Tweet({
 
   const handleLikeChange = async () => {
     setIsLiking(true)
-    const tweetRef = doc(db, "tweets", id)
+    const tweetRef = doc(db, Collections.Tweets, id)
     if (isLiked) {
       try {
         await updateDoc(tweetRef, {
@@ -66,7 +68,7 @@ export function Tweet({
         setIsLiked(false)
       } catch (e) {
         const error = e as Error
-        console.log(error)
+        console.error(error)
       }
     } else {
       try {
@@ -78,19 +80,21 @@ export function Tweet({
         setIsLiked(true)
       } catch (e) {
         const error = e as Error
-        console.log(error)
+        console.error(error)
       }
     }
     setIsLiking(false)
   }
 
+  const toggleDropdown = () => setShowDropdown(!showDropdown)
+
   const handleDelete = async () => {
-    const tweetRef = doc(db, "tweets", id)
+    const tweetRef = doc(db, Collections.Tweets, id)
     try {
       await deleteDoc(tweetRef)
     } catch (e) {
       const error = e as Error
-      console.log(error)
+      console.error(error)
     }
   }
   useEffect(() => {
@@ -109,7 +113,7 @@ export function Tweet({
         <Row>
           <Name>{name}</Name>
           <UserName>@{email.split("@")[0]}</UserName>
-          <p>{formatDate(createdAt)}</p>
+          <CreatedAt>{formatDate(createdAt)}</CreatedAt>
         </Row>
         <Row>{content}</Row>
         <Row>{image && <Image src={imageURL} alt="tweet-image" />}</Row>
@@ -126,7 +130,7 @@ export function Tweet({
       </TweetBody>
       {myEmail === email && (
         <>
-          <More src={more} alt="more" onClick={() => setShowDropdown(!showDropdown)} />
+          <More src={more} alt="more" onClick={toggleDropdown} />
           {showDropdown && (
             <Dropdown>
               <DeleteButton onClick={handleDelete}>Delete</DeleteButton>
