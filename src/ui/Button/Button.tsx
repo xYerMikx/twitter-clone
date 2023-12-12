@@ -1,10 +1,11 @@
 import { ReactNode } from "react"
 import { Icon, StyledButton } from "./styled"
+import { ButtonWidth } from "@/constants/buttonWidth"
 
 interface IButtonProps {
   icon?: string
   children: string | ReactNode
-  width?: string
+  variant?: keyof typeof ButtonWidth
   disabled?: boolean
   outlined?: boolean
   primary?: boolean
@@ -13,7 +14,7 @@ interface IButtonProps {
 }
 
 export function Button({
-  width,
+  variant,
   icon,
   children,
   disabled,
@@ -24,7 +25,7 @@ export function Button({
 }: IButtonProps) {
   return (
     <StyledButton
-      $width={width}
+      $variant={variant}
       $outlined={outlined}
       $primary={primary}
       disabled={disabled}

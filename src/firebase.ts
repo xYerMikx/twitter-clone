@@ -11,6 +11,7 @@ import { addDoc, collection, getFirestore } from "firebase/firestore"
 import { getStorage } from "firebase/storage"
 import { NavigateFunction } from "react-router-dom"
 import { Routes } from "./constants/routes"
+import { Collections } from "./constants/collections"
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -46,7 +47,7 @@ export const signUpWithGoogle = (
       const { email } = user
       const { phoneNumber } = user
       const userData = { name, _id: uid, email, phoneNumber }
-      addDoc(collection(db, "users"), userData)
+      addDoc(collection(db, Collections.Users), userData)
         .then(() => {
           navigate(Routes.HOME)
           dispatchSuccessfull()

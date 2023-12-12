@@ -3,15 +3,18 @@ import { ThemeProvider } from "styled-components"
 import { useEffect, useState } from "react"
 import { onAuthStateChanged } from "firebase/auth"
 import { GlobalStyles } from "@/styles/globalStyles"
-import { darkTheme } from "@/constants/theme"
+import { darkTheme, lightTheme } from "@/constants/theme"
 import { NotificationList } from "../NotificationList/NotificationList"
 import { privateRoutes, publicRoutes, Routes as RoutesEnum } from "@/constants/routes"
 import { auth } from "@/firebase"
 import { Layout } from "../Layout/Layout"
+import { useAppSelector } from "@/hooks/redux"
+import { selectTheme } from "@/store/selectors"
 
 export function App() {
   const [isLoading, setIsLoading] = useState(true)
   const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const currentTheme = useAppSelector(selectTheme)
 
   useEffect(
     () =>
@@ -26,7 +29,7 @@ export function App() {
     return <>Loading...</>
   }
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={currentTheme === "dark" ? darkTheme : lightTheme}>
       <BrowserRouter>
         <GlobalStyles />
         <NotificationList />

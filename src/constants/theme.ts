@@ -44,9 +44,7 @@ const commonTheme = {
     s45: "45px",
     s50: "50px",
   },
-  bgColor: "#EFF3F4",
   inputColor: "#5C6C79",
-  borderColor: "#00000033",
   darkColor: "#000000",
   lightGray: "#CCCCCC",
   gray: "#5C6C79",
@@ -65,9 +63,19 @@ const commonTheme = {
 }
 export const lightTheme = {
   ...commonTheme,
+  primaryColor: "#000000",
+  currentTheme: "light",
+  bgColor: "#FFFFFF",
+  bgSidebarColor: "#EFF3F4",
+  borderColor: "#00000033",
 }
 export const darkTheme = {
   ...commonTheme,
+  primaryColor: "#FFFFFF",
+  currentTheme: "dark",
+  bgColor: "#15202B",
+  bgSidebarColor: "#22303C",
+  borderColor: "#21303A",
 }
 
 export enum Themes {

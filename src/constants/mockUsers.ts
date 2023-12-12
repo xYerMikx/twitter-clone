@@ -1,34 +1,23 @@
 import profile from "@/assets/profile-logo.svg"
+import { IUser } from "@/store/slices/userSlice"
 
-export interface IUserProfile {
-  photoURL: string
-  name: string
-  userName: string
-}
-export const mockUsers = [
+export type IUserProfile = Omit<IUser, "token"> & { photoURL: string }
+
+export const mockUsers: IUserProfile[] = [
   {
     photoURL: profile,
     name: "Mushtariy",
-    userName: "@Mushtar565266",
+    email: "Mushtar565266@yandex.ru",
+    _id: "123",
+    birthday: "12.12.2002",
+    phone: "+375292929239",
   },
   {
     photoURL: profile,
     name: "Shuhratbek",
-    userName: "@mrshukhrat",
-  },
-  {
-    photoURL: profile,
-    name: "YerMik",
-    userName: "@yermik2014",
-  },
-  {
-    photoURL: profile,
-    name: "MockUser",
-    userName: "@mockUser123",
-  },
-  {
-    photoURL: profile,
-    name: "test",
-    userName: "@test123_34",
+    email: "mrshukhrat@yandex.ru",
+    birthday: "12.12.2002",
+    _id: "34",
+    phone: "+375292929232",
   },
 ]
