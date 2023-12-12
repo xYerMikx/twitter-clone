@@ -1,5 +1,6 @@
 import { addDoc, collection } from "firebase/firestore"
 import { db, register } from "@/firebase"
+import { Collections } from "@/constants/collections"
 
 export const setUserData = async (
   email: string,
@@ -18,6 +19,6 @@ export const setUserData = async (
     _id: userCredentials.user.uid,
     token,
   }
-  await addDoc(collection(db, "users"), userData)
+  await addDoc(collection(db, Collections.Users), userData)
   return { userData }
 }

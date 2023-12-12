@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom"
+import { useState } from "react"
 import { sidebarLinks } from "@/constants/sidebarLinks"
 import {
   Image,
@@ -15,10 +16,10 @@ import { Button } from "@/ui/Button/Button"
 import { logout } from "@/firebase"
 import { Routes } from "@/constants/routes"
 import { useAppSelector } from "@/hooks/redux"
-
 import profilePhoto from "@/assets/profile-logo.svg"
 import { TwitterLogo } from "../TwitterLogo/TwitterLogo"
 import { selectUserInfo } from "@/store/selectors"
+import { TweetModal } from "../TweetModal/TweetModal"
 
 export function Sidebar() {
   const navigate = useNavigate()
@@ -26,6 +27,9 @@ export function Sidebar() {
     await logout()
     navigate(Routes.AUTH)
   }
+  const [isOpen, setIsOpen] = useState(false)
+  const closeModal = () => setIsOpen(false)
+  const showModal = () => setIsOpen(true)
   const { email, name: userName } = useAppSelector(selectUserInfo)
   return (
     <SidebarWrapper>
@@ -38,7 +42,7 @@ export function Sidebar() {
           </SidebarLink>
         ))}
       </SidebarLinks>
-      <Button width="230px" primary>
+      <Button variant="MD" primary onClick={showModal}>
         Tweet
       </Button>
       <ProfileWrapper>
@@ -48,9 +52,10 @@ export function Sidebar() {
           <ProfileUserName>@{email.split("@")[0]}</ProfileUserName>
         </ProfileInfo>
       </ProfileWrapper>
-      <Button width="230px" primary onClick={handleLogout}>
+      <Button variant="MD" primary onClick={handleLogout}>
         Log Out
       </Button>
+      {isOpen && <TweetModal closeModal={closeModal} />}
     </SidebarWrapper>
   )
 }

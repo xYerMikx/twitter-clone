@@ -53,10 +53,10 @@ export function Auth() {
           <Title>Happening now</Title>
           <Subtitle>Join Twitter today</Subtitle>
           <Buttons>
-            <Button onClick={handleGoogleSignUp} icon={googleIcon} outlined width="400px">
+            <Button onClick={handleGoogleSignUp} icon={googleIcon} outlined variant="LG">
               Sign up with Google
             </Button>
-            <Button onClick={handleSignUpClick} outlined width="400px">
+            <Button onClick={handleSignUpClick} outlined variant="LG">
               Sign up with email
             </Button>
           </Buttons>

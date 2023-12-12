@@ -8,13 +8,13 @@ import {
   ProfileWrapper,
 } from "./styled"
 
-export function User({ user: { userName, photoURL, name } }: { user: IUserProfile }) {
+export function User({ user: { email, photoURL, name } }: { user: IUserProfile }) {
   return (
-    <ProfileWrapper key={userName}>
+    <ProfileWrapper key={email}>
       <Image src={photoURL} alt="profile-logo" />
       <ProfileInfo>
         <ProfileName>{name}</ProfileName>
-        <ProfileUserName>{userName}</ProfileUserName>
+        <ProfileUserName>@{email.split("@")[0]}</ProfileUserName>
       </ProfileInfo>
       <FollowButton>Follow</FollowButton>
     </ProfileWrapper>
