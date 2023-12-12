@@ -15,7 +15,7 @@ import { useAppDispatch, useAppSelector } from "@/hooks/redux"
 import { selectUserInfo } from "@/store/selectors"
 import { dispatchNotification } from "@/utils/dispatchNotification"
 import { NotificationStatuses } from "@/constants/notificationStatus"
-import { uploadTweet } from "@/utils/uploadTweet"
+import { FileType, uploadTweet } from "@/utils/uploadTweet"
 import { TWEET_PUBLISHED } from "@/constants/messages"
 
 interface ITweetTextareaProps {
@@ -25,7 +25,7 @@ interface ITweetTextareaProps {
 export function TweetTextarea({ closeModal }: ITweetTextareaProps) {
   const { name, email, _id: id } = useAppSelector(selectUserInfo)
   const [textValue, setTextValue] = useState("")
-  const [image, setImage] = useState<Blob | Uint8Array | ArrayBuffer | null>(null)
+  const [image, setImage] = useState<FileType>(null)
   const [isLoading, setIsLoading] = useState(false)
   const dispatch = useAppDispatch()
 

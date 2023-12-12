@@ -20,6 +20,7 @@ const commonTheme = {
     z2: 2,
     z3: 3,
     z4: 4,
+    z10: 10,
   },
   fontWeight: {
     black: 900,
@@ -44,6 +45,7 @@ const commonTheme = {
     s45: "45px",
     s50: "50px",
   },
+  boxShadow: "0px 0.5px 10px 2px",
   inputColor: "#5C6C79",
   darkColor: "#000000",
   lightGray: "#CCCCCC",
