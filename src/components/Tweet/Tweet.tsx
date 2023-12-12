@@ -48,7 +48,7 @@ export function Tweet({
   myEmail,
 }: ITweetProps) {
   const [isLiked, setIsLiked] = useState(() => isLikedByMe(likingUsers, myEmail))
-  const [imageURL, setImageURL] = useState<string>("")
+  const [imageURL, setImageURL] = useState("")
   const [currentLikes, setCurrentLikes] = useState(likes)
   const [isLiking, setIsLiking] = useState(false)
   const [showDropdown, setShowDropdown] = useState(false)
