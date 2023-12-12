@@ -1,16 +1,17 @@
 import { forwardRef } from "react"
 import { StyledInput } from "./styled"
+import { InputWidth } from "@/constants/inputWidth"
 
 interface IInputProps {
   placeholder: string
-  width?: string
+  variant?: keyof typeof InputWidth
   type: string
 }
 
 export const Input = forwardRef<HTMLInputElement, IInputProps>(
-  ({ placeholder, width, type, ...props }, ref) => (
+  ({ placeholder, variant, type, ...props }, ref) => (
     <StyledInput
-      $width={width}
+      $variant={variant}
       placeholder={placeholder}
       type={type}
       ref={ref}
