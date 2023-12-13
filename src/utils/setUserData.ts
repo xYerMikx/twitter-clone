@@ -17,8 +17,7 @@ export const setUserData = async (
     phone,
     birthday,
     _id: userCredentials.user.uid,
-    token,
   }
   await addDoc(collection(db, Collections.Users), userData)
-  return { userData }
+  return { ...userData, token }
 }
