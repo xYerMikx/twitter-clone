@@ -19,5 +19,5 @@ export const setUserData = async (
     _id: userCredentials.user.uid,
   }
   await addDoc(collection(db, Collections.Users), userData)
-  return { ...userData, token }
+  return { userData: { ...userData, token } }
 }

@@ -113,7 +113,7 @@ export function Tweet({
         <Row>
           <Name>{name}</Name>
           <UserName>@{email.split("@")[0]}</UserName>
-          <CreatedAt>{formatDate(createdAt)}</CreatedAt>
+          <CreatedAt>{createdAt && formatDate(createdAt)}</CreatedAt>
         </Row>
         <Row>{content}</Row>
         <Row>{image && <Image src={imageURL} alt="tweet-image" />}</Row>

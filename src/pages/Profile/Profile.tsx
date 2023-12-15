@@ -24,6 +24,7 @@ import profileLogo from "@/assets/profile-logo.svg"
 import profileImage from "@/assets/profile-image.png"
 import { Button } from "@/ui/Button/Button"
 import { ProfileModal } from "@/components/ProfileModal/ProfileModal"
+import { Collections } from "@/constants/collections"
 
 export function Profile() {
   const { name, email } = useAppSelector(selectUserInfo)
@@ -34,7 +35,7 @@ export function Profile() {
 
   useEffect(() => {
     setIsLoading(true)
-    const tweetsCollection = collection(db, "tweets")
+    const tweetsCollection = collection(db, Collections.Tweets)
     const tweetQueue = query(tweetsCollection, orderBy("createdAt", "desc"))
 
     const unsubscribe = onSnapshot(tweetQueue, (snapshot) => {
