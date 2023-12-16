@@ -1,5 +1,6 @@
 import { TypeSignup } from "@/validators/signup"
 import { days, months, years } from "./dateConstants"
+import { Sizes } from "./sizes"
 
 interface TypeSignupInput {
   placeholder: string
@@ -23,10 +24,26 @@ interface TypeSignupSelect {
   width: string
   name: keyof Omit<TypeSignup, "name" | "phone" | "email" | "password">
 }
+const isLessThanTablet = window.innerWidth <= Sizes.TABLET
 export const signupSelects: TypeSignupSelect[] = [
-  { options: months, placeholder: "Month", width: "40%", name: "month" },
-  { options: days, placeholder: "Day", width: "20%", name: "day" },
-  { options: years, placeholder: "Year", width: "20%", name: "year" },
+  {
+    options: months,
+    placeholder: "Month",
+    width: isLessThanTablet ? "60%" : "40%",
+    name: "month",
+  },
+  {
+    options: days,
+    placeholder: "Day",
+    width: isLessThanTablet ? "60%" : "20%",
+    name: "day",
+  },
+  {
+    options: years,
+    placeholder: "Year",
+    width: isLessThanTablet ? "60%" : "20%",
+    name: "year",
+  },
 ]
 
 export const defaultData: { [K in keyof TypeSignup]?: string } = {

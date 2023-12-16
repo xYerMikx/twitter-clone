@@ -8,12 +8,15 @@ export const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
   }
 `
 export const MainContent = styled.div`
   display: flex;
   gap: ${({ theme }) => theme.spacings.s40};
+  @media ${media.DESKTOP} {
+    margin: auto 0;
+  }
 `
 export const TwitterImage = styled.img`
   width: 55%;
@@ -124,6 +127,7 @@ export const FooterLinks = styled.div`
   justify-content: center;
   font-size: ${({ theme }) => theme.fontSize.f12};
   padding: ${({ theme }) => theme.spacings.s30} 0;
+  margin-top: auto;
 `
 export const FooterLink = styled(Link)`
   transition: all 0.1s linear;
