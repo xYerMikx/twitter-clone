@@ -24,10 +24,10 @@ export const ProfileInfo = styled.div`
   }
 `
 export const ProfileBgImage = styled.img`
-  z-index: ${({ theme }) => theme.zIndex.z3};
+  z-index: ${({ theme }) => theme.zIndex.z1};
 `
 export const ProfileLogo = styled.img`
-  z-index: ${({ theme }) => theme.zIndex.z4};
+  z-index: ${({ theme }) => theme.zIndex.z2};
   position: absolute;
   width: 100px;
   height: 100px;

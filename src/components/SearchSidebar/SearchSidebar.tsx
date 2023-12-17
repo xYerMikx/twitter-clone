@@ -21,7 +21,7 @@ import { User } from "../User/User"
 import { collectionsWithPaths } from "@/constants/collections"
 import { db } from "@/firebase"
 
-export function SearchSidebar() {
+export function SearchSidebar({ isSearchSidebarOpen }: { isSearchSidebarOpen: boolean }) {
   const [showMore, setShowMore] = useState(true)
   const [users, setUsers] = useState<IUserProfile[]>(mockUsers)
   const [usersToShow, setUsersToShow] = useState(2)
@@ -36,7 +36,7 @@ export function SearchSidebar() {
         const q = query(
           collection(db, collectionName),
           where("name", ">=", debouncedInputValue),
-          where("name", "<=", `${debouncedInputValue  }\uf8ff`),
+          where("name", "<=", `${debouncedInputValue}\uf8ff`),
         )
 
         try {
@@ -80,7 +80,7 @@ export function SearchSidebar() {
   }
 
   return (
-    <SidebarContainer>
+    <SidebarContainer $isOpen={isSearchSidebarOpen}>
       <Searchbar value={inputValue} handleChange={handleChange} />
       <MightLike>
         <Text>{debouncedInputValue ? "Search results" : "You might like"}</Text>

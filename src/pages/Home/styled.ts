@@ -1,7 +1,11 @@
 import styled from "styled-components"
+import { media } from "@/constants/sizes"
 
 export const HomeWrapper = styled.section`
   padding: ${({ theme }) => theme.spacings.s30} ${({ theme }) => theme.spacings.s10};
+  @media ${media.DESKTOP_LG} {
+    padding: ${({ theme }) => theme.spacings.s30} ${({ theme }) => theme.spacings.s5};
+  }
 `
 export const PageTitle = styled.h2`
   font-family: ${({ theme }) => theme.fontFamily.robotoSerif};
@@ -21,7 +25,7 @@ export const Switch = styled.div`
   border-radius: 32px;
   border: ${({ theme }) => theme.borderSize} solid ${({ theme }) => theme.primaryColor};
   transition: 300ms all;
-  z-index: ${({ theme }) => theme.zIndex.z4};
+  z-index: ${({ theme }) => theme.zIndex.z2};
 
   &:before {
     content: "";

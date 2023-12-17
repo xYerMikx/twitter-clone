@@ -1,13 +1,15 @@
 import { Link } from "react-router-dom"
 import styled from "styled-components"
+import { media } from "@/constants/sizes"
 
-export const SidebarWrapper = styled.div`
+export const SidebarWrapper = styled.div<{ $isOpen: boolean }>`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacings.s20};
   width: 250px;
   border-right: ${({ theme }) => theme.borderSize} solid
     ${({ theme }) => theme.borderColor};
+  background-color: ${({ theme }) => theme.bgColor};
   padding: ${({ theme }) => theme.spacings.s25} 0;
   padding-right: ${({ theme }) => theme.spacings.s20};
   height: inherit;
@@ -15,6 +17,18 @@ export const SidebarWrapper = styled.div`
   & > button:last-child {
     margin-bottom: ${({ theme }) => theme.spacings.s50};
   }
+  @media ${media.DESKTOP_LG} {
+    width: 200px;
+  }
+  @media ${media.DESKTOP} {
+    position: absolute;
+    top: 0;
+    z-index: ${({ theme }) => theme.zIndex.z3};
+    box-shadow: 5px 0 3px -3px ${({ theme }) => theme.lightGray};
+    left: ${({ $isOpen, theme }) => ($isOpen ? theme.spacings.s20 : "-100%")};
+    height: inherit;
+  }
+  transition: left 0.4s linear;
 `
 
 export const SidebarLink = styled(Link)`

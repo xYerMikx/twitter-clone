@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { media } from "@/constants/sizes"
 
 export const TweetWrapper = styled.div`
   display: flex;
@@ -14,6 +15,10 @@ export const TweetBody = styled.div`
   flex: 1 0 70%;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacings.s30};
+  @media ${media.DESKTOP_LG} {
+    flex: 1 0 80%;
+    gap: ${({ theme }) => theme.spacings.s20};
+  }
 `
 export const ProfileImage = styled.img`
   width: 40px;

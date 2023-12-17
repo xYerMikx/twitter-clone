@@ -20,8 +20,15 @@ import profilePhoto from "@/assets/profile-logo.svg"
 import { TwitterLogo } from "../TwitterLogo/TwitterLogo"
 import { selectUserInfo } from "@/store/selectors"
 import { TweetModal } from "../TweetModal/TweetModal"
+import { Sizes } from "@/constants/sizes"
 
-export function Sidebar() {
+export function Sidebar({
+  isSidebarOpen,
+  toggleSidebar,
+}: {
+  isSidebarOpen: boolean
+  toggleSidebar: () => void
+}) {
   const navigate = useNavigate()
   const handleLogout = async () => {
     await logout()
@@ -32,17 +39,21 @@ export function Sidebar() {
   const showModal = () => setIsOpen(true)
   const { email, name: userName } = useAppSelector(selectUserInfo)
   return (
-    <SidebarWrapper>
+    <SidebarWrapper $isOpen={isSidebarOpen}>
       <TwitterLogo />
       <SidebarLinks>
         {sidebarLinks.map(({ name, path, element: Element }) => (
-          <SidebarLink key={path} to={path}>
+          <SidebarLink onClick={toggleSidebar} key={path} to={path}>
             <Element />
             <Text>{name}</Text>
           </SidebarLink>
         ))}
       </SidebarLinks>
-      <Button variant="MD" primary onClick={showModal}>
+      <Button
+        variant={window.innerWidth <= Sizes.DESKTOP_LG ? "SM" : "MD"}
+        primary
+        onClick={showModal}
+      >
         Tweet
       </Button>
       <ProfileWrapper>
@@ -52,7 +63,11 @@ export function Sidebar() {
           <ProfileUserName>@{email.split("@")[0]}</ProfileUserName>
         </ProfileInfo>
       </ProfileWrapper>
-      <Button variant="MD" primary onClick={handleLogout}>
+      <Button
+        variant={window.innerWidth <= Sizes.DESKTOP_LG ? "SM" : "MD"}
+        primary
+        onClick={handleLogout}
+      >
         Log Out
       </Button>
       {isOpen && <TweetModal closeModal={closeModal} />}
