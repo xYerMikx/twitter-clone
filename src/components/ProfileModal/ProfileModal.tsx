@@ -28,6 +28,7 @@ import { auth, db, logout } from "@/firebase"
 import { userActions } from "@/store/slices/userSlice"
 import { dispatchNotification } from "@/utils/dispatchNotification"
 import { NotificationStatuses } from "@/constants/notificationStatus"
+import { Collections } from "@/constants/collections"
 
 export interface IProfileModalProps {
   closeModal: () => void
@@ -73,9 +74,12 @@ export const ProfileModal = ({ closeModal }: IProfileModalProps) => {
 
   const onSubmit = async (data: IProfileFormFields) => {
     try {
-      const userQuery = query(collection(db, "users"), where("_id", "==", id))
+      const userQuery = query(collection(db, Collections.Users), where("_id", "==", id))
       const userSnapshot = await getDocs(userQuery)
-      const tweetsQuery = query(collection(db, "tweets"), where("email", "==", email))
+      const tweetsQuery = query(
+        collection(db, Collections.Tweets),
+        where("email", "==", email),
+      )
       const tweetsSnapshot = await getDocs(tweetsQuery)
 
       if (userSnapshot.empty) {

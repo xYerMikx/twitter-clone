@@ -40,7 +40,12 @@ export function SignupForm({ onSubmit, disabled }: ISignupFormProps) {
       <Title>Create an account</Title>
       {signupInputs.map(({ placeholder, type, name }) => (
         <Fragment key={placeholder}>
-          <Input {...register(name)} placeholder={placeholder} type={type} />
+          <Input
+            {...register(name)}
+            placeholder={placeholder}
+            type={type}
+            maxLength={name === "phone" ? 13 : undefined}
+          />
           {errors && errors[name] && <Error>{errors[name]?.message}</Error>}
         </Fragment>
       ))}
