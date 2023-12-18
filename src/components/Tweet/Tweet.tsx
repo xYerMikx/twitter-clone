@@ -114,13 +114,13 @@ export function Tweet({
   return (
     <TweetWrapper>
       <ProfileImage src={profileImage} alt="profile-image" />
-      <TweetBody onClick={navigateToTweet(id)}>
+      <TweetBody>
         <Row>
           <Name>{name}</Name>
           <UserName>@{email.split("@")[0]}</UserName>
-          <CreatedAt>{formatDate(createdAt)}</CreatedAt>
+          <CreatedAt>{createdAt && formatDate(createdAt)}</CreatedAt>
         </Row>
-        <Row>{content}</Row>
+        <Row onClick={navigateToTweet(id)}>{content}</Row>
         <Row>{image && <Image src={imageURL} alt="tweet-image" />}</Row>
         <Row>
           <LikesWrapper>

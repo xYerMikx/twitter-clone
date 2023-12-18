@@ -18,6 +18,7 @@ export const ProfileInfo = styled.div`
   flex-direction: column;
   position: relative;
   margin-top: ${({ theme }) => theme.spacings.s20};
+  color: ${({ theme }) => theme.primaryColor};
 
   & > button {
     align-self: flex-end;
@@ -35,13 +36,11 @@ export const ProfileLogo = styled.img`
 `
 export const ProfileName = styled.h2`
   font-family: ${({ theme }) => theme.fontFamily.robotoSerif};
-  color: ${({ theme }) => theme.primaryColor};
   font-size: ${({ theme }) => theme.fontSize.f22};
 `
 export const BgImage = styled.img``
 export const ProfileNickName = styled.p`
   margin-top: ${({ theme }) => theme.spacings.s5};
-  color: ${({ theme }) => theme.primaryColor};
   opacity: ${({ theme }) => theme.opacity};
   font-size: ${({ theme }) => theme.fontSize.f12};
 `
@@ -69,4 +68,5 @@ export const TweetsTitle = styled.h4`
   margin: ${({ theme }) => theme.spacings.s20} 0;
   border-bottom: ${({ theme }) => theme.borderSize} solid
     ${({ theme }) => theme.borderColor};
+  color: ${({ theme }) => theme.primaryColor};
 `

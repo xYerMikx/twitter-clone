@@ -1,4 +1,4 @@
-import { IUserProfile } from "@/constants/mockUsers"
+import { IUserProfile } from "@/constants/mockData"
 import {
   FollowButton,
   Image,
@@ -8,7 +8,8 @@ import {
   ProfileWrapper,
 } from "./styled"
 
-export function User({ user: { email, photoURL, name } }: { user: IUserProfile }) {
+export function User({ item }: { item: IUserProfile }) {
+  const { email, photoURL, name } = item
   return (
     <ProfileWrapper key={email}>
       <Image src={photoURL} alt="profile-logo" />

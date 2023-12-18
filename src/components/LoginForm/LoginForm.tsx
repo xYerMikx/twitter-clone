@@ -29,7 +29,12 @@ export function LoginForm({ disabled, onSubmit }: IFormProps) {
       <Title>Log in to Twitter</Title>
       {loginInputs.map(({ placeholder, type, name }) => (
         <Fragment key={placeholder}>
-          <Input {...register(name)} placeholder={placeholder} type={type} />
+          <Input
+            {...register(name)}
+            placeholder={placeholder}
+            type={type}
+            maxLength={name === "identifier" ? 20 : undefined}
+          />
           {errors[name] && <Error>{errors[name]?.message}</Error>}
         </Fragment>
       ))}
