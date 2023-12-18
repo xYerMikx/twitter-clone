@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { media } from "@/constants/sizes"
 
 export const Wrapper = styled.section`
   padding: ${({ theme }) => theme.spacings.s30} ${({ theme }) => theme.spacings.s10};
@@ -32,6 +33,11 @@ export const ProfileLogo = styled.img`
   width: 100px;
   height: 100px;
   top: -70px;
+  @media ${media.PHONE} {
+    width: 60px;
+    height: 60px;
+    top: -50px;
+  }
 `
 export const ProfileName = styled.h2`
   font-family: ${({ theme }) => theme.fontFamily.robotoSerif};

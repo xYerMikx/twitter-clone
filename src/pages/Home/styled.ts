@@ -24,7 +24,7 @@ export const Switch = styled.div`
   background: ${({ theme }) => theme.bgColor};
   border-radius: 32px;
   border: ${({ theme }) => theme.borderSize} solid ${({ theme }) => theme.primaryColor};
-  transition: 300ms all;
+  transition: all 0.3s linear;
   z-index: ${({ theme }) => theme.zIndex.z2};
 
   &:before {
@@ -40,7 +40,7 @@ export const Switch = styled.div`
     transition: 0.3s all;
 
     transform: translate(
-      ${(props) => (props.theme.currentTheme === "dark" ? "0px" : "28px")},
+      ${({ theme }) => (theme.currentTheme === "dark" ? "0px" : "28px")},
       -50%
     );
   }
@@ -55,7 +55,7 @@ export const Input = styled.input`
 
     &:before {
       transform: translate(
-        ${(props) => (props.theme.currentTheme === "dark" ? "0rem" : "28px")},
+        ${({ theme }) => (theme.currentTheme === "dark" ? "0px" : "28px")},
         -50%
       );
     }

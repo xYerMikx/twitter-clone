@@ -25,8 +25,9 @@ export const Main = styled.main`
     margin: 0 auto;
   }
   @media ${media.PHONE} {
-    flex: 0 1 70%;
+    flex: 0 1 60%;
     margin: 0 auto;
+    max-width: 90%;
   }
 `
 export const LeftIconWrapper = styled.div<{ $isOpen: boolean }>`
@@ -34,10 +35,16 @@ export const LeftIconWrapper = styled.div<{ $isOpen: boolean }>`
   position: absolute;
   transition: all 0.3s ease-in-out;
   left: ${({ $isOpen }) => ($isOpen ? "180px" : "2%")};
+  @media ${media.PHONE} {
+    left: ${({ $isOpen }) => ($isOpen ? "180px" : "1%")};
+  }
 `
 export const RightIconWrapper = styled.div<{ $isOpen: boolean }>`
   padding-top: ${({ theme }) => theme.spacings.s30};
   position: absolute;
   transition: all 0.5s ease-in-out;
   right: ${({ $isOpen }) => ($isOpen ? "315px" : "2%")};
+  @media ${media.PHONE} {
+    right: ${({ $isOpen }) => ($isOpen ? "250px" : "1%")};
+  }
 `

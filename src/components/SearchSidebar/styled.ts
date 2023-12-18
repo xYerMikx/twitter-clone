@@ -24,6 +24,10 @@ export const SidebarContainer = styled.aside<{ $isOpen: boolean }>`
     padding: ${({ theme }) => theme.spacings.s50} 0;
     padding-left: ${({ theme }) => theme.spacings.s20};
   }
+  @media ${media.PHONE} {
+    max-width: 280px;
+    right: ${({ $isOpen, theme }) => ($isOpen ? theme.spacings.s10 : "-100%")};
+  }
 `
 
 export const MightLike = styled.div`

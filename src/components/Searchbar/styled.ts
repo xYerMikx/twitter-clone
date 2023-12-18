@@ -13,6 +13,9 @@ export const SearchContainer = styled.div`
   @media ${media.DESKTOP_LG} {
     max-width: 320px;
   }
+  @media ${media.PHONE} {
+    max-width: 250px;
+  }
 `
 
 export const Label = styled.label`

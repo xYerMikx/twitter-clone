@@ -28,6 +28,9 @@ export const SidebarWrapper = styled.div<{ $isOpen: boolean }>`
     left: ${({ $isOpen, theme }) => ($isOpen ? theme.spacings.s20 : "-100%")};
     height: inherit;
   }
+  @media ${media.PHONE} {
+    left: ${({ $isOpen, theme }) => ($isOpen ? theme.spacings.s10 : "-100%")};
+  }
   transition: left 0.4s linear;
 `
 
