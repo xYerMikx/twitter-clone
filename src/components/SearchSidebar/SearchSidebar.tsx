@@ -28,10 +28,12 @@ interface SearchConfig {
 }
 interface ISeatchSidebarProps {
   searchConfig: SearchConfig
+  isSearchSidebarOpen: boolean
 }
 
 export function SearchSidebar({
   searchConfig: { collectionName, searchField },
+  isSearchSidebarOpen,
 }: ISeatchSidebarProps) {
   const location = useLocation()
   const defaultItems = itemsByPath[location.pathname] || itemsByPath["/"]
@@ -105,7 +107,7 @@ export function SearchSidebar({
     setInputValue(e.target.value)
   }
   return (
-    <SidebarContainer>
+    <SidebarContainer $isOpen={isSearchSidebarOpen}>
       <Searchbar
         value={inputValue}
         handleChange={handleChange}

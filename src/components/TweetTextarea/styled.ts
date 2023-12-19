@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { media } from "@/constants/sizes"
 
 export const TextareaWrapper = styled.div`
   display: flex;
@@ -13,9 +14,17 @@ export const AreaColumn = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   flex: 1 0 60%;
+  @media ${media.PHONE} {
+    flex: 0 1 20%;
+    max-width: 200px;
+  }
 `
 export const Image = styled.img`
   align-self: flex-start;
+  @media ${media.PHONE} {
+    width: 35px;
+    height: 35px;
+  }
 `
 export const UploadImage = styled.img`
   cursor: pointer;

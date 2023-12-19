@@ -1,7 +1,12 @@
 const commonTheme = {
   fontSize: {
     f84: "84px",
+    f62: "62px",
+    f52: "52px",
     f42: "42px",
+    f35: "35px",
+    f30: "30px",
+    f24: "24px",
     f22: "22px",
     f20: "20px",
     f18: "16px",
