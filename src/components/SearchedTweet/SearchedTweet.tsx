@@ -1,13 +1,6 @@
-import { Timestamp } from "firebase/firestore"
 import { formatDate } from "@/utils/formateDate"
 import { StyledSpan, TweetContent, TweetHeader, TweetItem } from "./styled"
-
-interface ISearchedTweet {
-  name: string
-  email: string
-  createdAt: Timestamp
-  content: string
-}
+import { ISearchedTweet } from "@/constants/mockData"
 
 export function SearchedTweet({ item }: { item: ISearchedTweet }) {
   const { name, email, createdAt, content } = item

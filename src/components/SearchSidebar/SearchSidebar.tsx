@@ -117,8 +117,9 @@ export function SearchSidebar({
           {items?.slice(0, itemsToShow).map((item) => {
             const path = location.pathname as keyof IComponentByPath
             const Component = componentsByPath[path] || componentsByPath["/"]
-            // @ts-expect-error тут тип item теперь почти такое же выдает, тот я в итоге пофиксил
-            return <Component key={item.email} item={item} />
+            return (
+              <Component key={item.email} item={item as IUserProfile & ISearchedTweet} />
+            )
           })}
           {showMore && (
             <ShowMoreButton onClick={handleShowMore}>Show more</ShowMoreButton>
