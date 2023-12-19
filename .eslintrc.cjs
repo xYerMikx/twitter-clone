@@ -35,5 +35,8 @@ module.exports = {
     "react/jsx-props-no-spreading": "off",
     "no-console": "off",
     "react/no-unknown-property": "off",
+    "react-refresh/only-export-components": "off",
+    "func-names": "off",
+    "react-refresh/only-export-components": "off",
   },
 }
