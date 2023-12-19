@@ -11,83 +11,118 @@ import {
   Text,
   UsersWrapper,
 } from "./styled"
-import { IUserProfile, mockUsers } from "@/constants/mockUsers"
+import { ISearchedTweet, IUserProfile } from "@/constants/mockData"
 import profile from "@/assets/profile-logo.svg"
 import { footerLinks } from "@/constants/footerLinks"
 import { Routes } from "@/constants/routes"
 import useDebounce from "@/hooks/useDebounce"
 import { Searchbar } from "../Searchbar/Searchbar"
-import { User } from "../User/User"
-import { collectionsWithPaths } from "@/constants/collections"
+import { Collections } from "@/constants/collections"
 import { db } from "@/firebase"
+import { searchbarPlaceholders } from "@/constants/searchbarPlaceholders"
+import { IComponentByPath, componentsByPath, itemsByPath } from "@/constants/byPath"
 
-export function SearchSidebar({ isSearchSidebarOpen }: { isSearchSidebarOpen: boolean }) {
+interface SearchConfig {
+  collectionName: Collections
+  searchField: string
+}
+interface ISeatchSidebarProps {
+  searchConfig: SearchConfig
+  isSearchSidebarOpen: boolean
+}
+
+export function SearchSidebar({
+  searchConfig: { collectionName, searchField },
+  isSearchSidebarOpen,
+}: ISeatchSidebarProps) {
+  const location = useLocation()
+  const defaultItems = itemsByPath[location.pathname] || itemsByPath["/"]
   const [showMore, setShowMore] = useState(true)
-  const [users, setUsers] = useState<IUserProfile[]>(mockUsers)
-  const [usersToShow, setUsersToShow] = useState(2)
+  const [items, setItems] = useState<ISearchedTweet[] | IUserProfile[]>(defaultItems)
+  const [itemsToShow, setItemsToShow] = useState(2)
   const [inputValue, setInputValue] = useState("")
   const debouncedInputValue = useDebounce(inputValue, 500)
-  const location = useLocation()
+  const placeholder = searchbarPlaceholders[searchField]
+  useEffect(() => {
+    const newItems = itemsByPath[location.pathname] || itemsByPath["/"]
+    setItems(newItems)
+  }, [location.pathname])
 
   useEffect(() => {
     const fetchData = async () => {
       if (debouncedInputValue) {
-        const collectionName = collectionsWithPaths[location.pathname]
         const q = query(
           collection(db, collectionName),
-          where("name", ">=", debouncedInputValue),
-          where("name", "<=", `${debouncedInputValue}\uf8ff`),
+          where(searchField, ">=", debouncedInputValue),
+          where(searchField, "<=", `${debouncedInputValue}\uf8ff`),
         )
 
         try {
           const querySnapshot = await getDocs(q)
-          const newUsers = querySnapshot.docs.map((doc) => {
-            const data = doc.data() as IUserProfile
-            return { ...data, photoURL: profile }
-          })
+          let newItems: ISearchedTweet[] | IUserProfile[] = []
+          if (collectionName === Collections.Users) {
+            newItems = querySnapshot.docs.map((doc) => {
+              const data = doc.data() as IUserProfile
+              return { ...data, photoURL: profile }
+            })
+          } else if (collectionName === Collections.Tweets) {
+            newItems = querySnapshot.docs.map((doc) => {
+              const { email, name, createdAt, content } = doc.data()
+              return { email, name, createdAt, content }
+            })
+          }
 
-          setUsers(newUsers)
-          setUsersToShow(newUsers.length)
+          setItems(newItems)
+          setItemsToShow(newItems.length)
         } catch (error) {
           console.error("Error fetching data: ", error)
         }
       } else {
-        setUsers(mockUsers)
-        setUsersToShow(mockUsers.length)
+        const itemsFromPath = itemsByPath[location.pathname] || itemsByPath["/"]
+
+        setItems(itemsFromPath)
+        setItemsToShow(itemsFromPath.length)
       }
     }
 
     fetchData()
-  }, [debouncedInputValue, location.pathname])
+  }, [debouncedInputValue, location.pathname, collectionName, searchField])
 
   const handleShowMore = () => {
-    if (users.length - usersToShow >= 5) {
-      setUsersToShow(usersToShow + 5)
+    if (items.length - itemsToShow >= 5) {
+      setItemsToShow(itemsToShow + 5)
       setShowMore(true)
     } else {
-      setUsersToShow(users.length)
+      setItemsToShow(items.length)
       setShowMore(false)
     }
   }
 
   const handleShowLess = () => {
-    setUsersToShow(2)
+    setItemsToShow(2)
     setShowMore(true)
   }
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value)
   }
-
   return (
     <SidebarContainer $isOpen={isSearchSidebarOpen}>
-      <Searchbar value={inputValue} handleChange={handleChange} />
+      <Searchbar
+        value={inputValue}
+        handleChange={handleChange}
+        placeholder={placeholder}
+      />
       <MightLike>
         <Text>{debouncedInputValue ? "Search results" : "You might like"}</Text>
         <UsersWrapper>
-          {users.slice(0, usersToShow).map((user) => (
-            <User key={user.email} user={user} />
-          ))}
+          {items?.slice(0, itemsToShow).map((item) => {
+            const path = location.pathname as keyof IComponentByPath
+            const Component = componentsByPath[path] || componentsByPath["/"]
+            return (
+              <Component key={item.email} item={item as IUserProfile & ISearchedTweet} />
+            )
+          })}
           {showMore && (
             <ShowMoreButton onClick={handleShowMore}>Show more</ShowMoreButton>
           )}

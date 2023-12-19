@@ -7,11 +7,20 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth"
-import { addDoc, collection, getFirestore } from "firebase/firestore"
+import {
+  addDoc,
+  collection,
+  getDocs,
+  getFirestore,
+  query,
+  where,
+} from "firebase/firestore"
 import { getStorage } from "firebase/storage"
 import { NavigateFunction } from "react-router-dom"
 import { Routes } from "./constants/routes"
 import { Collections } from "./constants/collections"
+import { IUser, userActions } from "./store/slices/userSlice"
+import { AppDispatch } from "./store"
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -36,23 +45,34 @@ export const storage = getStorage(app)
 
 const provider = new GoogleAuthProvider()
 
-export const signUpWithGoogle = (
+export const signUpWithGoogle = async (
   navigate: NavigateFunction,
+  dispatch: AppDispatch,
   dispatchSuccessfull: () => void,
 ) => {
-  signInWithPopup(auth, provider)
-    .then(({ user }) => {
-      const name = user.displayName
-      const { uid } = user
-      const { email } = user
-      const { phoneNumber } = user
-      const userData = { name, _id: uid, email, phoneNumber }
-      addDoc(collection(db, Collections.Users), userData)
-        .then(() => {
-          navigate(Routes.HOME)
-          dispatchSuccessfull()
-        })
-        .catch((e) => console.error(e))
-    })
-    .catch((e) => console.error(e))
+  try {
+    const result = await signInWithPopup(auth, provider)
+    const {user} = result
+    const name = user.displayName
+    const { uid } = user
+    const { email } = user
+    const { phoneNumber } = user
+    const userData = { name, _id: uid, email, phone: phoneNumber, birthday: "" }
+    const userQuery = query(collection(db, Collections.Users), where("_id", "==", uid))
+    const querySnapshot = await getDocs(userQuery)
+    if (!querySnapshot.empty) {
+      const token = await user.getIdToken()
+      navigate(Routes.HOME)
+      dispatchSuccessfull()
+      dispatch(userActions.setUser({ ...(userData as IUser), token }))
+    } else {
+      await addDoc(collection(db, Collections.Users), userData)
+      const token = await user.getIdToken()
+      navigate(Routes.HOME)
+      dispatchSuccessfull()
+      dispatch(userActions.setUser({ ...(userData as IUser), token }))
+    }
+  } catch (e) {
+    console.error(e)
+  }
 }

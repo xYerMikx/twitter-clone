@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import styled from "styled-components"
 import { media } from "@/constants/sizes"
 
@@ -34,7 +34,14 @@ export const SidebarWrapper = styled.div<{ $isOpen: boolean }>`
   transition: left 0.4s linear;
 `
 
-export const SidebarLink = styled(Link)`
+export const SidebarLink = styled(NavLink)`
+  &.active {
+    color: ${({ theme }) => theme.blue};
+    & > svg > g > path {
+      color: ${({ theme }) => theme.blue};
+      fill: ${({ theme }) => theme.blue};
+    }
+  }
   display: flex;
   gap: ${({ theme }) => theme.spacings.s10};
   align-items: center;

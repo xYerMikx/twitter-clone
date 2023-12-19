@@ -43,7 +43,12 @@ export function Sidebar({
       <TwitterLogo />
       <SidebarLinks>
         {sidebarLinks.map(({ name, path, element: Element }) => (
-          <SidebarLink onClick={toggleSidebar} key={path} to={path}>
+          <SidebarLink
+            className={({ isActive }) => (isActive ? "active" : "")}
+            onClick={toggleSidebar}
+            key={path}
+            to={path}
+          >
             <Element />
             <Text>{name}</Text>
           </SidebarLink>

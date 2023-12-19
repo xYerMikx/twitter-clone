@@ -5,9 +5,10 @@ import search from "@/assets/search.svg"
 interface ISearchbarProps {
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void
   value: string
+  placeholder: string
 }
 
-export function Searchbar({ handleChange, value }: ISearchbarProps) {
+export function Searchbar({ handleChange, value, placeholder }: ISearchbarProps) {
   const inputRef = useRef<HTMLInputElement | null>(null)
 
   const focusTextInput = () => {
@@ -19,7 +20,7 @@ export function Searchbar({ handleChange, value }: ISearchbarProps) {
         <SearchInput
           id="search"
           ref={inputRef}
-          placeholder="Search user..."
+          placeholder={placeholder}
           autoComplete="off"
           value={value}
           onChange={handleChange}

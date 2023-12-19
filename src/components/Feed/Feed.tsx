@@ -6,13 +6,14 @@ import { db } from "@/firebase"
 import { NoTweets } from "./styled"
 import { useAppSelector } from "@/hooks/redux"
 import { selectUserInfo } from "@/store/selectors"
+import { Collections } from "@/constants/collections"
 
 export function Feed() {
   const [tweets, setTweets] = useState<Omit<ITweetProps, "myEmail">[]>([])
   const { email } = useAppSelector(selectUserInfo)
 
   useEffect(() => {
-    const tweetsCollection = collection(db, "tweets")
+    const tweetsCollection = collection(db, Collections.Tweets)
     const tweetQueue = query(tweetsCollection, orderBy("createdAt", "desc"))
 
     const unsubscribe = onSnapshot(tweetQueue, (snapshot) => {

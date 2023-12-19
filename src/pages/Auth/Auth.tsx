@@ -40,7 +40,7 @@ export function Auth() {
   }
   const handleGoogleSignUp = async () => {
     try {
-      await signUpWithGoogle(navigate, dispatchSuccessfull)
+      await signUpWithGoogle(navigate, dispatch, dispatchSuccessfull)
     } catch (e) {
       const error = e as Error
       dispatchNotification(dispatch, NotificationStatuses.ERROR, error.message)

@@ -10,6 +10,7 @@ import { auth } from "@/firebase"
 import { Layout } from "../Layout/Layout"
 import { useAppSelector } from "@/hooks/redux"
 import { selectTheme } from "@/store/selectors"
+import { ErrorBoundary } from "../ErrorBoundary/ErrorBoundary"
 
 export function App() {
   const [isLoading, setIsLoading] = useState(true)
@@ -30,30 +31,32 @@ export function App() {
   }
   return (
     <ThemeProvider theme={currentTheme === "dark" ? darkTheme : lightTheme}>
-      <BrowserRouter>
-        <GlobalStyles />
-        <NotificationList />
-        <Routes>
-          {publicRoutes.map(({ path, element: Element }) => (
-            <Route key={path} path={path} element={<Element />} />
-          ))}
-          <Route element={<Layout />}>
-            {privateRoutes.map(({ path, element: Element }) => (
-              <Route
-                key={path}
-                path={path}
-                element={
-                  isAuthenticated ? (
-                    <Element />
-                  ) : (
-                    <Navigate to={RoutesEnum.AUTH} replace />
-                  )
-                }
-              />
+      <ErrorBoundary>
+        <BrowserRouter>
+          <GlobalStyles />
+          <NotificationList />
+          <Routes>
+            {publicRoutes.map(({ path, element: Element }) => (
+              <Route key={path} path={path} element={<Element />} />
             ))}
-          </Route>
-        </Routes>
-      </BrowserRouter>
+            <Route element={<Layout />}>
+              {privateRoutes.map(({ path, element: Element }) => (
+                <Route
+                  key={path}
+                  path={path}
+                  element={
+                    isAuthenticated ? (
+                      <Element />
+                    ) : (
+                      <Navigate to={RoutesEnum.AUTH} replace />
+                    )
+                  }
+                />
+              ))}
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </ErrorBoundary>
     </ThemeProvider>
   )
 }
