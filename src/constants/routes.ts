@@ -4,6 +4,7 @@ import { Login } from "@/pages/Login/Login"
 import { NotFound } from "@/pages/NotFound/NotFound"
 import { Profile } from "@/pages/Profile/Profile"
 import { Signup } from "@/pages/Signup/Signup"
+import { TweetPage } from "@/pages/TweetPage/TweetPage"
 
 export enum Routes {
   HOME = "/",
@@ -12,6 +13,7 @@ export enum Routes {
   SIGNUP = "/signup",
   AUTH = "/auth",
   FEED = "/feed",
+  TWEET = "tweet/:id",
   NOT_FOUND = "*",
 }
 
@@ -25,4 +27,5 @@ export const publicRoutes = [
 export const privateRoutes = [
   { path: Routes.HOME, element: Home },
   { path: Routes.PROFILE, element: Profile },
+  { path: Routes.TWEET, element: TweetPage },
 ]

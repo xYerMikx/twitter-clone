@@ -34,16 +34,15 @@ export function SearchSidebar({
   searchConfig: { collectionName, searchField },
 }: ISeatchSidebarProps) {
   const location = useLocation()
-  const defaultItems = itemsByPath[location.pathname]
+  const defaultItems = itemsByPath[location.pathname] || itemsByPath["/"]
   const [showMore, setShowMore] = useState(true)
   const [items, setItems] = useState<ISearchedTweet[] | IUserProfile[]>(defaultItems)
   const [itemsToShow, setItemsToShow] = useState(2)
   const [inputValue, setInputValue] = useState("")
   const debouncedInputValue = useDebounce(inputValue, 500)
   const placeholder = searchbarPlaceholders[searchField]
-
   useEffect(() => {
-    const newItems = itemsByPath[location.pathname]
+    const newItems = itemsByPath[location.pathname] || itemsByPath["/"]
     setItems(newItems)
   }, [location.pathname])
 
@@ -77,7 +76,8 @@ export function SearchSidebar({
           console.error("Error fetching data: ", error)
         }
       } else {
-        const itemsFromPath = itemsByPath[location.pathname]
+        const itemsFromPath = itemsByPath[location.pathname] || itemsByPath["/"]
+
         setItems(itemsFromPath)
         setItemsToShow(itemsFromPath.length)
       }
@@ -114,11 +114,12 @@ export function SearchSidebar({
       <MightLike>
         <Text>{debouncedInputValue ? "Search results" : "You might like"}</Text>
         <UsersWrapper>
-          {items.slice(0, itemsToShow).map((item) => {
+          {items?.slice(0, itemsToShow).map((item) => {
             const path = location.pathname as keyof IComponentByPath
-            const Component = componentsByPath[path]
-            // @ts-expect-error тут тип item теперь почти такое же выдает, тот я в итоге пофиксил
-            return <Component key={item.email} item={item} />
+            const Component = componentsByPath[path] || componentsByPath["/"]
+            return (
+              <Component key={item.email} item={item as IUserProfile & ISearchedTweet} />
+            )
           })}
           {showMore && (
             <ShowMoreButton onClick={handleShowMore}>Show more</ShowMoreButton>

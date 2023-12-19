@@ -10,8 +10,8 @@ export function Layout() {
   const path = location.pathname
 
   const searchConfig = {
-    collectionName: collectionsWithPaths[path],
-    searchField: searchFieldsInCollection[path],
+    collectionName: collectionsWithPaths[path] || collectionsWithPaths["/"],
+    searchField: searchFieldsInCollection[path] || searchFieldsInCollection["/"],
   }
 
   return (

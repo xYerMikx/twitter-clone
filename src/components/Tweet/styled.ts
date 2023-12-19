@@ -14,6 +14,12 @@ export const TweetBody = styled.div`
   flex: 1 0 70%;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacings.s30};
+  & > div:nth-child(2) {
+    cursor: pointer;
+    &:hover {
+      color: ${({ theme }) => theme.blue};
+    }
+  }
 `
 export const ProfileImage = styled.img`
   width: 40px;
