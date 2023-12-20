@@ -107,6 +107,7 @@ export function SearchSidebar({
   return (
     <SidebarContainer>
       <Searchbar
+        dataCy="searchbar"
         value={inputValue}
         handleChange={handleChange}
         placeholder={placeholder}

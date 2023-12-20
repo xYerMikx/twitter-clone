@@ -31,6 +31,7 @@ export function LoginForm({ disabled, onSubmit }: IFormProps) {
         <Fragment key={placeholder}>
           <Input
             {...register(name)}
+            data-cy={name}
             placeholder={placeholder}
             type={type}
             maxLength={name === "identifier" ? 20 : undefined}
@@ -39,7 +40,12 @@ export function LoginForm({ disabled, onSubmit }: IFormProps) {
         </Fragment>
       ))}
 
-      <Button type="submit" disabled={disabled || !isValid || !isDirty} primary>
+      <Button
+        dataCy="login-btn"
+        type="submit"
+        disabled={disabled || !isValid || !isDirty}
+        primary
+      >
         Log In
       </Button>
       <SignUpLink to={Routes.AUTH}>Sign up to Twitter</SignUpLink>

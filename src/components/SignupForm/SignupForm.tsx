@@ -42,6 +42,7 @@ export function SignupForm({ onSubmit, disabled }: ISignupFormProps) {
         <Fragment key={placeholder}>
           <Input
             {...register(name)}
+            data-cy={name}
             placeholder={placeholder}
             type={type}
             maxLength={name === "phone" ? 13 : undefined}
@@ -73,7 +74,12 @@ export function SignupForm({ onSubmit, disabled }: ISignupFormProps) {
           </Fragment>
         ))}
       </SelectsWrapper>
-      <Button disabled={disabled || !isDirty || !isValid} type="submit" primary>
+      <Button
+        dataCy="signup-btn"
+        disabled={disabled || !isDirty || !isValid}
+        type="submit"
+        primary
+      >
         Next
       </Button>
     </SignupFormWrapper>

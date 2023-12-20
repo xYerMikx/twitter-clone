@@ -62,6 +62,7 @@ export function TweetTextarea({ closeModal }: ITweetTextareaProps) {
       <Image src={profileImage} alt="profile-image" />
       <AreaColumn>
         <Textarea
+          data-cy="tweet-textarea"
           name="tweet-area"
           id="tweet-area"
           placeholder="What's happening"
@@ -73,7 +74,13 @@ export function TweetTextarea({ closeModal }: ITweetTextareaProps) {
           <InputForFile type="file" id="upload-photo" onChange={handlePhotoUpload} />
         </Label>
       </AreaColumn>
-      <Button variant="SM" primary disabled={!textValue || isLoading} onClick={sendTweet}>
+      <Button
+        dataCy="tweet-button"
+        variant="SM"
+        primary
+        disabled={!textValue || isLoading}
+        onClick={sendTweet}
+      >
         Tweet
       </Button>
     </TextareaWrapper>
