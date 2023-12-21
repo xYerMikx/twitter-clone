@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { media } from "@/constants/sizes"
 
 export const SearchContainer = styled.div`
   position: relative;
@@ -9,6 +10,12 @@ export const SearchContainer = styled.div`
   justify-content: space-between;
   padding-left: ${({ theme }) => theme.spacings.s5};
   transition: all 0.3s linear;
+  @media ${media.DESKTOP_LG} {
+    max-width: 320px;
+  }
+  @media ${media.PHONE} {
+    max-width: 250px;
+  }
 `
 
 export const Label = styled.label`

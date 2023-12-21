@@ -1,12 +1,19 @@
 import { Link } from "react-router-dom"
 import styled from "styled-components"
+import { media } from "@/constants/sizes"
 
 export const LoginFormWrapper = styled.form`
   margin-top: ${({ theme }) => theme.spacings.s50};
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacings.s25};
-  width: 500px;
+  width: 100%;
+  max-width: 500px;
+  @media ${media.TABLET} {
+    max-width: none;
+    width: 80%;
+    min-width: 280px;
+  }
 `
 
 export const Error = styled.p`

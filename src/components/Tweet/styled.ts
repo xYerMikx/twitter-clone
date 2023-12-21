@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { media } from "@/constants/sizes"
 
 export const TweetWrapper = styled.div`
   display: flex;
@@ -7,6 +8,9 @@ export const TweetWrapper = styled.div`
   padding-top: ${({ theme }) => theme.spacings.s15};
   border-top: ${({ theme }) => theme.borderSize} solid ${({ theme }) => theme.borderColor};
   position: relative;
+  @media ${media.PHONE} {
+    flex-direction: column;
+  }
 `
 
 export const TweetBody = styled.div`
@@ -14,6 +18,16 @@ export const TweetBody = styled.div`
   flex: 1 0 70%;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacings.s30};
+  @media ${media.DESKTOP_LG} {
+    flex: 1 0 80%;
+    gap: ${({ theme }) => theme.spacings.s20};
+  }
+  & > div:nth-child(2) {
+    cursor: pointer;
+    &:hover {
+      color: ${({ theme }) => theme.blue};
+    }
+  }
 `
 export const ProfileImage = styled.img`
   width: 40px;
@@ -37,6 +51,9 @@ export const Row = styled.div`
   gap: ${({ theme }) => theme.spacings.s10};
   max-width: 360px;
   color: ${({ theme }) => theme.primaryColor};
+  @media ${media.PHONE} {
+    max-width: 300px;
+  }
 `
 
 export const UserName = styled.p`
@@ -78,6 +95,6 @@ export const DeleteButton = styled.button`
   color: ${({ theme }) => theme.lightColor};
   border-radius: ${({ theme }) => theme.borderRadius};
   padding: ${({ theme }) => theme.spacings.s5};
-  font-size: 16px;
+  font-size: ${({ theme }) => theme.fontSize.f16};
   cursor: pointer;
 `

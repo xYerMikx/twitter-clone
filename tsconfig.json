@@ -21,7 +21,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "baseUrl": "./",
-    "types": ["cypress"],
     "paths": {
       "@/*": ["src/*"]
     }

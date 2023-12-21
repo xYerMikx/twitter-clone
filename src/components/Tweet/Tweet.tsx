@@ -1,6 +1,7 @@
 import { Timestamp, deleteDoc, doc, updateDoc } from "firebase/firestore"
 import { useEffect, useState } from "react"
 import { getDownloadURL, ref } from "firebase/storage"
+import { useNavigate } from "react-router-dom"
 import {
   CreatedAt,
   DeleteButton,
@@ -52,6 +53,7 @@ export function Tweet({
   const [currentLikes, setCurrentLikes] = useState(likes)
   const [isLiking, setIsLiking] = useState(false)
   const [showDropdown, setShowDropdown] = useState(false)
+  const navigate = useNavigate()
 
   const handleLikeChange = async () => {
     setIsLiking(true)
@@ -106,6 +108,9 @@ export function Tweet({
     }
     getImageUrl()
   }, [image])
+  const navigateToTweet = (tweetId: string) => () => {
+    navigate(`/tweet/${tweetId}`)
+  }
   return (
     <TweetWrapper>
       <ProfileImage src={profileImage} alt="profile-image" />
@@ -115,7 +120,7 @@ export function Tweet({
           <UserName>@{email.split("@")[0]}</UserName>
           <CreatedAt>{createdAt && formatDate(createdAt)}</CreatedAt>
         </Row>
-        <Row>{content}</Row>
+        <Row onClick={navigateToTweet(id)}>{content}</Row>
         <Row>{image && <Image src={imageURL} alt="tweet-image" />}</Row>
         <Row>
           <LikesWrapper>
