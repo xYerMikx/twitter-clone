@@ -1,4 +1,4 @@
-import styled, { DefaultTheme, keyframes } from "styled-components"
+import styled, { keyframes } from "styled-components"
 import { NotificationStatuses } from "@/constants/notificationStatus"
 
 const slideOut = keyframes`
@@ -33,11 +33,11 @@ export const NotificationWrapper = styled.div<{
   }
   @keyframes fadeOut {
     0% {
-      opacity: ${({ theme }: { theme: DefaultTheme }) => theme.opacityMax};
+      opacity: ${({ theme }) => theme.opacityMax};
       transform: translateY(0);
     }
     100% {
-      opacity: ${({ theme }: { theme: DefaultTheme }) => theme.opacityMin};
+      opacity: ${({ theme }) => theme.opacityMin};
       transform: translateX(200px);
     }
   }
