@@ -1,14 +1,18 @@
-import styled, { keyframes } from "styled-components"
+import styled, { DefaultTheme, keyframes } from "styled-components"
 import { NotificationStatuses } from "@/constants/notificationStatus"
 
 const fadeIn = keyframes`
-  0% { opacity: ${({ theme }) => theme.opacityMin}; transform: translateY(50px); }
-  100% { opacity: ${({ theme }) => theme.opacityMax}; transform: translateY(0); }
+  0% { opacity: ${({ theme }: { theme: DefaultTheme }) =>
+    theme.opacityMin}; transform: translateY(50px); }
+  100% { opacity: ${({ theme }: { theme: DefaultTheme }) =>
+    theme.opacityMax}; transform: translateY(0); }
 `
 
 const fadeOut = keyframes`
-  0% { opacity: ${({ theme }) => theme.opacityMax}; transform: translateY(0); }
-  100% { opacity: ${({ theme }) => theme.opacityMin}; transform: translateX(200px); }
+  0% { opacity: ${({ theme }: { theme: DefaultTheme }) =>
+    theme.opacityMax}; transform: translateY(0); }
+  100% { opacity: ${({ theme }: { theme: DefaultTheme }) =>
+    theme.opacityMin}; transform: translateX(200px); }
 `
 
 const slideOut = keyframes`

@@ -59,6 +59,7 @@ declare module "styled-components" {
       s45: string
       s50: string
     }
+    black: string
     boxShadow: string
     inputColor: string
     darkColor: string

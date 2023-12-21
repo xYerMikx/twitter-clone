@@ -69,6 +69,7 @@ const commonTheme = {
   opacity: 0.6,
   opacityMax: 1,
   opacityMin: 0,
+  black: "#000000",
 }
 export const lightTheme: DefaultTheme = {
   ...commonTheme,
