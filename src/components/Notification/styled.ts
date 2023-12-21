@@ -1,20 +1,6 @@
 import styled, { DefaultTheme, keyframes } from "styled-components"
 import { NotificationStatuses } from "@/constants/notificationStatus"
 
-const fadeIn = keyframes`
-  0% { opacity: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.opacityMin}; transform: translateY(50px); }
-  100% { opacity: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.opacityMax}; transform: translateY(0); }
-`
-
-const fadeOut = keyframes`
-  0% { opacity: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.opacityMax}; transform: translateY(0); }
-  100% { opacity: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.opacityMin}; transform: translateX(200px); }
-`
-
 const slideOut = keyframes`
   0% { width: 100%; }
   100% { width: 0; }
@@ -33,9 +19,28 @@ export const NotificationWrapper = styled.div<{
   color: ${({ theme, $type }) =>
     $type === NotificationStatuses.SUCCESS ? theme.green : theme.red};
   animation:
-    ${fadeIn} 0.5s ease-in-out,
-    ${fadeOut} 0.5s 2.25s ease-in-out forwards;
-
+    fadeIn 0.5s ease-in-out,
+    fadeOut 0.5s 2.25s ease-in-out forwards;
+  @keyframes fadeIn {
+    0% {
+      opacity: ${({ theme }) => theme.opacityMin};
+      transform: translateY(50px);
+    }
+    100% {
+      opacity: ${({ theme }) => theme.opacityMax};
+      transform: translateY(0);
+    }
+  }
+  @keyframes fadeOut {
+    0% {
+      opacity: ${({ theme }: { theme: DefaultTheme }) => theme.opacityMax};
+      transform: translateY(0);
+    }
+    100% {
+      opacity: ${({ theme }: { theme: DefaultTheme }) => theme.opacityMin};
+      transform: translateX(200px);
+    }
+  }
   &::before {
     content: "";
     position: absolute;
