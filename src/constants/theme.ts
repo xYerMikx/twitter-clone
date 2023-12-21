@@ -1,3 +1,5 @@
+import { DefaultTheme } from "styled-components"
+
 const commonTheme = {
   fontSize: {
     f84: "84px",
@@ -68,7 +70,7 @@ const commonTheme = {
   opacityMax: 1,
   opacityMin: 0,
 }
-export const lightTheme = {
+export const lightTheme: DefaultTheme = {
   ...commonTheme,
   primaryColor: "#000000",
   currentTheme: "light",
@@ -76,7 +78,7 @@ export const lightTheme = {
   bgSidebarColor: "#EFF3F4",
   borderColor: "#00000033",
 }
-export const darkTheme = {
+export const darkTheme: DefaultTheme = {
   ...commonTheme,
   primaryColor: "#FFFFFF",
   currentTheme: "dark",
