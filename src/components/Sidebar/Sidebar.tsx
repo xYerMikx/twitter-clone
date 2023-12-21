@@ -56,7 +56,7 @@ export function Sidebar() {
           <ProfileUserName>@{email.split("@")[0]}</ProfileUserName>
         </ProfileInfo>
       </ProfileWrapper>
-      <Button variant="MD" primary onClick={handleLogout}>
+      <Button dataCy="logout-btn" variant="MD" primary onClick={handleLogout}>
         Log Out
       </Button>
       {isOpen && <TweetModal closeModal={closeModal} />}

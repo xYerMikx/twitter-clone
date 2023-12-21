@@ -6,9 +6,10 @@ interface ISearchbarProps {
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void
   value: string
   placeholder: string
+  dataCy?: string
 }
 
-export function Searchbar({ handleChange, value, placeholder }: ISearchbarProps) {
+export function Searchbar({ handleChange, value, placeholder, dataCy }: ISearchbarProps) {
   const inputRef = useRef<HTMLInputElement | null>(null)
 
   const focusTextInput = () => {
@@ -18,6 +19,7 @@ export function Searchbar({ handleChange, value, placeholder }: ISearchbarProps)
     <SearchContainer>
       <Label htmlFor="search">
         <SearchInput
+          data-cy={dataCy}
           id="search"
           ref={inputRef}
           placeholder={placeholder}

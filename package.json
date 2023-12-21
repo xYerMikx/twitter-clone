@@ -10,7 +10,8 @@
     "lint:fix": "eslint --fix .",
     "preview": "vite preview",
     "postinstall": "husky install",
-    "test": "jest"
+    "test": "jest",
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.2",
@@ -46,6 +47,7 @@
     "@typescript-eslint/eslint-plugin": "^6.10.0",
     "@typescript-eslint/parser": "^6.10.0",
     "@vitejs/plugin-react": "^4.2.0",
+    "cypress": "^13.6.1",
     "dotenv": "^16.3.1",
     "eslint": "^8.53.0",
     "eslint-config-airbnb": "^19.0.4",
