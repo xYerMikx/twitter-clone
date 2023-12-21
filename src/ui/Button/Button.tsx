@@ -11,6 +11,7 @@ interface IButtonProps {
   primary?: boolean
   onClick?: () => void
   type?: "submit" | "button" | "reset"
+  dataCy?: string
 }
 
 export function Button({
@@ -22,9 +23,11 @@ export function Button({
   primary,
   onClick,
   type,
+  dataCy,
 }: IButtonProps) {
   return (
     <StyledButton
+      data-cy={dataCy}
       $variant={variant}
       $outlined={outlined}
       $primary={primary}

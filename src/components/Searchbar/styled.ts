@@ -33,7 +33,7 @@ export const SearchInput = styled.input`
   height: 100%;
   width: 100%;
   outline: none;
-  font-size: ${({ theme }) => theme.fontSize.s18};
+  font-size: ${({ theme }) => theme.fontSize.f18};
   border-radius: ${({ theme }) => theme.buttonRadius};
   background-color: ${({ theme }) => theme.bgSidebarColor};
 `

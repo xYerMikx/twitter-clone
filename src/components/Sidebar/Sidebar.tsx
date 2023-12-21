@@ -69,6 +69,7 @@ export function Sidebar({
         </ProfileInfo>
       </ProfileWrapper>
       <Button
+        dataCy="logout-btn"
         variant={window.innerWidth <= Sizes.DESKTOP_LG ? "SM" : "MD"}
         primary
         onClick={handleLogout}

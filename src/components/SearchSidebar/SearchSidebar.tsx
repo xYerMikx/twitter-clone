@@ -109,6 +109,7 @@ export function SearchSidebar({
   return (
     <SidebarContainer $isOpen={isSearchSidebarOpen}>
       <Searchbar
+        dataCy="searchbar"
         value={inputValue}
         handleChange={handleChange}
         placeholder={placeholder}
