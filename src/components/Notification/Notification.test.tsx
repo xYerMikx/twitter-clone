@@ -3,12 +3,13 @@ import { screen } from "@testing-library/react"
 import { Notification } from "./Notification"
 import { renderWithWrappers } from "@/utils/testUtils"
 
+const mockNotification = {
+  id: 1,
+  message: "Test notification",
+  type: "info",
+}
+
 describe("Notification component", () => {
-  const mockNotification = {
-    id: 1,
-    message: "Test notification",
-    type: "info",
-  }
   beforeEach(() => {
     renderWithWrappers(<Notification notification={mockNotification} />)
   })
