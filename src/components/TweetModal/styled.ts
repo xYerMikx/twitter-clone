@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { media } from "@/constants/sizes"
 
 export const Container = styled.div`
   position: fixed;
@@ -7,6 +8,7 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: ${({ theme }) => theme.zIndex.z10};
 `
 
 export const Modal = styled.div`
@@ -18,11 +20,15 @@ export const Modal = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  box-shadow: 0px 0.5px 10px 2px ${({ theme }) => theme.borderColor};
+  box-shadow: ${({ theme }) => theme.boxShadow} ${({ theme }) => theme.borderColor};
 
   border-radius: ${({ theme }) => theme.borderRadius};
   border: ${({ theme }) => theme.borderSize} solid ${({ theme }) => theme.borderColor};
   background-color: ${({ theme }) => theme.bgColor};
+  @media ${media.PHONE} {
+    width: 90%;
+    padding: ${({ theme }) => theme.spacings.s10};
+  }
 `
 export const Button = styled.button`
   cursor: pointer;

@@ -8,6 +8,7 @@ export interface ISearchedTweet {
   email: string
   createdAt: Timestamp
   content: string
+  id: string
 }
 
 export const mockUsers: IUserProfile[] = [
@@ -37,11 +38,13 @@ export const mockTweets: ISearchedTweet[] = [
     name: "Mushtariy",
     email: "Mushtar565266@yandex.ru",
     createdAt: Timestamp.fromDate(date),
+    id: "123123",
   },
   {
     content: "Best tweet ever yooo",
     name: "Shuhratbek",
     email: "mrshukhrat@yandex.ru",
     createdAt: Timestamp.fromDate(date),
+    id: "12312323",
   },
 ]

@@ -68,7 +68,8 @@ export function SearchSidebar({
           } else if (collectionName === Collections.Tweets) {
             newItems = querySnapshot.docs.map((doc) => {
               const { email, name, createdAt, content } = doc.data()
-              return { email, name, createdAt, content }
+              const {id} = doc
+              return { email, name, createdAt, content, id }
             })
           }
 

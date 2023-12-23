@@ -5,6 +5,7 @@ import { db } from "@/firebase"
 import { ITweet, Tweet } from "@/components/Tweet/Tweet"
 import { useAppSelector } from "@/hooks/redux"
 import { selectUserInfo } from "@/store/selectors"
+import { TweetWrapper } from "./styled"
 
 export function TweetPage() {
   const { id } = useParams()
@@ -27,5 +28,11 @@ export function TweetPage() {
     getTweet()
   }, [id])
 
-  return tweet ? <Tweet tweet={tweet} id={id!} myEmail={email} /> : <>Loading...</>
+  return tweet ? (
+    <TweetWrapper>
+      <Tweet tweet={tweet} id={id!} myEmail={email} />
+    </TweetWrapper>
+  ) : (
+    <>Loading...</>
+  )
 }

@@ -17,5 +17,9 @@ export const TweetHeader = styled.div`
 export const TweetContent = styled.p`
   font-size: ${({ theme }) => theme.fontSize.f14};
   margin-top: ${({ theme }) => theme.spacings.s10};
+  &:hover {
+    cursor: pointer;
+    color: ${({ theme }) => theme.blue};
+  }
 `
 export const StyledSpan = styled.span``
