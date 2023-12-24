@@ -2,10 +2,10 @@ import styled from "styled-components"
 import { media } from "@/constants/sizes"
 
 export const SignupFormWrapper = styled.form`
-  margin-top: ${({ theme }) => theme.spacings.s30};
+  margin-top: ${({ theme }) => theme.spacings.s20};
   display: flex;
   flex-direction: column;
-  gap: ${({ theme }) => theme.spacings.s25};
+  gap: ${({ theme }) => theme.spacings.s15};
   width: 100%;
   max-width: 700px;
   @media ${media.TABLET} {

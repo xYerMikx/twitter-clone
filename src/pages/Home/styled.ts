@@ -11,6 +11,14 @@ export const PageTitle = styled.h2`
   font-family: ${({ theme }) => theme.fontFamily.robotoSerif};
   color: ${({ theme }) => theme.primaryColor};
 `
+export const ThemeWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacings.s5};
+`
+export const Text = styled.p`
+  color: ${({ theme }) => theme.primaryColor};
+`
 export const Label = styled.label`
   display: flex;
   align-items: center;

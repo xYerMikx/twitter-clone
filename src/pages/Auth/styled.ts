@@ -3,6 +3,10 @@ import styled from "styled-components"
 import { media } from "@/constants/sizes"
 
 export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
   @media ${media.DESKTOP} {
     height: 100vh;
     display: flex;
@@ -19,9 +23,8 @@ export const MainContent = styled.div`
   }
 `
 export const TwitterImage = styled.img`
-  width: 55%;
+  height: 85vh;
   @media ${media.DESKTOP_LG} {
-    height: 55%;
     object-fit: cover;
   }
   @media ${media.DESKTOP} {
@@ -33,9 +36,9 @@ export const AuthInfo = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: ${({ theme }) => theme.spacings.s30};
+  padding: ${({ theme }) => theme.spacings.s20};
   @media ${media.DESKTOP_LG} {
-    padding: ${({ theme }) => theme.spacings.s20};
+    padding: ${({ theme }) => theme.spacings.s10};
   }
   @media ${media.DESKTOP} {
     align-items: center;
@@ -50,10 +53,11 @@ export const Title = styled.h1`
 
   @media ${media.DESKTOP_LG} {
     font-size: ${({ theme }) => theme.fontSize.f52};
-    margin: ${({ theme }) => theme.spacings.s30} 0;
+    margin: ${({ theme }) => theme.spacings.s20} 0;
   }
   @media ${media.DESKTOP} {
     font-size: ${({ theme }) => theme.fontSize.f42};
+    margin: ${({ theme }) => theme.spacings.s10} 0;
   }
   @media ${media.PHONE} {
     font-size: ${({ theme }) => theme.fontSize.f30};
@@ -128,6 +132,13 @@ export const FooterLinks = styled.div`
   font-size: ${({ theme }) => theme.fontSize.f12};
   padding: ${({ theme }) => theme.spacings.s30} 0;
   margin-top: auto;
+  @media ${media.DESKTOP_LG} {
+    font-size: ${({ theme }) => theme.fontSize.f10};
+    gap: ${({ theme }) => theme.spacings.s10};
+  }
+  @media ${media.DESKTOP} {
+    gap: ${({ theme }) => theme.spacings.s5};
+  }
 `
 export const FooterLink = styled(Link)`
   transition: all 0.1s linear;

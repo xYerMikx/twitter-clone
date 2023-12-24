@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import arrowDown from "@/assets/arrow-down.svg"
+import { media } from "@/constants/sizes"
 
 export const StyledSelect = styled.select<{ $width?: string }>`
   cursor: pointer;
@@ -26,6 +27,9 @@ export const StyledSelect = styled.select<{ $width?: string }>`
 
   &:hover {
     border-color: ${({ theme }) => theme.darkColor};
+  }
+  @media ${media.TABLET} {
+    padding: ${({ theme }) => theme.spacings.s10};
   }
 `
 

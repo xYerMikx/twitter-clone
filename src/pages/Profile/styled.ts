@@ -11,6 +11,7 @@ export const UserName = styled.h2`
 `
 export const TweetCount = styled.p`
   font-size: ${({ theme }) => theme.fontSize.f14};
+  color: ${({ theme }) => theme.primaryColor};
 `
 
 export const ProfileInfo = styled.div`
