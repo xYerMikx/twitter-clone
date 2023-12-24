@@ -35,9 +35,26 @@ export const InputForFile = styled.input`
   visibility: hidden;
   width: 0;
 `
-export const Label = styled.label`
+export const Label = styled.label<{ $fileName?: string }>`
   width: 30px;
   height: 30px;
+  position: relative;
+
+  &::after {
+    content: "";
+    display: ${({ $fileName }) => ($fileName ? "block" : "none")};
+    position: absolute;
+    top: 0;
+    right: 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: ${({ theme }) => theme.green};
+  }
+`
+export const FileName = styled.p`
+  font-size: ${({ theme }) => theme.fontSize.f12};
+  color: ${({ theme }) => theme.primaryColor};
 `
 export const Textarea = styled.textarea`
   height: 120px;
