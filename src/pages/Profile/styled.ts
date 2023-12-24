@@ -26,6 +26,7 @@ export const ProfileInfo = styled.div`
     align-self: flex-end;
   }
 `
+export const BirthDate = styled.p``
 export const ProfileBgImage = styled.img`
   z-index: ${({ theme }) => theme.zIndex.z1};
 `
