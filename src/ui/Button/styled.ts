@@ -3,7 +3,7 @@ import { ButtonWidth } from "@/constants/buttonWidth"
 
 const outlinedStyles = css`
   background: transparent;
-  color: ${({ theme }) => theme.primaryColor};
+  color: ${({ theme }) => theme.darkColor};
   border: ${({ theme }) => theme.borderSize} solid ${({ theme }) => theme.lightGray};
 
   &:hover {

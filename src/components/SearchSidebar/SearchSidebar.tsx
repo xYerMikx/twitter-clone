@@ -50,7 +50,12 @@ export function SearchSidebar({
         const dataQuery = query(collection(db, collectionName))
 
         try {
-          const newItems = await fetchItems(dataQuery, true, profile, 2)
+          const newItems = await fetchItems(
+            dataQuery,
+            collectionName === Collections.Users,
+            profile,
+            2,
+          )
 
           setItems(newItems)
           setItemsToShow(newItems.length)
