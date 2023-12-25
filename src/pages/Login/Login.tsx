@@ -28,10 +28,9 @@ export function Login() {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
-  const onSubmit = async (data: ILoginFormProps) => {
+  const onSubmit = async ({ identifier, password }: ILoginFormProps) => {
     try {
       setDisabled(true)
-      const { identifier, password } = data
       const phone = isValidPhone(identifier)
       const email = isValidEmail(identifier)
       if (phone || email) {

@@ -32,14 +32,16 @@ export function Signup() {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const [disabled, setDisabled] = useState(false)
-  const onSubmit = async (data: ISignUpFormFields) => {
-    const parsedData = {
-      ...data,
-      day: Number(data.day),
-      year: Number(data.year),
-    }
-    const { email, password, name, phone, day, month, year } = parsedData
-    const birthday = formateBirthday(year, month, day)
+  const onSubmit = async ({
+    day,
+    email,
+    month,
+    name,
+    password,
+    phone,
+    year,
+  }: ISignUpFormFields) => {
+    const birthday = formateBirthday(+year, month, +day)
 
     try {
       setDisabled(true)
