@@ -18,7 +18,7 @@ export const SidebarContainer = styled.aside<{ $isOpen: boolean }>`
     transition: all 0.4s linear;
     position: fixed;
     z-index: ${({ theme }) => theme.zIndex.z2};
-    right: ${({ $isOpen, theme }) => ($isOpen ? theme.spacings.s20 : "-330px")};
+    right: ${({ $isOpen, theme }) => ($isOpen ? theme.spacings.s20 : "-335px")};
     box-shadow: -5px 0 3px -3px ${({ theme }) => theme.lightGray};
     height: 100%;
     padding: ${({ theme }) => theme.spacings.s50} 0;
@@ -26,7 +26,7 @@ export const SidebarContainer = styled.aside<{ $isOpen: boolean }>`
   }
   @media ${media.PHONE} {
     max-width: 280px;
-    right: ${({ $isOpen, theme }) => ($isOpen ? theme.spacings.s10 : "-300px")};
+    right: ${({ $isOpen, theme }) => ($isOpen ? theme.spacings.s10 : "-305px")};
   }
 `
 

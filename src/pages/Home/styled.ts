@@ -11,14 +11,7 @@ export const PageTitle = styled.h2`
   font-family: ${({ theme }) => theme.fontFamily.robotoSerif};
   color: ${({ theme }) => theme.primaryColor};
 `
-export const ThemeWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: ${({ theme }) => theme.spacings.s5};
-`
-export const Text = styled.p`
-  color: ${({ theme }) => theme.primaryColor};
-`
+
 export const Label = styled.label`
   display: flex;
   align-items: center;
@@ -51,6 +44,21 @@ export const Switch = styled.div`
       ${({ theme }) => (theme.currentTheme === "dark" ? "0px" : "28px")},
       -50%
     );
+  }
+  & > svg:first-child {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    display: ${({ theme }) => (theme.currentTheme === "dark" ? "none" : "block")};
+  }
+  & > svg:last-child {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: ${({ theme }) => (theme.currentTheme === "dark" ? "block" : "none")};
+    & > path {
+      fill: ${({ theme }) => theme.primaryColor};
+    }
   }
 `
 
