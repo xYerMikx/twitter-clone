@@ -75,3 +75,20 @@ export const Textarea = styled.textarea`
     color: ${({ theme }) => theme.primaryColor};
   }
 `
+export const Loader = styled.div`
+  border: ${({ theme }) => theme.borderLoaderSize} solid ${({ theme }) => theme.bgColor};
+  border-top: ${({ theme }) => theme.borderLoaderSize} solid
+    ${({ theme }) => theme.primaryColor};
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 2s linear infinite;
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+`

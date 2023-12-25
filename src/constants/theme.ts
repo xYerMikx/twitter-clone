@@ -66,6 +66,7 @@ const commonTheme = {
   disabledColor: "#B3B8BB",
   lightBlue: "#00000014",
   borderSize: "1px",
+  borderLoaderSize: "4px",
   borderRadius: "8px",
   buttonRadius: "50px",
   opacity: 0.6,

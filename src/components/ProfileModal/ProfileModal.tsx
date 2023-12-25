@@ -6,7 +6,7 @@ import {
   verifyBeforeUpdateEmail,
 } from "firebase/auth"
 import { collection, getDocs, query, updateDoc, where } from "firebase/firestore"
-import { Fragment, SyntheticEvent, useEffect } from "react"
+import { SyntheticEvent, useEffect } from "react"
 import { createPortal } from "react-dom"
 import { useForm } from "react-hook-form"
 
@@ -28,6 +28,7 @@ import {
   Container,
   Error,
   InputsWrapper,
+  InputWrapper,
   Modal,
   ProfileForm,
 } from "./styled"
@@ -151,7 +152,7 @@ export const ProfileModal = ({ closeModal }: IProfileModalProps) => {
         <ProfileForm onSubmit={handleSubmit(onSubmit)}>
           <InputsWrapper>
             {profileInputs.map(({ name, placeholder, type }) => (
-              <Fragment key={placeholder}>
+              <InputWrapper key={placeholder}>
                 <Input
                   type={type}
                   variant="SM"
@@ -159,7 +160,7 @@ export const ProfileModal = ({ closeModal }: IProfileModalProps) => {
                   {...register(name)}
                 />
                 {errors[name] && <Error>{errors[name]?.message}</Error>}
-              </Fragment>
+              </InputWrapper>
             ))}
           </InputsWrapper>
           <ButtonsWrapper>

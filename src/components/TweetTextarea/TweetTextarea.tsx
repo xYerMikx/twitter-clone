@@ -16,6 +16,7 @@ import {
   Image,
   InputForFile,
   Label,
+  Loader,
   Textarea,
   TextareaWrapper,
   UploadImage,
@@ -89,7 +90,7 @@ export function TweetTextarea({ closeModal }: ITweetTextareaProps) {
         disabled={!textValue || isLoading}
         onClick={sendTweet}
       >
-        Tweet
+        {isLoading ? <Loader /> : "Tweet"}
       </Button>
     </TextareaWrapper>
   )
