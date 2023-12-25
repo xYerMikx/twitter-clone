@@ -1,8 +1,11 @@
 import "@testing-library/jest-dom"
+
 import { screen } from "@testing-library/react"
-import { User } from "./User"
+
 import { IUserProfile } from "@/constants/mockData"
 import { renderWithWrappers } from "@/utils/testUtils"
+
+import { User } from "./User"
 
 const item: IUserProfile = {
   _id: "id",

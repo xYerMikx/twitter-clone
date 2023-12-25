@@ -1,7 +1,8 @@
 import { PersistPartial } from "redux-persist/es/persistReducer"
+
 import { INotification } from "./slices/notificationSlice"
-import { IUser } from "./slices/userSlice"
 import { IThemeType } from "./slices/themeSlice"
+import { IUser } from "./slices/userSlice"
 
 type State = {
   user: IUser
@@ -12,3 +13,4 @@ type State = {
 export const selectTheme = (state: State) => state.theme.theme
 export const selectToken = (state: State) => state.user.token
 export const selectUserInfo = (state: State) => state.user
+export const selectNotificationList = (state: State) => state.notificationsList

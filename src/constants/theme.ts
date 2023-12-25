@@ -53,6 +53,9 @@ const commonTheme = {
     s50: "50px",
   },
   boxShadow: "0px 0.5px 10px 2px",
+  boxShadowLeft: "-5px 0 3px -3px",
+  boxShadowRight: "5px 0 3px -3px",
+
   inputColor: "#5C6C79",
   darkColor: "#000000",
   lightGray: "#CCCCCC",
@@ -64,6 +67,7 @@ const commonTheme = {
   disabledColor: "#B3B8BB",
   lightBlue: "#00000014",
   borderSize: "1px",
+  borderLoaderSize: "4px",
   borderRadius: "8px",
   buttonRadius: "50px",
   opacity: 0.6,

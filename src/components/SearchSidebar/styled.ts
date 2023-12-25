@@ -1,4 +1,5 @@
 import styled from "styled-components"
+
 import { media } from "@/constants/sizes"
 
 export const SidebarContainer = styled.aside<{ $isOpen: boolean }>`
@@ -19,7 +20,8 @@ export const SidebarContainer = styled.aside<{ $isOpen: boolean }>`
     position: fixed;
     z-index: ${({ theme }) => theme.zIndex.z2};
     right: ${({ $isOpen, theme }) => ($isOpen ? theme.spacings.s20 : "-335px")};
-    box-shadow: -5px 0 3px -3px ${({ theme }) => theme.lightGray};
+    box-shadow: ${({ theme }) => theme.boxShadowLeft} ${({ theme }) => theme.lightGray};
+
     height: 100%;
     padding: ${({ theme }) => theme.spacings.s50} 0;
     padding-left: ${({ theme }) => theme.spacings.s20};

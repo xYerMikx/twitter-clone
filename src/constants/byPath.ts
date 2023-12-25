@@ -1,5 +1,6 @@
 import { SearchedTweet } from "@/components/SearchedTweet/SearchedTweet"
 import { User } from "@/components/User/User"
+
 import { ISearchedTweet, IUserProfile, mockTweets, mockUsers } from "./mockData"
 
 export interface IComponentByPath {

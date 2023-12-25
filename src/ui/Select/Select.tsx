@@ -1,4 +1,5 @@
 import { forwardRef } from "react"
+
 import { StyledOption, StyledSelect } from "./styled"
 
 interface ISelectProps {

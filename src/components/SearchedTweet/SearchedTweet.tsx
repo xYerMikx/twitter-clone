@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom"
-import { formatDate } from "@/utils/formateDate"
-import { StyledSpan, TweetContent, TweetHeader, TweetItem } from "./styled"
+
 import { ISearchedTweet } from "@/constants/mockData"
+import { formatDate } from "@/utils/formateDate"
+
+import { StyledSpan, TweetContent, TweetHeader, TweetItem } from "./styled"
 
 export function SearchedTweet({ item }: { item: ISearchedTweet }) {
   const { name, email, createdAt, content, id } = item

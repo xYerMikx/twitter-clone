@@ -3,16 +3,17 @@ import {
   FLUSH,
   PAUSE,
   PERSIST,
+  persistReducer,
+  persistStore,
   PURGE,
   REGISTER,
   REHYDRATE,
-  persistReducer,
-  persistStore,
 } from "redux-persist"
 import storage from "redux-persist/lib/storage"
-import { userReducer } from "./slices/userSlice"
+
 import { notificationReducer } from "./slices/notificationSlice"
 import { themeReducer } from "./slices/themeSlice"
+import { userReducer } from "./slices/userSlice"
 
 const persistConfig = {
   key: "root",

@@ -1,7 +1,10 @@
 import "@testing-library/jest-dom"
+
 import { screen } from "@testing-library/react"
-import { Searchbar } from "./Searchbar"
+
 import { fireEvent, renderWithWrappers } from "@/utils/testUtils"
+
+import { Searchbar } from "./Searchbar"
 
 const handleChange = jest.fn()
 describe("Searchbar component", () => {

@@ -1,34 +1,37 @@
-import { Fragment, SyntheticEvent, useEffect } from "react"
-import { createPortal } from "react-dom"
-import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { collection, getDocs, query, updateDoc, where } from "firebase/firestore"
 import {
   EmailAuthProvider,
   reauthenticateWithCredential,
   updateEmail,
   verifyBeforeUpdateEmail,
 } from "firebase/auth"
+import { collection, getDocs, query, updateDoc, where } from "firebase/firestore"
+import { SyntheticEvent, useEffect } from "react"
+import { createPortal } from "react-dom"
+import { useForm } from "react-hook-form"
+
+import { Collections } from "@/constants/collections"
+import { NotificationStatuses } from "@/constants/notificationStatus"
+import { defaultValues, profileInputs } from "@/constants/profileInputs"
+import { auth, db, logout } from "@/firebase"
+import { useAppDispatch, useAppSelector } from "@/hooks/redux"
+import { selectUserInfo } from "@/store/selectors"
+import { updateUser } from "@/store/slices/userSlice"
+import { Button as CustomButton } from "@/ui/Button/Button"
+import { Input } from "@/ui/Input/Input"
+import { dispatchNotification } from "@/utils/dispatchNotification"
+import { profileSchema } from "@/validators/profile"
+
 import {
   Button,
   ButtonsWrapper,
   Container,
   Error,
   InputsWrapper,
+  InputWrapper,
   Modal,
   ProfileForm,
 } from "./styled"
-import { Input } from "@/ui/Input/Input"
-import { defaultValues, profileInputs } from "@/constants/profileInputs"
-import { profileSchema } from "@/validators/profile"
-import { Button as CustomButton } from "@/ui/Button/Button"
-import { useAppDispatch, useAppSelector } from "@/hooks/redux"
-import { selectUserInfo } from "@/store/selectors"
-import { auth, db, logout } from "@/firebase"
-import { userActions } from "@/store/slices/userSlice"
-import { dispatchNotification } from "@/utils/dispatchNotification"
-import { NotificationStatuses } from "@/constants/notificationStatus"
-import { Collections } from "@/constants/collections"
 
 export interface IProfileModalProps {
   closeModal: () => void
@@ -128,7 +131,8 @@ export const ProfileModal = ({ closeModal }: IProfileModalProps) => {
         await updateEmail(user, updatedDataForUsers.email)
       }
 
-      dispatch(userActions.updateUser(updatedDataForUsers))
+      dispatch(updateUser(updatedDataForUsers))
+
       dispatchNotification(
         dispatch,
         NotificationStatuses.SUCCESS,
@@ -149,7 +153,7 @@ export const ProfileModal = ({ closeModal }: IProfileModalProps) => {
         <ProfileForm onSubmit={handleSubmit(onSubmit)}>
           <InputsWrapper>
             {profileInputs.map(({ name, placeholder, type }) => (
-              <Fragment key={placeholder}>
+              <InputWrapper key={placeholder}>
                 <Input
                   type={type}
                   variant="SM"
@@ -157,7 +161,7 @@ export const ProfileModal = ({ closeModal }: IProfileModalProps) => {
                   {...register(name)}
                 />
                 {errors[name] && <Error>{errors[name]?.message}</Error>}
-              </Fragment>
+              </InputWrapper>
             ))}
           </InputsWrapper>
           <ButtonsWrapper>

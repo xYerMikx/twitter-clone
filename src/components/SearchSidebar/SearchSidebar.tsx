@@ -1,6 +1,19 @@
+import { collection, query, where } from "firebase/firestore"
 import { ChangeEvent, useEffect, useState } from "react"
 import { Link, useLocation } from "react-router-dom"
-import { collection, query, where } from "firebase/firestore"
+
+import profile from "@/assets/profile-logo.svg"
+import { componentsByPath, IComponentByPath } from "@/constants/byPath"
+import { Collections } from "@/constants/collections"
+import { footerLinks } from "@/constants/footerLinks"
+import { ISearchedTweet, IUserProfile } from "@/constants/mockData"
+import { Routes } from "@/constants/routes"
+import { searchbarPlaceholders } from "@/constants/searchbarPlaceholders"
+import { db } from "@/firebase"
+import useDebounce from "@/hooks/useDebounce"
+import { fetchItems } from "@/utils/fetchItems"
+
+import { Searchbar } from "../Searchbar/Searchbar"
 import {
   LinkItem,
   LinksList,
@@ -11,17 +24,6 @@ import {
   Text,
   UsersWrapper,
 } from "./styled"
-import { ISearchedTweet, IUserProfile } from "@/constants/mockData"
-import profile from "@/assets/profile-logo.svg"
-import { footerLinks } from "@/constants/footerLinks"
-import { Routes } from "@/constants/routes"
-import useDebounce from "@/hooks/useDebounce"
-import { Searchbar } from "../Searchbar/Searchbar"
-import { Collections } from "@/constants/collections"
-import { db } from "@/firebase"
-import { searchbarPlaceholders } from "@/constants/searchbarPlaceholders"
-import { IComponentByPath, componentsByPath } from "@/constants/byPath"
-import { fetchItems } from "@/utils/fetchItems"
 
 interface SearchConfig {
   collectionName: Collections
@@ -58,7 +60,8 @@ export function SearchSidebar({
           )
 
           setItems(newItems)
-          setItemsToShow(newItems.length)
+
+          setItemsToShow(newItems.length > 4 ? 5 : newItems.length)
         } catch (error) {
           console.error("Error fetching data: ", error)
         }
@@ -83,7 +86,8 @@ export function SearchSidebar({
           )
 
           setItems(newItems)
-          setItemsToShow(newItems.length)
+
+          setItemsToShow(newItems.length > 5 ? 5 : newItems.length)
         } catch (error) {
           console.error("Error fetching data: ", error)
         }
@@ -128,7 +132,7 @@ export function SearchSidebar({
               <Component key={item.email} item={item as IUserProfile & ISearchedTweet} />
             )
           })}
-          {showMore && (
+          {showMore && items?.length > 2 && (
             <ShowMoreButton onClick={handleShowMore}>Show more</ShowMoreButton>
           )}
           {!showMore && (

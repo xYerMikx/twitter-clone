@@ -1,19 +1,21 @@
-import { useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
-import { Wrapper } from "./styled"
-import { Routes } from "@/constants/routes"
-import { loginSchema } from "@/validators/login"
-import { TwitterLogo } from "@/components/TwitterLogo/TwitterLogo"
-import { isValidEmail, isValidPhone } from "@/utils/validateIdentifier"
-import { useAppDispatch } from "@/hooks/redux"
-import { NotificationStatuses } from "@/constants/notificationStatus"
+
 import { LoginForm } from "@/components/LoginForm/LoginForm"
-import { dispatchNotification } from "@/utils/dispatchNotification"
+import { TwitterLogo } from "@/components/TwitterLogo/TwitterLogo"
 import { SUCCESS_LOGIN, USER_NOT_FOUND } from "@/constants/messages"
-import { IUser, userActions } from "@/store/slices/userSlice"
+import { NotificationStatuses } from "@/constants/notificationStatus"
+import { Routes } from "@/constants/routes"
+import { useAppDispatch } from "@/hooks/redux"
+import { IUser, setUser } from "@/store/slices/userSlice"
+import { dispatchNotification } from "@/utils/dispatchNotification"
 import { getUserDataAndLogin } from "@/utils/getUserData"
+import { isValidEmail, isValidPhone } from "@/utils/validateIdentifier"
+import { loginSchema } from "@/validators/login"
+
+import { Wrapper } from "./styled"
 
 export interface ILoginFormProps {
   identifier: string
@@ -26,16 +28,15 @@ export function Login() {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
-  const onSubmit = async (data: ILoginFormProps) => {
+  const onSubmit = async ({ identifier, password }: ILoginFormProps) => {
     try {
       setDisabled(true)
-      const { identifier, password } = data
       const phone = isValidPhone(identifier)
       const email = isValidEmail(identifier)
       if (phone || email) {
         const { userData, token } = await getUserDataAndLogin(phone, identifier, password)
         if (token) {
-          dispatch(userActions.setUser({ ...(userData as IUser), token }))
+          dispatch(setUser({ ...(userData as IUser), token }))
           dispatchNotification(dispatch, NotificationStatuses.SUCCESS, SUCCESS_LOGIN)
           navigate(Routes.HOME)
         } else {

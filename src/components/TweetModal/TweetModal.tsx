@@ -1,5 +1,6 @@
-import { createPortal } from "react-dom"
 import { SyntheticEvent, useEffect } from "react"
+import { createPortal } from "react-dom"
+
 import { TweetTextarea } from "../TweetTextarea/TweetTextarea"
 import { Button, Container, Modal } from "./styled"
 

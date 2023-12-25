@@ -1,4 +1,5 @@
 import { IUserProfile } from "@/constants/mockData"
+
 import {
   FollowButton,
   Image,

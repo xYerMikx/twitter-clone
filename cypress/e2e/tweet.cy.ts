@@ -1,5 +1,5 @@
 /// <reference types="Cypress" />
-import { IUser, userActions } from "../../src/store/slices/userSlice"
+import { IUser, setUser } from "../../src/store/slices/userSlice"
 
 const user: IUser = {
   _id: "lJuwEqwpJzPdiJRnpwnbOjICHh02",
@@ -15,7 +15,7 @@ describe("tweet tests", () => {
   })
   it("should add tweet", () => {
     const tweetName = "my new tweet"
-    cy.window().its("store").invoke("dispatch", userActions.setUser(user))
+    cy.window().its("store").invoke("dispatch", setUser(user))
     cy.wait(100)
     cy.visit("http://localhost:5173/profile")
     cy.get('[data-cy="tweet-textarea"]').type(tweetName)

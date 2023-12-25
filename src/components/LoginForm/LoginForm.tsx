@@ -1,13 +1,15 @@
+import { zodResolver } from "@hookform/resolvers/zod"
 import { Fragment } from "react"
 import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { Error, LoginFormWrapper, SignUpLink, Title } from "./styled"
-import { Input } from "@/ui/Input/Input"
-import { Button } from "@/ui/Button/Button"
+
+import { defaultValues, loginInputs } from "@/constants/loginFormParts"
 import { Routes } from "@/constants/routes"
 import { ILoginFormProps } from "@/pages/Login/Login"
+import { Button } from "@/ui/Button/Button"
+import { Input } from "@/ui/Input/Input"
 import { loginSchema } from "@/validators/login"
-import { defaultValues, loginInputs } from "@/constants/loginFormParts"
+
+import { Error, LoginFormWrapper, SignUpLink, Title } from "./styled"
 
 interface IFormProps {
   onSubmit: (data: ILoginFormProps) => void

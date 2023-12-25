@@ -47,6 +47,12 @@ export const Button = styled.button`
 `
 export const Error = styled.p`
   color: ${({ theme }) => theme.red};
+  font-size: ${({ theme }) => theme.fontSize.f10};
+`
+export const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacings.s10};
 `
 
 export const ProfileForm = styled.form`

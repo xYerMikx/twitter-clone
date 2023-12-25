@@ -1,6 +1,6 @@
 import { NotificationStatuses } from "@/constants/notificationStatus"
 import { AppDispatch } from "@/store"
-import { notificationActions } from "@/store/slices/notificationSlice"
+import { addNotification } from "@/store/slices/notificationSlice"
 
 export const dispatchNotification = (
   dispatch: AppDispatch,
@@ -8,7 +8,7 @@ export const dispatchNotification = (
   message: string,
 ) => {
   dispatch(
-    notificationActions.addNotification({
+    addNotification({
       type: status,
       message,
     }),

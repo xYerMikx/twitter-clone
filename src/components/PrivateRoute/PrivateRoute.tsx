@@ -1,5 +1,6 @@
-import { Navigate } from "react-router-dom"
 import { ReactElement } from "react"
+import { Navigate } from "react-router-dom"
+
 import { Routes } from "@/constants/routes"
 import { useAppSelector } from "@/hooks/redux"
 import { selectToken } from "@/store/selectors"

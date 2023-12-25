@@ -1,15 +1,16 @@
-import { useAppDispatch } from "@/hooks/redux"
-import { HomeWrapper, Input, Label, NavBar, PageTitle, Switch } from "./styled"
-import { themeActions } from "@/store/slices/themeSlice"
 import { Feed } from "@/components/Feed/Feed"
 import { Moon } from "@/components/Icons/Moon"
 import { Sun } from "@/components/Icons/Sun"
+import { useAppDispatch } from "@/hooks/redux"
+import { setTheme } from "@/store/slices/themeSlice"
+
+import { HomeWrapper, Input, Label, NavBar, PageTitle, Switch } from "./styled"
 
 export function Home() {
   const dispatch = useAppDispatch()
 
   const changeTheme = () => {
-    dispatch(themeActions.setTheme())
+    dispatch(setTheme())
   }
   return (
     <HomeWrapper>

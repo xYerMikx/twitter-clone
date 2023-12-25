@@ -1,10 +1,12 @@
+import { doc, getDoc } from "firebase/firestore"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { doc, getDoc } from "firebase/firestore"
-import { db } from "@/firebase"
+
 import { ITweet, Tweet } from "@/components/Tweet/Tweet"
+import { db } from "@/firebase"
 import { useAppSelector } from "@/hooks/redux"
 import { selectUserInfo } from "@/store/selectors"
+
 import { TweetWrapper } from "./styled"
 
 export function TweetPage() {

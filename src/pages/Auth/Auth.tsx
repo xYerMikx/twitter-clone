@@ -1,5 +1,18 @@
 import { Link, useNavigate } from "react-router-dom"
+
+import googleIcon from "@/assets/google-logo.svg"
+import twitterBg from "@/assets/twitter-bg.png"
+import { TwitterLogo } from "@/components/TwitterLogo/TwitterLogo"
 import { footerLinks } from "@/constants/footerLinks"
+import { SUCCESS_LOGIN_GOOGLE } from "@/constants/messages"
+import { NotificationStatuses } from "@/constants/notificationStatus"
+import { Routes } from "@/constants/routes"
+import { signUpWithGoogle } from "@/firebase"
+import { useAppDispatch } from "@/hooks/redux"
+import { Button } from "@/ui/Button/Button"
+import { dispatchNotification } from "@/utils/dispatchNotification"
+import { getButtonVariant } from "@/utils/getButtonVariant"
+
 import {
   AuthInfo,
   Buttons,
@@ -15,17 +28,6 @@ import {
   TwitterImage,
   Wrapper,
 } from "./styled"
-import twitterBg from "@/assets/twitter-bg.png"
-import googleIcon from "@/assets/google-logo.svg"
-import { Routes } from "@/constants/routes"
-import { Button } from "@/ui/Button/Button"
-import { TwitterLogo } from "@/components/TwitterLogo/TwitterLogo"
-import { signUpWithGoogle } from "@/firebase"
-import { useAppDispatch } from "@/hooks/redux"
-import { NotificationStatuses } from "@/constants/notificationStatus"
-import { dispatchNotification } from "@/utils/dispatchNotification"
-import { SUCCESS_LOGIN_GOOGLE } from "@/constants/messages"
-import { getButtonVariant } from "@/utils/getButtonVariant"
 
 export function Auth() {
   const navigate = useNavigate()

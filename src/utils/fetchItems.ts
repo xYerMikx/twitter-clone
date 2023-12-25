@@ -1,4 +1,5 @@
-import { DocumentData, Query, getDocs } from "firebase/firestore"
+import { DocumentData, getDocs, Query } from "firebase/firestore"
+
 import { ISearchedTweet, IUserProfile } from "@/constants/mockData"
 
 export const fetchItems = async (

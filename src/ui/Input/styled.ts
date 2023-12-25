@@ -1,4 +1,5 @@
 import styled from "styled-components"
+
 import { InputWidth } from "@/constants/inputWidth"
 
 export const StyledInput = styled.input<{ $variant?: keyof typeof InputWidth }>`

@@ -1,6 +1,8 @@
 import { ChangeEvent, useRef } from "react"
-import { IconButton, Label, SearchContainer, SearchInput, StyledImage } from "./styled"
+
 import search from "@/assets/search.svg"
+
+import { IconButton, Label, SearchContainer, SearchInput, StyledImage } from "./styled"
 
 interface ISearchbarProps {
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void

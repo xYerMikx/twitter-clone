@@ -1,6 +1,17 @@
-import { useEffect, useState } from "react"
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore"
+import { useEffect, useState } from "react"
+
+import profileImage from "@/assets/profile-image.png"
+import profileLogo from "@/assets/profile-logo.svg"
+import { ProfileModal } from "@/components/ProfileModal/ProfileModal"
+import { ITweetProps, Tweet } from "@/components/Tweet/Tweet"
+import { TweetTextarea } from "@/components/TweetTextarea/TweetTextarea"
+import { Collections } from "@/constants/collections"
+import { db } from "@/firebase"
 import { useAppSelector } from "@/hooks/redux"
+import { selectUserInfo } from "@/store/selectors"
+import { Button } from "@/ui/Button/Button"
+
 import {
   BgImage,
   BirthDate,
@@ -17,15 +28,6 @@ import {
   UserName,
   Wrapper,
 } from "./styled"
-import { TweetTextarea } from "@/components/TweetTextarea/TweetTextarea"
-import { selectUserInfo } from "@/store/selectors"
-import { db } from "@/firebase"
-import { ITweetProps, Tweet } from "@/components/Tweet/Tweet"
-import profileLogo from "@/assets/profile-logo.svg"
-import profileImage from "@/assets/profile-image.png"
-import { Button } from "@/ui/Button/Button"
-import { ProfileModal } from "@/components/ProfileModal/ProfileModal"
-import { Collections } from "@/constants/collections"
 
 export function Profile() {
   const { name, email, birthday } = useAppSelector(selectUserInfo)
