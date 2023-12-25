@@ -13,7 +13,6 @@ export const SidebarWrapper = styled.div<{ $isOpen: boolean }>`
   padding: ${({ theme }) => theme.spacings.s25} 0;
   padding-right: ${({ theme }) => theme.spacings.s20};
   height: inherit;
-
   & > button:last-child {
     margin-bottom: ${({ theme }) => theme.spacings.s50};
   }
@@ -21,15 +20,16 @@ export const SidebarWrapper = styled.div<{ $isOpen: boolean }>`
     width: 200px;
   }
   @media ${media.DESKTOP} {
-    position: absolute;
+    position: fixed;
     top: 0;
     z-index: ${({ theme }) => theme.zIndex.z3};
     box-shadow: 5px 0 3px -3px ${({ theme }) => theme.lightGray};
-    left: ${({ $isOpen, theme }) => ($isOpen ? theme.spacings.s20 : "-100%")};
-    height: inherit;
+    left: ${({ $isOpen, theme }) => ($isOpen ? theme.spacings.s20 : "-200px")};
+    height: 100vh;
+    overflow: scroll;
   }
   @media ${media.PHONE} {
-    left: ${({ $isOpen, theme }) => ($isOpen ? theme.spacings.s10 : "-100%")};
+    left: ${({ $isOpen, theme }) => ($isOpen ? theme.spacings.s10 : "-200px")};
   }
   transition: left 0.4s linear;
 `

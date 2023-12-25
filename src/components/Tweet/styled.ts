@@ -87,6 +87,12 @@ export const Dropdown = styled.div`
   text-align: center;
   right: ${({ theme }) => theme.spacings.s5};
   top: ${({ theme }) => theme.spacings.s40};
+  @media ${media.PHONE} {
+    top: auto;
+    right: auto;
+    bottom: ${({ theme }) => theme.spacings.s5};
+    left: ${({ theme }) => theme.spacings.s30};
+  }
 `
 
 export const DeleteButton = styled.button`
