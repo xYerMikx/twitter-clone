@@ -60,6 +60,7 @@ export function SearchSidebar({
           )
 
           setItems(newItems)
+
           setItemsToShow(newItems.length > 4 ? 5 : newItems.length)
         } catch (error) {
           console.error("Error fetching data: ", error)
@@ -85,6 +86,7 @@ export function SearchSidebar({
           )
 
           setItems(newItems)
+
           setItemsToShow(newItems.length > 5 ? 5 : newItems.length)
         } catch (error) {
           console.error("Error fetching data: ", error)

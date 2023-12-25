@@ -8,6 +8,7 @@ import { ListWrapper } from "./styled"
 
 export const NotificationList = () => {
   const notificationList = useAppSelector(selectNotificationList)
+
   return createPortal(
     <ListWrapper>
       {notificationList.map((notification) => (

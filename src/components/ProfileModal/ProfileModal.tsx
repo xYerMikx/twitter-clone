@@ -132,6 +132,7 @@ export const ProfileModal = ({ closeModal }: IProfileModalProps) => {
       }
 
       dispatch(updateUser(updatedDataForUsers))
+
       dispatchNotification(
         dispatch,
         NotificationStatuses.SUCCESS,

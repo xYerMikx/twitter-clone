@@ -33,6 +33,7 @@ export const Main = styled.main`
 `
 export const LeftIconWrapper = styled.div<{ $isOpen: boolean }>`
   padding-top: ${({ theme }) => theme.spacings.s30};
+
   position: fixed;
   top: 0;
   z-index: ${({ theme }) => theme.zIndex.z10};
@@ -61,6 +62,7 @@ export const LeftIconWrapper = styled.div<{ $isOpen: boolean }>`
       left: 2%;
     }
   }
+
   @media ${media.DESKTOP} {
     display: block;
   }

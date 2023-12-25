@@ -75,6 +75,7 @@ export const Textarea = styled.textarea`
     color: ${({ theme }) => theme.primaryColor};
   }
 `
+
 export const Loader = styled.div`
   border: ${({ theme }) => theme.borderLoaderSize} solid ${({ theme }) => theme.bgColor};
   border-top: ${({ theme }) => theme.borderLoaderSize} solid

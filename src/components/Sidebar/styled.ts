@@ -63,6 +63,7 @@ export const SidebarLinks = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacings.s25};
+
   @media ${media.TABLET} {
     gap: ${({ theme }) => theme.spacings.s15};
   }

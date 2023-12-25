@@ -13,6 +13,7 @@ describe("sidebar tests", () => {
       token: "1234",
     }
     cy.window().its("store").invoke("dispatch", setUser(user))
+
     cy.wait(100)
   })
   it("should search tweets", () => {

@@ -55,6 +55,7 @@ const commonTheme = {
   boxShadow: "0px 0.5px 10px 2px",
   boxShadowLeft: "-5px 0 3px -3px",
   boxShadowRight: "5px 0 3px -3px",
+
   inputColor: "#5C6C79",
   darkColor: "#000000",
   lightGray: "#CCCCCC",

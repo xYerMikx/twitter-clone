@@ -54,6 +54,7 @@ export const InputWrapper = styled.div`
   flex-direction: column;
   gap: ${({ theme }) => theme.spacings.s10};
 `
+
 export const ProfileForm = styled.form`
   display: flex;
   flex-direction: column;

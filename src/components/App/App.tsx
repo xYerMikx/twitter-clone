@@ -1,6 +1,6 @@
 import { onAuthStateChanged } from "firebase/auth"
 import { useEffect, useState } from "react"
-import { BrowserRouter, Navigate,Route, Routes } from "react-router-dom"
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
 import { ThemeProvider } from "styled-components"
 
 import { privateRoutes, publicRoutes, Routes as RoutesEnum } from "@/constants/routes"
