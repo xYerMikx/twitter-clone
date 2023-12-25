@@ -1,8 +1,9 @@
 import { addDoc, collection } from "firebase/firestore"
 import { ref, uploadBytes } from "firebase/storage"
 import { Dispatch, SetStateAction } from "react"
-import { db, storage } from "@/firebase"
+
 import { Collections } from "@/constants/collections"
+import { db, storage } from "@/firebase"
 
 export type FileType = Blob | Uint8Array | ArrayBuffer | null
 

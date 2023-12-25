@@ -1,8 +1,8 @@
 import { initializeApp } from "firebase/app"
 import {
-  GoogleAuthProvider,
   createUserWithEmailAndPassword,
   getAuth,
+  GoogleAuthProvider,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -17,10 +17,11 @@ import {
 } from "firebase/firestore"
 import { getStorage } from "firebase/storage"
 import { NavigateFunction } from "react-router-dom"
-import { Routes } from "./constants/routes"
+
 import { Collections } from "./constants/collections"
-import { IUser, userActions } from "./store/slices/userSlice"
+import { Routes } from "./constants/routes"
 import { AppDispatch } from "./store"
+import { IUser, userActions } from "./store/slices/userSlice"
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,

@@ -1,6 +1,15 @@
 import { ChangeEvent, useState } from "react"
+
 import profileImage from "@/assets/profile-logo.svg"
 import upload from "@/assets/upload.svg"
+import { TWEET_PUBLISHED } from "@/constants/messages"
+import { NotificationStatuses } from "@/constants/notificationStatus"
+import { useAppDispatch, useAppSelector } from "@/hooks/redux"
+import { selectUserInfo } from "@/store/selectors"
+import { Button } from "@/ui/Button/Button"
+import { dispatchNotification } from "@/utils/dispatchNotification"
+import { FileType, uploadTweet } from "@/utils/uploadTweet"
+
 import {
   AreaColumn,
   FileName,
@@ -11,13 +20,6 @@ import {
   TextareaWrapper,
   UploadImage,
 } from "./styled"
-import { Button } from "@/ui/Button/Button"
-import { useAppDispatch, useAppSelector } from "@/hooks/redux"
-import { selectUserInfo } from "@/store/selectors"
-import { dispatchNotification } from "@/utils/dispatchNotification"
-import { NotificationStatuses } from "@/constants/notificationStatus"
-import { FileType, uploadTweet } from "@/utils/uploadTweet"
-import { TWEET_PUBLISHED } from "@/constants/messages"
 
 interface ITweetTextareaProps {
   closeModal?: () => void

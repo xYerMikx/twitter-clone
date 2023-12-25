@@ -1,11 +1,13 @@
 import { useState } from "react"
 import { Outlet, useLocation } from "react-router-dom"
-import { Sidebar } from "../Sidebar/Sidebar"
-import { LeftIconWrapper, Main, RightIconWrapper, Wrapper } from "./styled"
-import { SearchSidebar } from "../SearchSidebar/SearchSidebar"
+
 import { collectionsWithPaths, searchFieldsInCollection } from "@/constants/collections"
+
 import { BurgerIcon } from "../BurgerIcon/BurgerIcon"
 import { SearchIcon } from "../SearchIcon/SearchIcon"
+import { SearchSidebar } from "../SearchSidebar/SearchSidebar"
+import { Sidebar } from "../Sidebar/Sidebar"
+import { LeftIconWrapper, Main, RightIconWrapper, Wrapper } from "./styled"
 
 export function Layout() {
   const location = useLocation()

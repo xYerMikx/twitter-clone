@@ -1,7 +1,17 @@
-import { Timestamp, deleteDoc, doc, updateDoc } from "firebase/firestore"
-import { useEffect, useState } from "react"
+import { deleteDoc, doc, Timestamp, updateDoc } from "firebase/firestore"
 import { getDownloadURL, ref } from "firebase/storage"
+import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
+
+import like from "@/assets/like.svg"
+import filledLike from "@/assets/like-filled.svg"
+import more from "@/assets/more.svg"
+import profileImage from "@/assets/profile-logo.svg"
+import { Collections } from "@/constants/collections"
+import { db, storage } from "@/firebase"
+import { formatDate } from "@/utils/formateDate"
+import { isLikedByMe } from "@/utils/isLikedByMe"
+
 import {
   CreatedAt,
   DeleteButton,
@@ -18,14 +28,6 @@ import {
   TweetWrapper,
   UserName,
 } from "./styled"
-import like from "@/assets/like.svg"
-import filledLike from "@/assets/like-filled.svg"
-import profileImage from "@/assets/profile-logo.svg"
-import more from "@/assets/more.svg"
-import { formatDate } from "@/utils/formateDate"
-import { db, storage } from "@/firebase"
-import { isLikedByMe } from "@/utils/isLikedByMe"
-import { Collections } from "@/constants/collections"
 
 export interface ITweet {
   email: string

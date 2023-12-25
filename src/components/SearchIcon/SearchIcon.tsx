@@ -1,5 +1,6 @@
-import cross from "@/assets/x-solid.svg"
 import search from "@/assets/search.svg"
+import cross from "@/assets/x-solid.svg"
+
 import { Cross, Search, SearchIconWrapper } from "./styled"
 
 interface ISearchIconProps {

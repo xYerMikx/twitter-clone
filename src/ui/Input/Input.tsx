@@ -1,6 +1,8 @@
 import { forwardRef } from "react"
-import { StyledInput } from "./styled"
+
 import { InputWidth } from "@/constants/inputWidth"
+
+import { StyledInput } from "./styled"
 
 interface IInputProps {
   placeholder: string

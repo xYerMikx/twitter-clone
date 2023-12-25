@@ -1,5 +1,7 @@
 import { createPortal } from "react-dom"
+
 import { useAppSelector } from "@/hooks/redux"
+
 import { Notification } from "../Notification/Notification"
 import { ListWrapper } from "./styled"
 

@@ -1,7 +1,10 @@
 import "@testing-library/jest-dom"
+
 import { screen } from "@testing-library/react"
-import { Notification } from "./Notification"
+
 import { renderWithWrappers } from "@/utils/testUtils"
+
+import { Notification } from "./Notification"
 
 const mockNotification = {
   id: 1,

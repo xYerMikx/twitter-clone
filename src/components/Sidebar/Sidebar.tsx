@@ -1,6 +1,17 @@
-import { useNavigate } from "react-router-dom"
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+
+import profilePhoto from "@/assets/profile-logo.svg"
+import { Routes } from "@/constants/routes"
 import { sidebarLinks } from "@/constants/sidebarLinks"
+import { Sizes } from "@/constants/sizes"
+import { logout } from "@/firebase"
+import { useAppSelector } from "@/hooks/redux"
+import { selectUserInfo } from "@/store/selectors"
+import { Button } from "@/ui/Button/Button"
+
+import { TweetModal } from "../TweetModal/TweetModal"
+import { TwitterLogo } from "../TwitterLogo/TwitterLogo"
 import {
   Image,
   ProfileInfo,
@@ -12,15 +23,6 @@ import {
   SidebarWrapper,
   Text,
 } from "./styled"
-import { Button } from "@/ui/Button/Button"
-import { logout } from "@/firebase"
-import { Routes } from "@/constants/routes"
-import { useAppSelector } from "@/hooks/redux"
-import profilePhoto from "@/assets/profile-logo.svg"
-import { TwitterLogo } from "../TwitterLogo/TwitterLogo"
-import { selectUserInfo } from "@/store/selectors"
-import { TweetModal } from "../TweetModal/TweetModal"
-import { Sizes } from "@/constants/sizes"
 
 export function Sidebar({
   isSidebarOpen,

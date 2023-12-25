@@ -1,6 +1,8 @@
 import { ReactNode } from "react"
-import { Icon, StyledButton } from "./styled"
+
 import { ButtonWidth } from "@/constants/buttonWidth"
+
+import { Icon, StyledButton } from "./styled"
 
 interface IButtonProps {
   icon?: string

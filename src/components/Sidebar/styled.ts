@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom"
 import styled from "styled-components"
+
 import { media } from "@/constants/sizes"
 
 export const SidebarWrapper = styled.div<{ $isOpen: boolean }>`

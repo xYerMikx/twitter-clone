@@ -1,7 +1,9 @@
 import { memo, useCallback, useEffect, useRef } from "react"
+
 import { useAppDispatch } from "@/hooks/redux"
-import { CloseButton, NotificationWrapper, StyledP } from "./styled"
 import { notificationActions } from "@/store/slices/notificationSlice"
+
+import { CloseButton, NotificationWrapper, StyledP } from "./styled"
 
 interface INotification {
   id: number

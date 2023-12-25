@@ -1,4 +1,5 @@
 import styled from "styled-components"
+
 import { media } from "@/constants/sizes"
 
 export const Wrapper = styled.section`

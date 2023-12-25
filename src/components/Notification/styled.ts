@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components"
+
 import { NotificationStatuses } from "@/constants/notificationStatus"
 
 const slideOut = keyframes`

@@ -1,7 +1,16 @@
-import { Fragment } from "react"
-import { Link } from "react-router-dom"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { Fragment } from "react"
 import { useForm } from "react-hook-form"
+import { Link } from "react-router-dom"
+
+import { Routes } from "@/constants/routes"
+import { defaultData, signupInputs, signupSelects } from "@/constants/signupFormParts"
+import { ISignUpFormFields } from "@/pages/Signup/Signup"
+import { Button } from "@/ui/Button/Button"
+import { Input } from "@/ui/Input/Input"
+import { Select } from "@/ui/Select/Select"
+import { signupSchema } from "@/validators/signup"
+
 import {
   BirthText,
   BirthTitle,
@@ -11,13 +20,6 @@ import {
   Span,
   Title,
 } from "./styled"
-import { Button } from "@/ui/Button/Button"
-import { defaultData, signupInputs, signupSelects } from "@/constants/signupFormParts"
-import { Select } from "@/ui/Select/Select"
-import { Routes } from "@/constants/routes"
-import { Input } from "@/ui/Input/Input"
-import { ISignUpFormFields } from "@/pages/Signup/Signup"
-import { signupSchema } from "@/validators/signup"
 
 interface ISignupFormProps {
   onSubmit: (data: ISignUpFormFields) => void

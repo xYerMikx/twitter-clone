@@ -1,6 +1,7 @@
 import { addDoc, collection } from "firebase/firestore"
-import { db, register } from "@/firebase"
+
 import { Collections } from "@/constants/collections"
+import { db, register } from "@/firebase"
 
 export const setUserData = async (
   email: string,

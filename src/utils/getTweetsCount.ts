@@ -1,6 +1,7 @@
 import { collection, getDocs, query, where } from "firebase/firestore"
-import { db } from "@/firebase"
+
 import { Collections } from "@/constants/collections"
+import { db } from "@/firebase"
 
 export const getTweetCount = async (email: string) => {
   try {

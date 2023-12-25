@@ -1,16 +1,18 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
-import { ThemeProvider } from "styled-components"
-import { useEffect, useState } from "react"
 import { onAuthStateChanged } from "firebase/auth"
-import { GlobalStyles } from "@/styles/globalStyles"
-import { darkTheme, lightTheme } from "@/constants/theme"
-import { NotificationList } from "../NotificationList/NotificationList"
+import { useEffect, useState } from "react"
+import { BrowserRouter, Navigate,Route, Routes } from "react-router-dom"
+import { ThemeProvider } from "styled-components"
+
 import { privateRoutes, publicRoutes, Routes as RoutesEnum } from "@/constants/routes"
+import { darkTheme, lightTheme } from "@/constants/theme"
 import { auth } from "@/firebase"
-import { Layout } from "../Layout/Layout"
 import { useAppSelector } from "@/hooks/redux"
 import { selectTheme } from "@/store/selectors"
+import { GlobalStyles } from "@/styles/globalStyles"
+
 import { ErrorBoundary } from "../ErrorBoundary/ErrorBoundary"
+import { Layout } from "../Layout/Layout"
+import { NotificationList } from "../NotificationList/NotificationList"
 
 export function App() {
   const [isLoading, setIsLoading] = useState(true)

@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react"
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore"
-import { ITweetProps, Tweet } from "../Tweet/Tweet"
-import { TweetTextarea } from "../TweetTextarea/TweetTextarea"
+import { useEffect, useState } from "react"
+
+import { Collections } from "@/constants/collections"
 import { db } from "@/firebase"
-import { NoTweets } from "./styled"
 import { useAppSelector } from "@/hooks/redux"
 import { selectUserInfo } from "@/store/selectors"
-import { Collections } from "@/constants/collections"
+
+import { ITweetProps, Tweet } from "../Tweet/Tweet"
+import { TweetTextarea } from "../TweetTextarea/TweetTextarea"
+import { NoTweets } from "./styled"
 
 export function Feed() {
   const [tweets, setTweets] = useState<Omit<ITweetProps, "myEmail">[]>([])

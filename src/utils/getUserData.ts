@@ -1,6 +1,7 @@
 import { collection, getDocs, query, where } from "firebase/firestore"
-import { db, signin } from "@/firebase"
+
 import { Collections } from "@/constants/collections"
+import { db, signin } from "@/firebase"
 
 export const getUserDataAndLogin = async (
   phone: boolean,

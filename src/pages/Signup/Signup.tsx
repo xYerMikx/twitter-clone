@@ -1,19 +1,21 @@
-import { useNavigate } from "react-router-dom"
-import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useState } from "react"
-import { Wrapper } from "./styled"
+import { useForm } from "react-hook-form"
+import { useNavigate } from "react-router-dom"
+
+import { SignupForm } from "@/components/SignupForm/SignupForm"
 import { TwitterLogo } from "@/components/TwitterLogo/TwitterLogo"
+import { SUCCESS_REGISTER } from "@/constants/messages"
+import { NotificationStatuses } from "@/constants/notificationStatus"
 import { Routes } from "@/constants/routes"
-import { signupSchema } from "@/validators/signup"
-import { formateBirthday } from "@/utils/formateBirthday"
 import { useAppDispatch } from "@/hooks/redux"
 import { userActions } from "@/store/slices/userSlice"
-import { NotificationStatuses } from "@/constants/notificationStatus"
 import { dispatchNotification } from "@/utils/dispatchNotification"
-import { SUCCESS_REGISTER } from "@/constants/messages"
-import { SignupForm } from "@/components/SignupForm/SignupForm"
+import { formateBirthday } from "@/utils/formateBirthday"
 import { setUserData } from "@/utils/setUserData"
+import { signupSchema } from "@/validators/signup"
+
+import { Wrapper } from "./styled"
 
 export interface ISignUpFormFields {
   name: string

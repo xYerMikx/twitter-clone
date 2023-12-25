@@ -1,7 +1,8 @@
 import { PersistPartial } from "redux-persist/es/persistReducer"
+
 import { INotification } from "./slices/notificationSlice"
-import { IUser } from "./slices/userSlice"
 import { IThemeType } from "./slices/themeSlice"
+import { IUser } from "./slices/userSlice"
 
 type State = {
   user: IUser

@@ -1,4 +1,5 @@
 import { Routes } from "@/constants/routes"
+
 import { ErrorWrapper, StyledLink, StyledSubtitle, StyledTitle } from "./styled"
 
 export function NotFound() {

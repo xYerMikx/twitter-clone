@@ -1,4 +1,5 @@
 import styled from "styled-components"
+
 import arrowDown from "@/assets/arrow-down.svg"
 import { media } from "@/constants/sizes"
 
