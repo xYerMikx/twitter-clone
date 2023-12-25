@@ -21,7 +21,7 @@ import { NavigateFunction } from "react-router-dom"
 import { Collections } from "./constants/collections"
 import { Routes } from "./constants/routes"
 import { AppDispatch } from "./store"
-import { IUser, userActions } from "./store/slices/userSlice"
+import { IUser, setUser } from "./store/slices/userSlice"
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -53,7 +53,7 @@ export const signUpWithGoogle = async (
 ) => {
   try {
     const result = await signInWithPopup(auth, provider)
-    const {user} = result
+    const { user } = result
     const name = user.displayName
     const { uid } = user
     const { email } = user
@@ -65,13 +65,13 @@ export const signUpWithGoogle = async (
       const token = await user.getIdToken()
       navigate(Routes.HOME)
       dispatchSuccessfull()
-      dispatch(userActions.setUser({ ...(userData as IUser), token }))
+      dispatch(setUser({ ...(userData as IUser), token }))
     } else {
       await addDoc(collection(db, Collections.Users), userData)
       const token = await user.getIdToken()
       navigate(Routes.HOME)
       dispatchSuccessfull()
-      dispatch(userActions.setUser({ ...(userData as IUser), token }))
+      dispatch(setUser({ ...(userData as IUser), token }))
     }
   } catch (e) {
     console.error(e)

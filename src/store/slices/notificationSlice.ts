@@ -1,4 +1,4 @@
-import { createSlice,PayloadAction } from "@reduxjs/toolkit"
+import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
 export interface INotification {
   id: number
@@ -31,5 +31,4 @@ const notificationSlice = createSlice({
 
 export const { addNotification, removeNotification } = notificationSlice.actions
 
-export const { reducer: notificationReducer, actions: notificationActions } =
-  notificationSlice
+export const { reducer: notificationReducer } = notificationSlice

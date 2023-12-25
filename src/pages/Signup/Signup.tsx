@@ -9,7 +9,7 @@ import { SUCCESS_REGISTER } from "@/constants/messages"
 import { NotificationStatuses } from "@/constants/notificationStatus"
 import { Routes } from "@/constants/routes"
 import { useAppDispatch } from "@/hooks/redux"
-import { userActions } from "@/store/slices/userSlice"
+import { setUser } from "@/store/slices/userSlice"
 import { dispatchNotification } from "@/utils/dispatchNotification"
 import { formateBirthday } from "@/utils/formateBirthday"
 import { setUserData } from "@/utils/setUserData"
@@ -44,7 +44,7 @@ export function Signup() {
     try {
       setDisabled(true)
       const { userData } = await setUserData(email, password, phone, birthday, name)
-      dispatch(userActions.setUser({ ...userData }))
+      dispatch(setUser({ ...userData }))
       dispatchNotification(dispatch, NotificationStatuses.SUCCESS, SUCCESS_REGISTER)
       navigate(Routes.HOME)
     } catch (e) {

@@ -16,7 +16,7 @@ import { defaultValues, profileInputs } from "@/constants/profileInputs"
 import { auth, db, logout } from "@/firebase"
 import { useAppDispatch, useAppSelector } from "@/hooks/redux"
 import { selectUserInfo } from "@/store/selectors"
-import { userActions } from "@/store/slices/userSlice"
+import { updateUser } from "@/store/slices/userSlice"
 import { Button as CustomButton } from "@/ui/Button/Button"
 import { Input } from "@/ui/Input/Input"
 import { dispatchNotification } from "@/utils/dispatchNotification"
@@ -130,7 +130,7 @@ export const ProfileModal = ({ closeModal }: IProfileModalProps) => {
         await updateEmail(user, updatedDataForUsers.email)
       }
 
-      dispatch(userActions.updateUser(updatedDataForUsers))
+      dispatch(updateUser(updatedDataForUsers))
       dispatchNotification(
         dispatch,
         NotificationStatuses.SUCCESS,

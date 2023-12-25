@@ -13,3 +13,4 @@ type State = {
 export const selectTheme = (state: State) => state.theme.theme
 export const selectToken = (state: State) => state.user.token
 export const selectUserInfo = (state: State) => state.user
+export const selectNotificationList = (state: State) => state.notificationsList

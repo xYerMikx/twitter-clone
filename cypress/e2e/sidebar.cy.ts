@@ -1,5 +1,5 @@
 /// <reference types="Cypress" />
-import { IUser, userActions } from "../../src/store/slices/userSlice"
+import { IUser, setUser } from "../../src/store/slices/userSlice"
 
 describe("sidebar tests", () => {
   beforeEach(() => {
@@ -12,7 +12,7 @@ describe("sidebar tests", () => {
       phone: "+375292100874",
       token: "1234",
     }
-    cy.window().its("store").invoke("dispatch", userActions.setUser(user))
+    cy.window().its("store").invoke("dispatch", setUser(user))
     cy.wait(100)
   })
   it("should search tweets", () => {

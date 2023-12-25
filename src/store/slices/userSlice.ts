@@ -1,4 +1,4 @@
-import { createSlice,PayloadAction } from "@reduxjs/toolkit"
+import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
 export interface IUser {
   _id: string
@@ -29,12 +29,12 @@ const userSlice = createSlice({
       ...initialState,
     }),
     updateUser: (state, action: PayloadAction<Partial<IUser>>) => ({
-        ...state,
-        ...action.payload,
-      }),
+      ...state,
+      ...action.payload,
+    }),
   },
 })
 
 export const { setUser, removeUser, updateUser } = userSlice.actions
 
-export const { reducer: userReducer, actions: userActions } = userSlice
+export const { reducer: userReducer } = userSlice

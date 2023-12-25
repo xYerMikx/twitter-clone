@@ -1,7 +1,7 @@
 import { memo, useCallback, useEffect, useRef } from "react"
 
 import { useAppDispatch } from "@/hooks/redux"
-import { notificationActions } from "@/store/slices/notificationSlice"
+import { removeNotification } from "@/store/slices/notificationSlice"
 
 import { CloseButton, NotificationWrapper, StyledP } from "./styled"
 
@@ -17,7 +17,7 @@ export const Notification = memo(
     const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
     const handleDismiss = useCallback(() => {
-      dispatch(notificationActions.removeNotification({ id }))
+      dispatch(removeNotification({ id }))
     }, [dispatch, id])
 
     useEffect(() => {

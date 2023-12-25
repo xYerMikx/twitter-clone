@@ -9,7 +9,7 @@ import { SUCCESS_LOGIN, USER_NOT_FOUND } from "@/constants/messages"
 import { NotificationStatuses } from "@/constants/notificationStatus"
 import { Routes } from "@/constants/routes"
 import { useAppDispatch } from "@/hooks/redux"
-import { IUser, userActions } from "@/store/slices/userSlice"
+import { IUser, setUser } from "@/store/slices/userSlice"
 import { dispatchNotification } from "@/utils/dispatchNotification"
 import { getUserDataAndLogin } from "@/utils/getUserData"
 import { isValidEmail, isValidPhone } from "@/utils/validateIdentifier"
@@ -37,7 +37,7 @@ export function Login() {
       if (phone || email) {
         const { userData, token } = await getUserDataAndLogin(phone, identifier, password)
         if (token) {
-          dispatch(userActions.setUser({ ...(userData as IUser), token }))
+          dispatch(setUser({ ...(userData as IUser), token }))
           dispatchNotification(dispatch, NotificationStatuses.SUCCESS, SUCCESS_LOGIN)
           navigate(Routes.HOME)
         } else {

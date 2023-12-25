@@ -20,4 +20,4 @@ const themeSlice = createSlice({
 
 export const { setTheme } = themeSlice.actions
 
-export const { reducer: themeReducer, actions: themeActions } = themeSlice
+export const { reducer: themeReducer } = themeSlice

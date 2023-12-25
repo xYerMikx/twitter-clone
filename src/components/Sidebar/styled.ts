@@ -24,7 +24,7 @@ export const SidebarWrapper = styled.div<{ $isOpen: boolean }>`
     position: fixed;
     top: 0;
     z-index: ${({ theme }) => theme.zIndex.z3};
-    box-shadow: 5px 0 3px -3px ${({ theme }) => theme.lightGray};
+    box-shadow: ${({ theme }) => theme.boxShadowRight} ${({ theme }) => theme.lightGray};
     left: ${({ $isOpen, theme }) => ($isOpen ? theme.spacings.s20 : "-205px")};
     height: 100vh;
     overflow: scroll;
