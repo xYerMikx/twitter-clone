@@ -27,7 +27,7 @@ export const SidebarWrapper = styled.div<{ $isOpen: boolean }>`
     box-shadow: ${({ theme }) => theme.boxShadowRight} ${({ theme }) => theme.lightGray};
     left: ${({ $isOpen, theme }) => ($isOpen ? theme.spacings.s20 : "-205px")};
     height: 100vh;
-    overflow: scroll;
+    gap: ${({ theme }) => theme.spacings.s10};
   }
   @media ${media.PHONE} {
     left: ${({ $isOpen, theme }) => ($isOpen ? theme.spacings.s10 : "-205px")};
@@ -63,6 +63,9 @@ export const SidebarLinks = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacings.s25};
+  @media ${media.TABLET} {
+    gap: ${({ theme }) => theme.spacings.s15};
+  }
 `
 export const Text = styled.p``
 export const ProfileWrapper = styled.div`

@@ -33,11 +33,34 @@ export const Main = styled.main`
 `
 export const LeftIconWrapper = styled.div<{ $isOpen: boolean }>`
   padding-top: ${({ theme }) => theme.spacings.s30};
-  position: absolute;
-  transition: all 0.42s linear;
+  position: fixed;
+  top: 0;
+  z-index: ${({ theme }) => theme.zIndex.z10};
   left: ${({ $isOpen }) => ($isOpen ? "180px" : "2%")};
   display: none;
+  animation: ${({ $isOpen }) => ($isOpen ? "openAnimation" : "closeAnimation")} 0.4s
+    linear forwards;
 
+  @keyframes openAnimation {
+    0% {
+      left: 2%;
+    }
+    15% {
+      left: 10px;
+    }
+    100% {
+      left: 175px;
+    }
+  }
+
+  @keyframes closeAnimation {
+    0% {
+      left: 180px;
+    }
+    80% {
+      left: 2%;
+    }
+  }
   @media ${media.DESKTOP} {
     display: block;
   }
@@ -47,10 +70,35 @@ export const LeftIconWrapper = styled.div<{ $isOpen: boolean }>`
 `
 export const RightIconWrapper = styled.div<{ $isOpen: boolean }>`
   padding-top: ${({ theme }) => theme.spacings.s30};
-  position: absolute;
-  transition: all 0.43s linear;
+  position: fixed;
+  top: 0;
+  z-index: ${({ theme }) => theme.zIndex.z10};
   right: ${({ $isOpen }) => ($isOpen ? "315px" : "2%")};
   display: none;
+
+  animation: ${({ $isOpen }) => ($isOpen ? "openRightAnimation" : "closeRightAnimation")}
+    0.42s linear forwards;
+
+  @keyframes openRightAnimation {
+    0% {
+      right: 2%;
+    }
+    10% {
+      right: 10px;
+    }
+    100% {
+      right: 315px;
+    }
+  }
+
+  @keyframes closeRightAnimation {
+    0% {
+      right: 315px;
+    }
+    80% {
+      right: 2%;
+    }
+  }
 
   @media ${media.DESKTOP} {
     display: block;
