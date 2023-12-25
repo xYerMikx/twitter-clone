@@ -33,8 +33,13 @@ export const Main = styled.main`
 export const LeftIconWrapper = styled.div<{ $isOpen: boolean }>`
   padding-top: ${({ theme }) => theme.spacings.s30};
   position: absolute;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.42s linear;
   left: ${({ $isOpen }) => ($isOpen ? "180px" : "2%")};
+  display: none;
+
+  @media ${media.DESKTOP} {
+    display: block;
+  }
   @media ${media.PHONE} {
     left: ${({ $isOpen }) => ($isOpen ? "180px" : "1%")};
   }
@@ -42,8 +47,13 @@ export const LeftIconWrapper = styled.div<{ $isOpen: boolean }>`
 export const RightIconWrapper = styled.div<{ $isOpen: boolean }>`
   padding-top: ${({ theme }) => theme.spacings.s30};
   position: absolute;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.43s linear;
   right: ${({ $isOpen }) => ($isOpen ? "315px" : "2%")};
+  display: none;
+
+  @media ${media.DESKTOP} {
+    display: block;
+  }
   @media ${media.PHONE} {
     right: ${({ $isOpen }) => ($isOpen ? "250px" : "1%")};
   }

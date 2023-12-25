@@ -13,7 +13,7 @@ export const TweetWrapper = styled.div`
   }
 `
 
-export const TweetBody = styled.div`
+export const TweetBody = styled.div<{ $isHover?: boolean }>`
   display: flex;
   flex: 1 0 70%;
   flex-direction: column;
@@ -23,9 +23,9 @@ export const TweetBody = styled.div`
     gap: ${({ theme }) => theme.spacings.s20};
   }
   & > div:nth-child(2) {
-    cursor: pointer;
+    cursor: ${({ $isHover }) => $isHover && "pointer"};
     &:hover {
-      color: ${({ theme }) => theme.blue};
+      color: ${({ $isHover, theme }) => $isHover && theme.blue};
     }
   }
 `
@@ -87,6 +87,12 @@ export const Dropdown = styled.div`
   text-align: center;
   right: ${({ theme }) => theme.spacings.s5};
   top: ${({ theme }) => theme.spacings.s40};
+  @media ${media.PHONE} {
+    top: auto;
+    right: auto;
+    bottom: ${({ theme }) => theme.spacings.s5};
+    left: ${({ theme }) => theme.spacings.s30};
+  }
 `
 
 export const DeleteButton = styled.button`

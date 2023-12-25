@@ -4,16 +4,14 @@ import { Sidebar } from "../Sidebar/Sidebar"
 import { LeftIconWrapper, Main, RightIconWrapper, Wrapper } from "./styled"
 import { SearchSidebar } from "../SearchSidebar/SearchSidebar"
 import { collectionsWithPaths, searchFieldsInCollection } from "@/constants/collections"
-import { Sizes } from "@/constants/sizes"
 import { BurgerIcon } from "../BurgerIcon/BurgerIcon"
+import { SearchIcon } from "../SearchIcon/SearchIcon"
 
 export function Layout() {
   const location = useLocation()
   const path = location.pathname
-  const [sidebarOpen, setSidebarOpen] = useState(window.innerWidth >= Sizes.DESKTOP)
-  const [searchSidebarOpen, setSearchSidebarOpen] = useState(
-    window.innerWidth >= Sizes.DESKTOP,
-  )
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [searchSidebarOpen, setSearchSidebarOpen] = useState(false)
 
   const searchConfig = {
     collectionName: collectionsWithPaths[path] || collectionsWithPaths["/"],
@@ -32,20 +30,19 @@ export function Layout() {
 
   return (
     <Wrapper>
-      {window.innerWidth <= Sizes.DESKTOP && (
-        <LeftIconWrapper $isOpen={sidebarOpen}>
-          <BurgerIcon isOpen={sidebarOpen} onClick={toggleSidebar} />
-        </LeftIconWrapper>
-      )}
+      <LeftIconWrapper $isOpen={sidebarOpen}>
+        <BurgerIcon isOpen={sidebarOpen} onClick={toggleSidebar} />
+      </LeftIconWrapper>
+
       <Sidebar isSidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
       <Main>
         <Outlet />
       </Main>
-      {window.innerWidth <= Sizes.DESKTOP && (
-        <RightIconWrapper $isOpen={searchSidebarOpen}>
-          <BurgerIcon isOpen={searchSidebarOpen} onClick={toggleSearchSidebar} />
-        </RightIconWrapper>
-      )}
+
+      <RightIconWrapper $isOpen={searchSidebarOpen}>
+        <SearchIcon isOpen={searchSidebarOpen} onClick={toggleSearchSidebar} />
+      </RightIconWrapper>
+
       <SearchSidebar
         searchConfig={searchConfig}
         isSearchSidebarOpen={searchSidebarOpen}

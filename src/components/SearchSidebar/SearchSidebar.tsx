@@ -1,6 +1,6 @@
 import { ChangeEvent, useEffect, useState } from "react"
 import { Link, useLocation } from "react-router-dom"
-import { collection, getDocs, query, where } from "firebase/firestore"
+import { collection, query, where } from "firebase/firestore"
 import {
   LinkItem,
   LinksList,
@@ -20,7 +20,8 @@ import { Searchbar } from "../Searchbar/Searchbar"
 import { Collections } from "@/constants/collections"
 import { db } from "@/firebase"
 import { searchbarPlaceholders } from "@/constants/searchbarPlaceholders"
-import { IComponentByPath, componentsByPath, itemsByPath } from "@/constants/byPath"
+import { IComponentByPath, componentsByPath } from "@/constants/byPath"
+import { fetchItems } from "@/utils/fetchItems"
 
 interface SearchConfig {
   collectionName: Collections
@@ -36,41 +37,25 @@ export function SearchSidebar({
   isSearchSidebarOpen,
 }: ISeatchSidebarProps) {
   const location = useLocation()
-  const defaultItems = itemsByPath[location.pathname] || itemsByPath["/"]
   const [showMore, setShowMore] = useState(true)
-  const [items, setItems] = useState<ISearchedTweet[] | IUserProfile[]>(defaultItems)
+  const [items, setItems] = useState<ISearchedTweet[] | IUserProfile[]>([])
   const [itemsToShow, setItemsToShow] = useState(2)
   const [inputValue, setInputValue] = useState("")
   const debouncedInputValue = useDebounce(inputValue, 500)
   const placeholder = searchbarPlaceholders[searchField]
-  useEffect(() => {
-    const newItems = itemsByPath[location.pathname] || itemsByPath["/"]
-    setItems(newItems)
-  }, [location.pathname])
 
   useEffect(() => {
     const fetchData = async () => {
-      if (debouncedInputValue) {
-        const q = query(
-          collection(db, collectionName),
-          where(searchField, ">=", debouncedInputValue),
-          where(searchField, "<=", `${debouncedInputValue}\uf8ff`),
-        )
+      if (!debouncedInputValue) {
+        const dataQuery = query(collection(db, collectionName))
 
         try {
-          const querySnapshot = await getDocs(q)
-          let newItems: ISearchedTweet[] | IUserProfile[] = []
-          if (collectionName === Collections.Users) {
-            newItems = querySnapshot.docs.map((doc) => {
-              const data = doc.data() as IUserProfile
-              return { ...data, photoURL: profile }
-            })
-          } else if (collectionName === Collections.Tweets) {
-            newItems = querySnapshot.docs.map((doc) => {
-              const { email, name, createdAt, content } = doc.data()
-              return { email, name, createdAt, content }
-            })
-          }
+          const newItems = await fetchItems(
+            dataQuery,
+            collectionName === Collections.Users,
+            profile,
+            2,
+          )
 
           setItems(newItems)
           setItemsToShow(newItems.length)
@@ -78,13 +63,32 @@ export function SearchSidebar({
           console.error("Error fetching data: ", error)
         }
       } else {
-        const itemsFromPath = itemsByPath[location.pathname] || itemsByPath["/"]
+        const searchValue = debouncedInputValue.startsWith("@")
+          ? debouncedInputValue.slice(1)
+          : debouncedInputValue
+        const searchedFieldInFirebase = debouncedInputValue.startsWith("@")
+          ? "email"
+          : searchField
+        const dataQuery = query(
+          collection(db, collectionName),
+          where(searchedFieldInFirebase, ">=", searchValue),
+          where(searchedFieldInFirebase, "<=", `${searchValue}\uf8ff`),
+        )
 
-        setItems(itemsFromPath)
-        setItemsToShow(itemsFromPath.length)
+        try {
+          const newItems = await fetchItems(
+            dataQuery,
+            collectionName === Collections.Users,
+            profile,
+          )
+
+          setItems(newItems)
+          setItemsToShow(newItems.length)
+        } catch (error) {
+          console.error("Error fetching data: ", error)
+        }
       }
     }
-
     fetchData()
   }, [debouncedInputValue, location.pathname, collectionName, searchField])
 

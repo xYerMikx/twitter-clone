@@ -3,6 +3,7 @@ import { collection, onSnapshot, orderBy, query } from "firebase/firestore"
 import { useAppSelector } from "@/hooks/redux"
 import {
   BgImage,
+  BirthDate,
   ProfileContent,
   ProfileInfo,
   ProfileLogo,
@@ -27,7 +28,7 @@ import { ProfileModal } from "@/components/ProfileModal/ProfileModal"
 import { Collections } from "@/constants/collections"
 
 export function Profile() {
-  const { name, email } = useAppSelector(selectUserInfo)
+  const { name, email, birthday } = useAppSelector(selectUserInfo)
   const [tweets, setTweets] = useState<Omit<ITweetProps, "myEmail">[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
@@ -70,6 +71,7 @@ export function Profile() {
         <ProfileName>{name}</ProfileName>
         <ProfileNickName>@{email.split("@")[0]}</ProfileNickName>
         <ProfileContent>UX&UI designer at @abutechuz</ProfileContent>
+        <BirthDate>Birth date: {birthday}</BirthDate>
         <ProfileStatistics>
           <ProfileStatsText>
             <ProfileSpan>67</ProfileSpan> followers

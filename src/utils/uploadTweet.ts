@@ -7,7 +7,7 @@ import { Collections } from "@/constants/collections"
 export type FileType = Blob | Uint8Array | ArrayBuffer | null
 
 export const uploadImage = async (file: FileType, id: string) => {
-  const imgId = (id + new Date().getMilliseconds()).slice(0, 20)
+  const imgId = id + new Date().getMilliseconds()
   const fileName = `images/${imgId}.jpg`
   const fileRef = ref(storage, fileName)
 

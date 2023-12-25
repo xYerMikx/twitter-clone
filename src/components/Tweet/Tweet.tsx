@@ -1,7 +1,7 @@
 import { Timestamp, deleteDoc, doc, updateDoc } from "firebase/firestore"
 import { useEffect, useState } from "react"
 import { getDownloadURL, ref } from "firebase/storage"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import {
   CreatedAt,
   DeleteButton,
@@ -54,6 +54,8 @@ export function Tweet({
   const [isLiking, setIsLiking] = useState(false)
   const [showDropdown, setShowDropdown] = useState(false)
   const navigate = useNavigate()
+  const params = useParams()
+  const isHover = !params.id
 
   const handleLikeChange = async () => {
     setIsLiking(true)
@@ -76,7 +78,7 @@ export function Tweet({
       try {
         await updateDoc(tweetRef, {
           likes: currentLikes + 1,
-          likingUsers: [...likingUsers, email],
+          likingUsers: [...likingUsers, myEmail],
         })
         setCurrentLikes((prevLikes) => prevLikes + 1)
         setIsLiked(true)
@@ -94,6 +96,9 @@ export function Tweet({
     const tweetRef = doc(db, Collections.Tweets, id)
     try {
       await deleteDoc(tweetRef)
+      if (params.id) {
+        navigate("/")
+      }
     } catch (e) {
       const error = e as Error
       console.error(error)
@@ -114,7 +119,7 @@ export function Tweet({
   return (
     <TweetWrapper>
       <ProfileImage src={profileImage} alt="profile-image" />
-      <TweetBody>
+      <TweetBody $isHover={isHover}>
         <Row>
           <Name>{name}</Name>
           <UserName>@{email.split("@")[0]}</UserName>

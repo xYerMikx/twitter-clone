@@ -6,6 +6,8 @@ export const ErrorWrapper = styled.main`
   margin: 0 auto;
   gap: 2.5rem;
   color: ${({ theme }) => theme.primaryColor};
+  background-color: ${({ theme }) => theme.bgColor};
+  height: 100vh;
 `
 
 export const StyledTitle = styled.h1``

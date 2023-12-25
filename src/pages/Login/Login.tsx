@@ -34,9 +34,13 @@ export function Login() {
       const email = isValidEmail(identifier)
       if (phone || email) {
         const { userData, token } = await getUserDataAndLogin(phone, identifier, password)
-        if (token) dispatch(userActions.setUser({ ...(userData as IUser), token }))
-        dispatchNotification(dispatch, NotificationStatuses.SUCCESS, SUCCESS_LOGIN)
-        navigate(Routes.HOME)
+        if (token) {
+          dispatch(userActions.setUser({ ...(userData as IUser), token }))
+          dispatchNotification(dispatch, NotificationStatuses.SUCCESS, SUCCESS_LOGIN)
+          navigate(Routes.HOME)
+        } else {
+          dispatchNotification(dispatch, NotificationStatuses.ERROR, USER_NOT_FOUND)
+        }
       } else {
         dispatchNotification(dispatch, NotificationStatuses.ERROR, USER_NOT_FOUND)
       }

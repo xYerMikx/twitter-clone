@@ -3,6 +3,7 @@ import profileImage from "@/assets/profile-logo.svg"
 import upload from "@/assets/upload.svg"
 import {
   AreaColumn,
+  FileName,
   Image,
   InputForFile,
   Label,
@@ -26,6 +27,7 @@ export function TweetTextarea({ closeModal }: ITweetTextareaProps) {
   const { name, email, _id: id } = useAppSelector(selectUserInfo)
   const [textValue, setTextValue] = useState("")
   const [image, setImage] = useState<FileType>(null)
+  const [fileName, setFileName] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const dispatch = useAppDispatch()
 
@@ -36,6 +38,7 @@ export function TweetTextarea({ closeModal }: ITweetTextareaProps) {
   const handlePhotoUpload = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files !== null) {
       setImage(e.target.files[0])
+      setFileName(e.target.files[0].name)
     }
   }
 
@@ -54,6 +57,8 @@ export function TweetTextarea({ closeModal }: ITweetTextareaProps) {
       if (closeModal) {
         closeModal()
       }
+    } finally {
+      setFileName("")
     }
   }
 
@@ -69,9 +74,10 @@ export function TweetTextarea({ closeModal }: ITweetTextareaProps) {
           value={textValue}
           onChange={handleChange}
         />
-        <Label htmlFor="upload-photo">
+        <Label $fileName={fileName} htmlFor="upload-photo">
           <UploadImage src={upload} alt="upload" />
           <InputForFile type="file" id="upload-photo" onChange={handlePhotoUpload} />
+          {fileName && <FileName>{fileName}</FileName>}
         </Label>
       </AreaColumn>
       <Button
