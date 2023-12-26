@@ -79,3 +79,42 @@ export const LinkItem = styled.li`
     color: ${({ theme }) => theme.blue};
   }
 `
+export const RightIconWrapper = styled.div<{ $isOpen: boolean }>`
+  padding-top: ${({ theme }) => theme.spacings.s30};
+  position: fixed;
+  top: 0;
+  z-index: ${({ theme }) => theme.zIndex.z10};
+  right: ${({ $isOpen }) => ($isOpen ? "315px" : "2%")};
+  display: none;
+
+  animation: ${({ $isOpen }) => ($isOpen ? "openRightAnimation" : "closeRightAnimation")}
+    0.4s linear forwards;
+
+  @keyframes openRightAnimation {
+    0% {
+      right: 2%;
+    }
+    15% {
+      right: 10px;
+    }
+    100% {
+      right: 315px;
+    }
+  }
+
+  @keyframes closeRightAnimation {
+    0% {
+      right: 315px;
+    }
+    84% {
+      right: 2%;
+    }
+  }
+
+  @media ${media.DESKTOP} {
+    display: block;
+  }
+  @media ${media.PHONE} {
+    right: ${({ $isOpen }) => ($isOpen ? "250px" : "1%")};
+  }
+`

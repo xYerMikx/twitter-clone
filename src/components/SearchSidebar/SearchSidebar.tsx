@@ -14,10 +14,12 @@ import useDebounce from "@/hooks/useDebounce"
 import { fetchItems } from "@/utils/fetchItems"
 
 import { Searchbar } from "../Searchbar/Searchbar"
+import { SearchIcon } from "../SearchIcon/SearchIcon"
 import {
   LinkItem,
   LinksList,
   MightLike,
+  RightIconWrapper,
   ShowLessButton,
   ShowMoreButton,
   SidebarContainer,
@@ -32,11 +34,13 @@ interface SearchConfig {
 interface ISeatchSidebarProps {
   searchConfig: SearchConfig
   isSearchSidebarOpen: boolean
+  toggleSearchSidebar: () => void
 }
 
 export function SearchSidebar({
   searchConfig: { collectionName, searchField },
   isSearchSidebarOpen,
+  toggleSearchSidebar,
 }: ISeatchSidebarProps) {
   const location = useLocation()
   const [showMore, setShowMore] = useState(true)
@@ -116,6 +120,9 @@ export function SearchSidebar({
   }
   return (
     <SidebarContainer $isOpen={isSearchSidebarOpen}>
+      <RightIconWrapper $isOpen={isSearchSidebarOpen}>
+        <SearchIcon isOpen={isSearchSidebarOpen} onClick={toggleSearchSidebar} />
+      </RightIconWrapper>
       <Searchbar
         dataCy="searchbar"
         value={inputValue}

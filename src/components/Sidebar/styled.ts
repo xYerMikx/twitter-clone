@@ -84,3 +84,42 @@ export const ProfileUserName = styled.div`
   color: ${({ theme }) => theme.gray};
 `
 export const Image = styled.img``
+export const LeftIconWrapper = styled.div<{ $isOpen: boolean }>`
+  padding-top: ${({ theme }) => theme.spacings.s30};
+
+  position: fixed;
+  top: 0;
+  z-index: ${({ theme }) => theme.zIndex.z10};
+  left: ${({ $isOpen }) => ($isOpen ? "180px" : "2%")};
+  display: none;
+  animation: ${({ $isOpen }) => ($isOpen ? "openAnimation" : "closeAnimation")} 0.4s
+    linear forwards;
+
+  @keyframes openAnimation {
+    0% {
+      left: 2%;
+    }
+    15% {
+      left: -10px;
+    }
+    100% {
+      left: 175px;
+    }
+  }
+
+  @keyframes closeAnimation {
+    0% {
+      left: 180px;
+    }
+    70% {
+      left: 2%;
+    }
+  }
+
+  @media ${media.DESKTOP} {
+    display: block;
+  }
+  @media ${media.PHONE} {
+    left: ${({ $isOpen }) => ($isOpen ? "180px" : "1%")};
+  }
+`
