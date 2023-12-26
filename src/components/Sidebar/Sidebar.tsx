@@ -10,10 +10,12 @@ import { useAppSelector } from "@/hooks/redux"
 import { selectUserInfo } from "@/store/selectors"
 import { Button } from "@/ui/Button/Button"
 
+import { BurgerIcon } from "../BurgerIcon/BurgerIcon"
 import { TweetModal } from "../TweetModal/TweetModal"
 import { TwitterLogo } from "../TwitterLogo/TwitterLogo"
 import {
   Image,
+  LeftIconWrapper,
   ProfileInfo,
   ProfileName,
   ProfileUserName,
@@ -79,6 +81,9 @@ export function Sidebar({
         Log Out
       </Button>
       {isOpen && <TweetModal closeModal={closeModal} />}
+      <LeftIconWrapper $isOpen={isSidebarOpen}>
+        <BurgerIcon isOpen={isSidebarOpen} onClick={toggleSidebar} />
+      </LeftIconWrapper>
     </SidebarWrapper>
   )
 }

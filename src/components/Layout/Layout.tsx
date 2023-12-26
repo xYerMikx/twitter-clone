@@ -3,11 +3,9 @@ import { Outlet, useLocation } from "react-router-dom"
 
 import { collectionsWithPaths, searchFieldsInCollection } from "@/constants/collections"
 
-import { BurgerIcon } from "../BurgerIcon/BurgerIcon"
-import { SearchIcon } from "../SearchIcon/SearchIcon"
 import { SearchSidebar } from "../SearchSidebar/SearchSidebar"
 import { Sidebar } from "../Sidebar/Sidebar"
-import { LeftIconWrapper, Main, RightIconWrapper, Wrapper } from "./styled"
+import { Main, Wrapper } from "./styled"
 
 export function Layout() {
   const location = useLocation()
@@ -32,22 +30,15 @@ export function Layout() {
 
   return (
     <Wrapper>
-      <LeftIconWrapper $isOpen={sidebarOpen}>
-        <BurgerIcon isOpen={sidebarOpen} onClick={toggleSidebar} />
-      </LeftIconWrapper>
-
       <Sidebar isSidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
       <Main>
         <Outlet />
       </Main>
 
-      <RightIconWrapper $isOpen={searchSidebarOpen}>
-        <SearchIcon isOpen={searchSidebarOpen} onClick={toggleSearchSidebar} />
-      </RightIconWrapper>
-
       <SearchSidebar
         searchConfig={searchConfig}
         isSearchSidebarOpen={searchSidebarOpen}
+        toggleSearchSidebar={toggleSearchSidebar}
       />
     </Wrapper>
   )
